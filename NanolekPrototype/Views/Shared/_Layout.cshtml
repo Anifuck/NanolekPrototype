@@ -25,13 +25,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a>
                             </li>
-                        }
-                    </ul>
+                            
+                            <li class="nav-item ml-auto nav-link">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <input type="submit" value="Выход" />
+                                </form>
+                            </li>
+                            }
+                            else
+                            {
+                            <li class="nav-item ml-auto nav-link">
+                                <a asp-controller="Account" asp-action="Login">Вход</a>
+                            </li>
+                            }
+                        </ul>
                 </div>
             </div>
         </nav>

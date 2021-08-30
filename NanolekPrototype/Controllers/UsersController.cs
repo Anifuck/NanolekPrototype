@@ -24,7 +24,7 @@ namespace NanolekPrototype.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName};
+                User user = new User { Email = model.Email, UserName = model.Email, FullName = model.FullName, Position = model.Position };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -48,7 +48,7 @@ namespace NanolekPrototype.Controllers
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName };
+            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, FullName = user.FullName, Position = user.Position };
             return View(model);
         }
 
@@ -62,8 +62,8 @@ namespace NanolekPrototype.Controllers
                 {
                     user.Email = model.Email;
                     user.UserName = model.Email;
-                    user.FirstName = model.FirstName;
-                    user.LastName = model.LastName;
+                    user.FullName = model.FullName;
+                    user.Position = model.Position;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)

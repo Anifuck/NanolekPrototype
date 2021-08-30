@@ -9,12 +9,12 @@ namespace NanolekPrototype.ViewModels
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Имя")]
-        public string FirstName { get; set; }
+        [Display(Name = "ФИО")]
+        public string FullName { get; set; }
 
         [Required]
-        [Display(Name = "Фамилия")]
-        public string LastName { get; set; }
+        [Display(Name = "Должность")]
+        public string Position { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

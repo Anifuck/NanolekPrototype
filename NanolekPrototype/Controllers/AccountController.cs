@@ -30,7 +30,7 @@ namespace NanolekPrototype.Controllers
             {
                 User user = new User
                 {
-                    Email = model.Email, UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName
+                    Email = model.Email, UserName = model.Email, FullName = model.FullName, Position = model.Position
 
                 };
                 // добавляем пользователя

@@ -22,6 +22,10 @@ namespace NanolekPrototype.Initializers
             {
                 await roleManager.CreateAsync(new IdentityRole("controller"));
             }
+            if (await roleManager.FindByNameAsync("executor") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("executor"));
+            }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
                 User admin = new User { Email = adminEmail, UserName = adminEmail};

@@ -25,6 +25,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.IsInRole("controller"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PackagingProtocol" asp-action="Index">Протоколы упаковки</a>
+                            </li>
+                        }
 
                         @if (User.IsInRole("admin"))
                         {
@@ -40,7 +46,7 @@
                         {
                             <li class="nav-item ml-auto nav-link">
                                 <form method="post" asp-controller="Account" asp-action="Logout">
-                                    <input type="submit" value="Выход"/>
+                                    <input type="submit" value="Выход" />
                                 </form>
                             </li>
                         }

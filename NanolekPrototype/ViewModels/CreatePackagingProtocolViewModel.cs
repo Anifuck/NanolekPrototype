@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
+using NanolekPrototype.Domain.Enums;
 using NanolekPrototype.Models;
 
 namespace NanolekPrototype.ViewModels

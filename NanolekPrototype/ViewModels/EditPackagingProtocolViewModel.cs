@@ -1,4 +1,6 @@
 ﻿using System;
+using NanolekPrototype.Domain.Enums;
+using NanolekPrototype.Domain.Models;
 using NanolekPrototype.Models;
 
 namespace NanolekPrototype.ViewModels

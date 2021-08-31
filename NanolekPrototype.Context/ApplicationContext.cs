@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NanolekPrototype.Domain.Models;
 
-namespace NanolekPrototype.Models
+namespace NanolekPrototype.Context
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            
         }
         public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
     }

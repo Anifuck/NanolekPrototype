@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity;
+using NanolekPrototype.Domain.Enums;
 
-namespace NanolekPrototype.Models
+namespace NanolekPrototype.Domain.Models
 {
     public class PackagingProtocol
     {
@@ -22,12 +22,4 @@ namespace NanolekPrototype.Models
         public string CancellationReason { get; set; }
 
     }
-
-    public enum PackagingProtocolStatus
-    {
-        InWork,
-        Completed,
-        Cancelled,
-    }
-
 }

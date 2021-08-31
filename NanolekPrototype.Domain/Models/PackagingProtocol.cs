@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
@@ -20,6 +22,6 @@ namespace NanolekPrototype.EntityModels.Models
         public string InternalCodeGP { get; set; }
         public PackagingProtocolStatus PackagingProtocolStatus { get; set; }
         public string CancellationReason { get; set; }
-
+        public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
     }
 }

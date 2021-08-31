@@ -11,5 +11,7 @@ namespace NanolekPrototype.Context
             
         }
         public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
+        public DbSet<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
+        public DbSet<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
     }
 }

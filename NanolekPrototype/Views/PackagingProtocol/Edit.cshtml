@@ -1,0 +1,60 @@
+﻿@model NanolekPrototype.ViewModels.EditPackagingProtocolViewModel
+@{
+    ViewBag.Title = "Добавление протокола упаковки";
+}
+
+<form asp-action="Edit" asp-controller="PackagingProtocol">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="SerialNumber" class="control-label">Серия номер</label>
+        <input type="text" asp-for="SerialNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ResponsibleUserOOK" class="control-label">Ответственный работник ООК</label>
+        @Html.DropDownList("NewResponsibleUserOOKGuid", ViewBag.ResponsibleUserOOK, null, null)
+    </div>
+    <div class="form-group">
+        <label asp-for="StorageConditions" class="control-label">Условия хранения</label>
+        <input type="text" asp-for="StorageConditions" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ManufacturingDate" class="control-label">Дата изготовления</label>
+        <input type="date" asp-for="ManufacturingDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SellBy" class="control-label">Годен до</label>
+        <input type="date" asp-for="SellBy" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PackageNumber" class="control-label">Номер упаковки</label>
+        <input type="text" asp-for="PackageNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ResponsibleUserTLF" class="control-label">Ответственный работник производства ТЛФ</label>
+        @Html.DropDownList("NewResponsibleUserTLFGuid", ViewBag.ResponsibleUserTLF, null, null)
+    </div>
+    <div class="form-group">
+        <label asp-for="TradeName" class="control-label">Торговое наименование лекарственного препарата</label>
+        <input type="text" asp-for="TradeName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SpecificationGP" class="control-label">Спецификация ГП</label>
+        <input type="text" asp-for="SpecificationGP" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="InternalCodeGP" class="control-label">Внутренний код ГП</label>
+        <input type="text" asp-for="InternalCodeGP" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Status" class="control-label">Статус</label>
+        @Html.DropDownListFor(model => model.Status,
+            new SelectList(Enum.GetValues(typeof(Status))),
+            Status.InWork)
+    </div>
+    <div class="form-group">
+        <label asp-for="CancellationReason" class="control-label">Причина отмены</label>
+        <input type="text" asp-for="CancellationReason" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a class="btn btn-sm btn-primary" asp-action="Delete" asp-route-id="@Model.Id">Удалить</a>
+</form>

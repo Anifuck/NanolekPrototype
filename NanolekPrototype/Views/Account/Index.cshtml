@@ -1,0 +1,13 @@
+﻿@model User
+
+<table class="table">
+    <tr><th>Email</th><th>ФИО</th><th>Должность</th><th></th></tr>
+    <tr>
+            <td>@Model.Email</td>
+            <td>@Model.FullName</td>
+            <td>@Model.Position</td>
+            <td>
+                    <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="ChangePassword" asp-route-id="@Model.Id">Сменить пароль</a>
+            </td>
+        </tr>
+</table>

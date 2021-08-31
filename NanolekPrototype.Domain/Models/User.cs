@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace NanolekPrototype.Domain.Models
+namespace NanolekPrototype.EntityModels.Models
 {
     public class User : IdentityUser
     {

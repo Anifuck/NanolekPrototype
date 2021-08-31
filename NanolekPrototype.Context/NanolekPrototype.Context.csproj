@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NanolekPrototype.Domain\NanolekPrototype.Domain.csproj" />
+    <ProjectReference Include="..\NanolekPrototype.Domain\NanolekPrototype.EntityModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
-using NanolekPrototype.Domain.Models;
+using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Models;
 
 namespace NanolekPrototype

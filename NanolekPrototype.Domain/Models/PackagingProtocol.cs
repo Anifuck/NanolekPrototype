@@ -1,7 +1,7 @@
 ﻿using System;
-using NanolekPrototype.Domain.Enums;
+using NanolekPrototype.EntityModels.Enums;
 
-namespace NanolekPrototype.Domain.Models
+namespace NanolekPrototype.EntityModels.Models
 {
     public class PackagingProtocol
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols;
-using NanolekPrototype.Domain.Models;
+using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Initializers;
 using NanolekPrototype.Models;
 

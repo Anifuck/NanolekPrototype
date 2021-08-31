@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Protocols;
 using NanolekPrototype.Models;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
-using NanolekPrototype.Domain.Models;
+using NanolekPrototype.EntityModels.Models;
 
 namespace NanolekPrototype.Initializers
 {

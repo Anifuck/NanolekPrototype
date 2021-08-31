@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanolekPrototype", "NanolekPrototype\NanolekPrototype.csproj", "{F3F3BFA4-0FF8-4FCA-A03E-6BB302AC4B0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanolekPrototype.Domain", "NanolekPrototype.Domain\NanolekPrototype.Domain.csproj", "{FBBF06DC-D91F-4CA4-B8BB-33E43189B0B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanolekPrototype.EntityModels", "NanolekPrototype.Domain\NanolekPrototype.EntityModels.csproj", "{FBBF06DC-D91F-4CA4-B8BB-33E43189B0B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanolekPrototype.Context", "NanolekPrototype.Context\NanolekPrototype.Context.csproj", "{0ABD5B03-7A8D-402D-8F97-35F689CF436E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanolekPrototype.Context", "NanolekPrototype.Context\NanolekPrototype.Context.csproj", "{0ABD5B03-7A8D-402D-8F97-35F689CF436E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

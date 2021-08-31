@@ -1,4 +1,4 @@
-﻿namespace NanolekPrototype.Domain.Enums
+﻿namespace NanolekPrototype.EntityModels.Enums
 {
     public enum PackagingProtocolStatus
     {

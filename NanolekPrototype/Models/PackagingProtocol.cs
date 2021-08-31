@@ -18,12 +18,12 @@ namespace NanolekPrototype.Models
         public string TradeName { get; set; }
         public string SpecificationGP { get; set; }
         public string InternalCodeGP { get; set; }
-        public Status Status { get; set; } = Status.InWork;
+        public PackagingProtocolStatus PackagingProtocolStatus { get; set; }
         public string CancellationReason { get; set; }
 
     }
 
-    public enum Status
+    public enum PackagingProtocolStatus
     {
         InWork,
         Completed,

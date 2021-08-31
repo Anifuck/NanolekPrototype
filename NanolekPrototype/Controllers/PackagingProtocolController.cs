@@ -48,7 +48,7 @@ namespace NanolekPrototype.Controllers
                 TradeName = packagingProtocol.TradeName,
                 SpecificationGP = packagingProtocol.SpecificationGP,
                 InternalCodeGP = packagingProtocol.InternalCodeGP,
-                Status = packagingProtocol.Status,
+                PackagingProtocolStatus = packagingProtocol.PackagingProtocolStatus,
                 CancellationReason = packagingProtocol.CancellationReason
             };
 
@@ -85,7 +85,7 @@ namespace NanolekPrototype.Controllers
             packagingProtocol.TradeName = editPPVM.TradeName;
             packagingProtocol.SpecificationGP = editPPVM.SpecificationGP;
             packagingProtocol.InternalCodeGP = editPPVM.InternalCodeGP;
-            packagingProtocol.Status = editPPVM.Status;
+            packagingProtocol.PackagingProtocolStatus = editPPVM.PackagingProtocolStatus;
             packagingProtocol.CancellationReason = editPPVM.CancellationReason;
             await _context.SaveChangesAsync();
 
@@ -121,7 +121,7 @@ namespace NanolekPrototype.Controllers
                     TradeName = createPackagingProtocolViewModel.TradeName,
                     SpecificationGP = createPackagingProtocolViewModel.SpecificationGP,
                     InternalCodeGP = createPackagingProtocolViewModel.InternalCodeGP,
-                    Status = createPackagingProtocolViewModel.Status,
+                    PackagingProtocolStatus = createPackagingProtocolViewModel.PackagingProtocolStatus,
                     CancellationReason = createPackagingProtocolViewModel.CancellationReason
                 };
 

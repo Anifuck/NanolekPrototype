@@ -17,7 +17,7 @@ namespace NanolekPrototype.ViewModels
         public string TradeName { get; set; }
         public string SpecificationGP { get; set; }
         public string InternalCodeGP { get; set; }
-        public Status Status { get; set; } = Status.InWork;
+        public PackagingProtocolStatus PackagingProtocolStatus { get; set; } = PackagingProtocolStatus.InWork;
         public string CancellationReason { get; set; }
     }
 }

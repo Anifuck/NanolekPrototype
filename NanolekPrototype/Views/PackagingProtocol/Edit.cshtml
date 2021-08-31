@@ -46,10 +46,10 @@
         <input type="text" asp-for="InternalCodeGP" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Status" class="control-label">Статус</label>
-        @Html.DropDownListFor(model => model.Status,
-            new SelectList(Enum.GetValues(typeof(Status))),
-            Status.InWork)
+        <label asp-for="PackagingProtocolStatus" class="control-label">Статус</label>
+        @Html.DropDownListFor(model => model.PackagingProtocolStatus,
+            new SelectList(Enum.GetValues(typeof(PackagingProtocolStatus))),
+            PackagingProtocolStatus.InWork)
     </div>
     <div class="form-group">
         <label asp-for="CancellationReason" class="control-label">Причина отмены</label>

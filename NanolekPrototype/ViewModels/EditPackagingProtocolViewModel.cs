@@ -16,7 +16,7 @@ namespace NanolekPrototype.ViewModels
         public string TradeName { get; set; }
         public string SpecificationGP { get; set; }
         public string InternalCodeGP { get; set; }
-        public Status Status { get; set; }
+        public PackagingProtocolStatus PackagingProtocolStatus { get; set; }
         public string CancellationReason { get; set; }
         public string NewResponsibleUserOOKGuid { get; set; }
         public string NewResponsibleUserTLFGuid { get; set; }

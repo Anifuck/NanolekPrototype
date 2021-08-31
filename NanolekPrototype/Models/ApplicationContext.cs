@@ -9,5 +9,6 @@ namespace NanolekPrototype.Models
         {
             Database.EnsureCreated();
         }
+        public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
     }
 }

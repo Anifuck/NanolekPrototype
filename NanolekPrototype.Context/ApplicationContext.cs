@@ -35,7 +35,6 @@ namespace NanolekPrototype.Context
         public DbSet<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
         public DbSet<SampleSelection> SampleSelections { get; set; }
         public DbSet<TableProcedure> TabeProcedures { get; set; }
-        public DbSet<Procedure> Procedures { get; set; }
         public DbSet<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGpByLots { get; set; }
     }
 }

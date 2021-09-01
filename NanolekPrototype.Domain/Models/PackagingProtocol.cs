@@ -9,20 +9,69 @@ namespace NanolekPrototype.EntityModels.Models
     {
         public long Id { get; set; }
 
+        /// <summary>
+        /// GUID
+        /// </summary>
         public Guid Guid { get; set; }
+        /// <summary>
+        /// Серия номер
+        /// </summary>
         public string SerialNumber { get; set; }
+        /// <summary>
+        /// Ответственный работник ООК
+        /// </summary>
         public User ResponsibleUserOOK { get; set; }
+        /// <summary>
+        /// Условия хранения
+        /// </summary>
         public string StorageConditions { get; set; }
+        /// <summary>
+        /// Срок годности (дн.)
+        /// </summary>
         public double ShelfLife { get; set; }
+        /// <summary>
+        /// Дата изготовления
+        /// </summary>
         public DateTime ManufacturingDate { get; set; }
+        /// <summary>
+        /// Годен до
+        /// </summary>
         public DateTime SellBy { get; set; }
+        /// <summary>
+        /// Номер упаковки
+        /// </summary>
         public string PackageNumber { get; set; }
+        /// <summary>
+        /// Ответственный работник производства ТЛФ
+        /// </summary>
         public User ResponsibleUserTLF { get; set; }
+        /// <summary>
+        /// Торговое наименование лекарственного препарата
+        /// </summary>
         public string TradeName { get; set; }
+        /// <summary>
+        /// Спецификация ГП
+        /// </summary>
         public string SpecificationGP { get; set; }
+        /// <summary>
+        /// Внутренний код ГП
+        /// </summary>
         public string InternalCodeGP { get; set; }
+        /// <summary>
+        /// Статус
+        /// </summary>
         public PackagingProtocolStatus PackagingProtocolStatus { get; set; }
+        /// <summary>
+        /// Причина отмены
+        /// </summary>
         public string CancellationReason { get; set; }
+
+
+        // Таблица «Персонал, задействованный в производстве»:
+        public ICollection<ProductionPersonnel> ProductionPersonnels { get; set; }
+
+        // Таблица «Протоколы допуска персонала к работе»:
+        public ICollection<PersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
 
 
         public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }

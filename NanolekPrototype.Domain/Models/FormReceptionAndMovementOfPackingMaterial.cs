@@ -20,6 +20,7 @@ namespace NanolekPrototype.EntityModels.Models
         public DateTime CheckedByUserDate { get; set; }
 
         //Таблица «Приём материала»
+        public ICollection<ReceptionOfMaterial> ReceptionOfMaterials { get; set; }
 
         //Группа «Баланс по окончании серии»:
         public int SpentOnBatch { get; set; }
@@ -37,6 +38,5 @@ namespace NanolekPrototype.EntityModels.Models
         public User ShiftMaster { get; set; }
         public DateTime Date { get; set; }
 
-        public ICollection<ReceptionOfMaterial> ReceptionOfMaterials { get; set; }
     }
 }

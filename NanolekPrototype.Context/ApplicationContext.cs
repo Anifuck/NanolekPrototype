@@ -14,6 +14,8 @@ namespace NanolekPrototype.Context
         public DbSet<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
         public DbSet<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
         public DbSet<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }
-        public DbSet<ReceptionOfMaterial> ResReceptionOfMaterials { get; set; }
+        public DbSet<ReceptionOfMaterial> ReceptionOfMaterials { get; set; }
+        public DbSet<FormSettingUpTechnologicalEquipment>  FormSettingUpTechnologicalEquipments { get; set; }
+        public DbSet<SettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
     }
 }

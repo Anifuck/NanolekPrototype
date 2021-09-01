@@ -12,6 +12,6 @@ namespace NanolekPrototype.EntityModels.Models
             PackagingProtokolFormType.ControlOfPrimaryPackaging;
 
         //Таблица «Контроль упаковки»:
-        public ICollection<PackagingControl> PackagingControls { get; set; }
+        public ICollection<TablePackagingControl> PackagingControls { get; set; }
     }
 }

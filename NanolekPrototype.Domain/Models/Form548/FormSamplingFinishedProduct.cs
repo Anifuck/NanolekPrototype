@@ -21,7 +21,7 @@ namespace NanolekPrototype.EntityModels.Models
 
 
         //Таблица «Отбор проб»:
-        public ICollection<SampleSelection> SampleSelections { get; set; }
+        public ICollection<TableSampleSelection> SampleSelections { get; set; }
 
 
         //Таблица «Процедуры»:

@@ -12,7 +12,7 @@ namespace NanolekPrototype.EntityModels.Models
             PackagingProtokolFormType.SettingUpTechnologicalEquipment;
 
         //Таблица «Настройка технологического оборудования»:
-        public ICollection<SettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
+        public ICollection<TableSettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
 
     }
 }

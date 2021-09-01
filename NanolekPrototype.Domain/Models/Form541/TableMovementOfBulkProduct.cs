@@ -1,6 +1,6 @@
 ﻿namespace NanolekPrototype.EntityModels.Models
 {
-    public class MovementOfBulkProduct
+    public class TableMovementOfBulkProduct
     {
         public int Id { get; set; }
         public FormReceptionAndMovementOfBulkProduct FormReceptionAndMovementOfBulkProduct { get; set; }

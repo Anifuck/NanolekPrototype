@@ -2,7 +2,7 @@
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class PackagingControl
+    public class TablePackagingControl
     {
         public int Id { get; set; }
         public FormControlOfPrimaryPackaging FormControlOfPrimaryPackaging { get; set; }

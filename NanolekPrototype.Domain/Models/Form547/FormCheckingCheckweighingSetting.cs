@@ -13,7 +13,7 @@ namespace NanolekPrototype.EntityModels.Models
             PackagingProtokolFormType.CheckingCheckweighingSetting;
 
         //Таблица «Процедуры проверки»
-        public ICollection<CheckingProcedure> CheckingProcedures { get; set; }
+        public ICollection<TableCheckingProcedure> CheckingProcedures { get; set; }
 
     }
 }

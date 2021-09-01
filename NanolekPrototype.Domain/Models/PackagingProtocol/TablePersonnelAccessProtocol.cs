@@ -2,7 +2,7 @@
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class PersonnelAccessProtocol
+    public class TablePersonnelAccessProtocol
     {
         public int Id { get; set; }
         public PackagingProtocol PackagingProtocol { get; set; }

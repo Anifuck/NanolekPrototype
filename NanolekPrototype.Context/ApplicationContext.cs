@@ -11,29 +11,29 @@ namespace NanolekPrototype.Context
             
         }
         public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
-        public DbSet<ProductionPersonnel> ProductionPersonnels { get; set; }
-        public DbSet<PersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
+        public DbSet<TableProductionPersonnel> ProductionPersonnels { get; set; }
+        public DbSet<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
         public DbSet<PackagingProtocolForm> PackagingProtocolForms { get; set; }
         public DbSet<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
-        public DbSet<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
+        public DbSet<TableMovementOfBulkProduct> MovementOfBulkProducts { get; set; }
         public DbSet<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }
-        public DbSet<ReceptionOfMaterial> ReceptionOfMaterials { get; set; }
+        public DbSet<TableReceptionOfMaterial> ReceptionOfMaterials { get; set; }
         public DbSet<FormSettingUpTechnologicalEquipment>  FormSettingUpTechnologicalEquipments { get; set; }
-        public DbSet<SettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
+        public DbSet<TableSettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
         public DbSet<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
-        public DbSet<VerificationAction> VerificationActions { get; set; }
+        public DbSet<TableVerificationAction> VerificationActions { get; set; }
         public DbSet<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
-        public DbSet<PackagingControl> PackagingControls { get; set; }
+        public DbSet<TablePackagingControl> PackagingControls { get; set; }
         public DbSet<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes
         {
             get;
             set;
         }
         public DbSet<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
-        public DbSet<CheckingProcedure> CheckingProcedures { get; set; }
+        public DbSet<TableCheckingProcedure> CheckingProcedures { get; set; }
 
         public DbSet<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
-        public DbSet<SampleSelection> SampleSelections { get; set; }
+        public DbSet<TableSampleSelection> SampleSelections { get; set; }
         public DbSet<TableProcedure> TabeProcedures { get; set; }
         public DbSet<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGpByLots { get; set; }
     }

@@ -2,7 +2,7 @@
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class ReceptionOfMaterial
+    public class TableReceptionOfMaterial
     {
         public int Id { get; set; }
         public FormReceptionAndMovementOfPackingMaterial FormReceptionAndMovementOfPackingMaterial { get; set; }

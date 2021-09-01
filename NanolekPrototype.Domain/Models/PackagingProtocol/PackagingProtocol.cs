@@ -68,10 +68,10 @@ namespace NanolekPrototype.EntityModels.Models
 
 
         // Таблица «Персонал, задействованный в производстве»:
-        public ICollection<ProductionPersonnel> ProductionPersonnels { get; set; }
+        public ICollection<TableProductionPersonnel> ProductionPersonnels { get; set; }
 
         // Таблица «Протоколы допуска персонала к работе»:
-        public ICollection<PersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
+        public ICollection<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
 
 
         public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }

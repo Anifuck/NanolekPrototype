@@ -2,7 +2,7 @@
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class CheckingProcedure
+    public class TableCheckingProcedure
     {
         public int Id { get; set; }
         public FormCheckingCheckweighingSetting FormCheckingCheckweighingSetting { get; set; }

@@ -2,7 +2,7 @@
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class SampleSelection
+    public class TableSampleSelection
     {
         public int Id { get; set; }
         public FormSamplingFinishedProduct FormSamplingFinishedProduct { get; set; }

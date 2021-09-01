@@ -1,6 +1,8 @@
-﻿namespace NanolekPrototype.EntityModels.Models
+﻿using NanolekPrototype.EntityModels.Enums;
+
+namespace NanolekPrototype.EntityModels.Models
 {
-    public class SettingUpTechnologicalEquipment
+    public class TableSettingUpTechnologicalEquipment
     {
         public int Id { get; set; }
         public FormSettingUpTechnologicalEquipment FormSettingUpTechnologicalEquipment { get; set; }
@@ -9,7 +11,7 @@
 
 
 
-        public string Action { get; set; }
+        public Action Action { get; set; }
         public bool IsApproved { get; set; }
         public User ServiceTechnician { get; set; }
     }

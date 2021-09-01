@@ -44,6 +44,6 @@ namespace NanolekPrototype.EntityModels.Models
         public int GarbageSecondPackageUnits { get; set; }
 
 
-        public ICollection<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
+        public ICollection<TableMovementOfBulkProduct> MovementOfBulkProducts { get; set; }
     }
 }

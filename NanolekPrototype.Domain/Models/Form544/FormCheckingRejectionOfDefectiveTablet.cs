@@ -16,6 +16,6 @@ namespace NanolekPrototype.EntityModels.Models
         public DateTime CheckingDate { get; set; }
 
         // Таблица «Действия по проверке»:
-        public ICollection<VerificationAction> VerificationActions { get; set; }
+        public ICollection<TableVerificationAction> VerificationActions { get; set; }
     }
 }

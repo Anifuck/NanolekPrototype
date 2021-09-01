@@ -13,6 +13,7 @@ namespace NanolekPrototype.Context
         public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
         public DbSet<ProductionPersonnel> ProductionPersonnels { get; set; }
         public DbSet<PersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
+        public DbSet<PackagingProtocolForm> PackagingProtocolForms { get; set; }
         public DbSet<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
         public DbSet<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
         public DbSet<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }

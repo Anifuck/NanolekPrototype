@@ -1,10 +1,14 @@
-﻿namespace NanolekPrototype.EntityModels.Enums
+﻿using System.ComponentModel;
+
+namespace NanolekPrototype.EntityModels.Enums
 {
     public enum FormStatus
     {
-        OnEdit,
-        OnCheck,
+        [Description("В работе")]
+        InWork,
+        [Description("На контроле")]
+        OnControl,
+        [Description("Обработана")]
         Approved
-
     }
 }

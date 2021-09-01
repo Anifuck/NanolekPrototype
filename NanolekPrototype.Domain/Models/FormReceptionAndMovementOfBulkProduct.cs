@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
@@ -40,6 +41,8 @@ namespace NanolekPrototype.EntityModels.Models
         public int DefectFirstPackageUnits { get; set; }
         public int SampleSelectionUnits { get; set; }
         public int GarbageSecondPackageUnits { get; set; }
+
+        public FormStatus FormStatus { get; set; }
 
         public ICollection<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
     }

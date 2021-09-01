@@ -28,5 +28,10 @@ namespace NanolekPrototype.Context
         }
         public DbSet<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
         public DbSet<CheckingProcedure> CheckingProcedures { get; set; }
+
+        public DbSet<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
+        public DbSet<SampleSelection> SampleSelections { get; set; }
+        public DbSet<TableProcedure> TabeProcedures { get; set; }
+        public DbSet<Procedure> Procedures { get; set; }
     }
 }

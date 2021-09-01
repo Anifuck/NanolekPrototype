@@ -21,5 +21,10 @@ namespace NanolekPrototype.Context
         public DbSet<VerificationAction> VerificationActions { get; set; }
         public DbSet<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
         public DbSet<PackagingControl> PackagingControls { get; set; }
+        public DbSet<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes
+        {
+            get;
+            set;
+        }
     }
 }

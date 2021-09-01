@@ -10,6 +10,7 @@ namespace NanolekPrototype.EntityModels.Models
         public int Id { get; set; }
         public PackagingProtocol PackagingProtocol { get; set; }
         public bool IsActive { get; set; }
+        public FormStatus FormStatus { get; set; }
 
 
         public int InternalCodeOfMaterial { get; set; }
@@ -42,7 +43,6 @@ namespace NanolekPrototype.EntityModels.Models
         public int SampleSelectionUnits { get; set; }
         public int GarbageSecondPackageUnits { get; set; }
 
-        public FormStatus FormStatus { get; set; }
 
         public ICollection<MovementOfBulkProduct> MovementOfBulkProducts { get; set; }
     }

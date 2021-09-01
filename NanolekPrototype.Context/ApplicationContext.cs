@@ -19,5 +19,7 @@ namespace NanolekPrototype.Context
         public DbSet<SettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
         public DbSet<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
         public DbSet<VerificationAction> VerificationActions { get; set; }
+        public DbSet<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
+        public DbSet<PackagingControl> PackagingControls { get; set; }
     }
 }

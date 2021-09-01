@@ -12,7 +12,6 @@ namespace NanolekPrototype.EntityModels.Models
         public FormStatus FormStatus { get; set; }
 
         //Таблица «Настройка технологического оборудования»:
-
         public ICollection<SettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }
 
     }

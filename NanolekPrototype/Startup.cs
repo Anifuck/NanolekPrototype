@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Models;
+using NanolekPrototype.Services;
 
 namespace NanolekPrototype
 {
@@ -28,6 +29,8 @@ namespace NanolekPrototype
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IPackingProtocolService, PackingProtocolService>();
+
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -35,6 +38,7 @@ namespace NanolekPrototype
                 .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddControllersWithViews();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

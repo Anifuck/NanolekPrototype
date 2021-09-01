@@ -1,0 +1,89 @@
+﻿@model NanolekPrototype.EntityModels.Models.PackagingProtocol
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>PackagingProtocol</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Guid" class="control-label"></label>
+                <input asp-for="Guid" class="form-control" />
+                <span asp-validation-for="Guid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label"></label>
+                <input asp-for="SerialNumber" class="form-control" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StorageConditions" class="control-label"></label>
+                <input asp-for="StorageConditions" class="form-control" />
+                <span asp-validation-for="StorageConditions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShelfLife" class="control-label"></label>
+                <input asp-for="ShelfLife" class="form-control" />
+                <span asp-validation-for="ShelfLife" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManufacturingDate" class="control-label"></label>
+                <input asp-for="ManufacturingDate" class="form-control" />
+                <span asp-validation-for="ManufacturingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellBy" class="control-label"></label>
+                <input asp-for="SellBy" class="form-control" />
+                <span asp-validation-for="SellBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PackageNumber" class="control-label"></label>
+                <input asp-for="PackageNumber" class="form-control" />
+                <span asp-validation-for="PackageNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TradeName" class="control-label"></label>
+                <input asp-for="TradeName" class="form-control" />
+                <span asp-validation-for="TradeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecificationGP" class="control-label"></label>
+                <input asp-for="SpecificationGP" class="form-control" />
+                <span asp-validation-for="SpecificationGP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InternalCodeGP" class="control-label"></label>
+                <input asp-for="InternalCodeGP" class="form-control" />
+                <span asp-validation-for="InternalCodeGP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PackagingProtocolStatus" class="control-label"></label>
+                <select asp-for="PackagingProtocolStatus" class="form-control"></select>
+                <span asp-validation-for="PackagingProtocolStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CancellationReason" class="control-label"></label>
+                <input asp-for="CancellationReason" class="form-control" />
+                <span asp-validation-for="CancellationReason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

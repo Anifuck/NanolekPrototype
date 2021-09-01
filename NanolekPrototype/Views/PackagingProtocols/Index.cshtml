@@ -1,0 +1,101 @@
+﻿@model IEnumerable<NanolekPrototype.EntityModels.Models.PackagingProtocol>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Guid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StorageConditions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShelfLife)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TradeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecificationGP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InternalCodeGP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CancellationReason)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StorageConditions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShelfLife)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TradeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecificationGP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InternalCodeGP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackagingProtocolStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CancellationReason)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

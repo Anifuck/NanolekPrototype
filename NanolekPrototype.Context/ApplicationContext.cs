@@ -26,5 +26,7 @@ namespace NanolekPrototype.Context
             get;
             set;
         }
+        public DbSet<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
+        public DbSet<CheckingProcedure> CheckingProcedures { get; set; }
     }
 }

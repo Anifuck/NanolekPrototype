@@ -1,14 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class FormMaterialBalanceOfGPByLot
+    public class FormMaterialBalanceOfGPByLot : PackagingProtocolForm
     {
-        public int Id { get; set; }
-        public PackagingProtocol PackagingProtocol { get; set; }
-        public bool IsActive { get; set; }
-        public FormStatus FormStatus { get; set; }
+        [NotMapped]
+        public override PackagingProtokolFormType Type =>
+            PackagingProtokolFormType.MaterialBalanceOfGPByLot;
 
         //Основное
         public DateTime StartDateOfPacking { get; set; }

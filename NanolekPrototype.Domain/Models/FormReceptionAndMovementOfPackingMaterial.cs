@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class FormReceptionAndMovementOfPackingMaterial
+    public class FormReceptionAndMovementOfPackingMaterial : PackagingProtocolForm
     {
+        [NotMapped]
+        public override PackagingProtokolFormType Type =>
+            PackagingProtokolFormType.ReceptionAndMovementOfPackingMaterial;
+
         public int Id { get; set; }
         public PackagingProtocol PackagingProtocol { get; set; }
         public bool IsActive { get; set; }

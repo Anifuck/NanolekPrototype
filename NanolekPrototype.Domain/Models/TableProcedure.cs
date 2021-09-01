@@ -1,4 +1,6 @@
-﻿namespace NanolekPrototype.EntityModels.Models
+﻿using NanolekPrototype.EntityModels.Enums;
+
+namespace NanolekPrototype.EntityModels.Models
 {
     public class TableProcedure
     {

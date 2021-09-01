@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
-    public class FormSettingUpTechnologicalEquipment
+    public class FormSettingUpTechnologicalEquipment : PackagingProtocolForm
     {
-        public int Id { get; set; }
-        public PackagingProtocol PackagingProtocol { get; set; }
-        public bool IsActive { get; set; }
-        public FormStatus FormStatus { get; set; }
+        [NotMapped]
+        public override PackagingProtokolFormType Type =>
+            PackagingProtokolFormType.SettingUpTechnologicalEquipment;
 
         //Таблица «Настройка технологического оборудования»:
         public ICollection<SettingUpTechnologicalEquipment> SettingUpTechnologicalEquipments { get; set; }

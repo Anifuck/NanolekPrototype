@@ -1,8 +1,13 @@
-﻿namespace NanolekPrototype.EntityModels.Enums
+﻿using System.ComponentModel;
+using System.Security.Cryptography;
+
+namespace NanolekPrototype.EntityModels.Enums
 {
     public enum PacksInCorrugatedBox
     {
-        Eighty = 80,
-        Fifty = 50
+        [Description("80")]
+        Eighty,
+        [Description("50")]
+        Fifty
     }
 }

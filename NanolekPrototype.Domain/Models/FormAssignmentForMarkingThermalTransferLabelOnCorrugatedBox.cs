@@ -12,7 +12,7 @@ namespace NanolekPrototype.EntityModels.Models
 
         
         //Основное 
-        public string GTIN { get; set; }
+        public GTIN GTIN { get; set; }
         public int Series { get; set; }
         public DateTime DateOfManufacture { get; set; }
         public PacksInCorrugatedBox PacksInCorrugatedBox { get; set; }

@@ -87,8 +87,9 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IsActive,GarbageKg")] TableMovementOfBulkProduct tableMovementOfBulkProduct)
+        public async Task<IActionResult> Edit(int id, TableMovementOfBulkProduct tableMovementOfBulkProduct)
         {
+            tableMovementOfBulkProduct.FormReceptionAndMovementOfBulkProductId = 12;
             if (id != tableMovementOfBulkProduct.Id)
             {
                 return NotFound();

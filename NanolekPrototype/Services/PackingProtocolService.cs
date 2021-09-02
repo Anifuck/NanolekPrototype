@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
@@ -63,9 +64,25 @@ namespace NanolekPrototype.Services
                 PackagingProtocolStatus = PackagingProtocolStatus.InWork,
                 CancellationReason = "нет причин для отмены",
             };
-            
+
+            TableProductionPersonnel tableProductionPersonnel = new TableProductionPersonnel()
+            {
+                IsActive = true,
+                PackagingProtocol = packagingProtocol
+            };
+
+            TablePersonnelAccessProtocol tablePersonnelAccessProtocol = new TablePersonnelAccessProtocol()
+            {
+                IsActive = true,
+                PackagingProtocol = packagingProtocol,
+            };
+
             await _context.PackagingProtocols.AddAsync(packagingProtocol);
+            await _context.ProductionPersonnels.AddAsync(tableProductionPersonnel);
+            await _context.PersonnelAccessProtocols.AddRangeAsync(tablePersonnelAccessProtocol);
+
             await _context.SaveChangesAsync();
+
             await GenerateReceptionAndMovementOfBulkProduct(packagingProtocol);
         }
     }

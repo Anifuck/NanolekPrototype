@@ -49,7 +49,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.SerialNumber)
+                <a asp-action="Details" asp-route-id="@item.Id">@item.SerialNumber</a><br>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShelfLife)
@@ -79,9 +79,9 @@
                 @Html.DisplayFor(modelItem => item.CancellationReason)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a><br>
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a><br>
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }

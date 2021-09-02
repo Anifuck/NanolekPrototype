@@ -13,7 +13,7 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Type)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 border-bottom">
             @Html.DisplayFor(model => model.Type)
         </dd>
         <dt class="col-sm-2">
@@ -107,12 +107,6 @@
             @Html.DisplayFor(model => model.GarbageSecondPackageUnits)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Guid)
         </dt>
         <dd class="col-sm-10">
@@ -133,13 +127,14 @@
     </dl>
 </div>
 
-Движение балк-продукта (таблеток нерасфасованных):
+<br>
 
+<label class="font-weight-bold">Движение балк-продукта (таблеток нерасфасованных)</label>
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MovementOfBulkProducts.First().IsActive)
+            @Html.DisplayNameFor(model => model.MovementOfBulkProducts.First().Executor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MovementOfBulkProducts.First().GarbageKg)
@@ -153,15 +148,14 @@
     @foreach (var item in Model.MovementOfBulkProducts) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
+                @Html.DisplayFor(modelItem => item.Executor.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GarbageKg)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
     }

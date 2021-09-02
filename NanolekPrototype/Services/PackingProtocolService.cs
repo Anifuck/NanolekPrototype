@@ -35,6 +35,8 @@ namespace NanolekPrototype.Services
             TableMovementOfBulkProduct tableMovementOfBulkProduct = new TableMovementOfBulkProduct()
             {
                 FormReceptionAndMovementOfBulkProduct = formReceptionAndMovementOfBulkProduct,
+                Executor = _userManager.Users.First(),
+                GarbageKg = new Random().Next(100)
             };
 
 

@@ -35,6 +35,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var formReceptionAndMovementOfBulkProduct = await _context.FormReceptionAndMovementOfBulkProducts
+                .Include(m=>m.PackagingProtocol)
                 .Include(m=>m.MovementOfBulkProducts)
                 .ThenInclude(p=>p.Executor)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -76,7 +77,11 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var formReceptionAndMovementOfBulkProduct = await _context.FormReceptionAndMovementOfBulkProducts.FindAsync(id);
+            var formReceptionAndMovementOfBulkProduct = await _context.FormReceptionAndMovementOfBulkProducts
+                .Include(m => m.PackagingProtocol)
+                .Include(m => m.MovementOfBulkProducts)
+                .ThenInclude(p => p.Executor)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (formReceptionAndMovementOfBulkProduct == null)
             {
                 return NotFound();
@@ -89,7 +94,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Type,InternalCodeOfMaterial,Specification,CalcedByUserDate,CheckedByUserDate,Date,GetPRP,PartSAP,IsCorrespondToControlIndicators,IsCorrespondToShelfLife,EntredIntoGPPackages,EntredIntoGPUnits,GarbageUnits,DefectFirstPackageUnits,SampleSelectionUnits,GarbageSecondPackageUnits,Id,IsActive,Guid,Status,Note")] FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
+        public async Task<IActionResult> Edit(int id, FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
         {
             if (id != formReceptionAndMovementOfBulkProduct.Id)
             {

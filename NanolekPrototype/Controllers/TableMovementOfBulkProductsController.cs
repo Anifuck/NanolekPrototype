@@ -61,7 +61,7 @@ namespace NanolekPrototype.Controllers
             {
                 _context.Add(tableMovementOfBulkProduct);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "FormReceptionAndMovementOfBulkProducts", new {id = tableMovementOfBulkProduct.FormReceptionAndMovementOfBulkProductId});
             }
             return View(tableMovementOfBulkProduct);
         }
@@ -112,7 +112,7 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "FormReceptionAndMovementOfBulkProducts", new { id = tableMovementOfBulkProduct.FormReceptionAndMovementOfBulkProductId });
             }
             return View(tableMovementOfBulkProduct);
         }
@@ -143,7 +143,7 @@ namespace NanolekPrototype.Controllers
             var tableMovementOfBulkProduct = await _context.MovementOfBulkProducts.FindAsync(id);
             _context.MovementOfBulkProducts.Remove(tableMovementOfBulkProduct);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "FormReceptionAndMovementOfBulkProducts", new { id = tableMovementOfBulkProduct.FormReceptionAndMovementOfBulkProductId });
         }
 
         private bool TableMovementOfBulkProductExists(int id)

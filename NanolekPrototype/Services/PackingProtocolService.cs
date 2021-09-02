@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Enums;
@@ -18,7 +19,31 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
-        public void GenerateNewProtocol()
+        public async Task GenerateReceptionAndMovementOfBulkProduct(PackagingProtocol packagingProtocol)
+        {
+            FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct = new FormReceptionAndMovementOfBulkProduct()
+            {
+                Guid = Guid.NewGuid(),
+                IsActive = true,
+                Status = FormStatus.InWork,
+                PackagingProtocol = packagingProtocol,
+            };
+            
+
+
+            TableMovementOfBulkProduct tableMovementOfBulkProduct = new TableMovementOfBulkProduct()
+            {
+                FormReceptionAndMovementOfBulkProduct = formReceptionAndMovementOfBulkProduct,
+            };
+
+
+            await _context.FormReceptionAndMovementOfBulkProducts.AddAsync(formReceptionAndMovementOfBulkProduct);
+            await _context.MovementOfBulkProducts.AddAsync(tableMovementOfBulkProduct);
+            await _context.SaveChangesAsync();
+
+        }
+
+        public async Task GenerateNewProtocol()
         {
             PackagingProtocol packagingProtocol = new PackagingProtocol()
             {
@@ -35,10 +60,12 @@ namespace NanolekPrototype.Services
                 SpecificationGP = "290220",
                 InternalCodeGP = "114134",
                 PackagingProtocolStatus = PackagingProtocolStatus.Cancelled,
-                CancellationReason = "нет причин для отмены"
+                CancellationReason = "нет причин для отмены",
             };
-            _context.PackagingProtocols.Add(packagingProtocol);
-            _context.SaveChanges();
+            
+            await _context.PackagingProtocols.AddAsync(packagingProtocol);
+            await _context.SaveChangesAsync();
+            await GenerateReceptionAndMovementOfBulkProduct(packagingProtocol);
         }
     }
 }

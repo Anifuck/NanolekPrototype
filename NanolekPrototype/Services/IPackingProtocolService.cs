@@ -1,7 +1,9 @@
-﻿namespace NanolekPrototype.Services
+﻿using System.Threading.Tasks;
+
+namespace NanolekPrototype.Services
 {
     public interface IPackingProtocolService
     {
-       void GenerateNewProtocol();
+       Task GenerateNewProtocol();
     }
 }

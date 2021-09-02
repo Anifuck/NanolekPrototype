@@ -61,7 +61,8 @@ namespace NanolekPrototype.Controllers
             {
                 _context.Add(tablePersonnelAccessProtocol);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "PackagingProtocols", new {id = tablePersonnelAccessProtocol.PackagingProtocolId});
+                //return RedirectToAction(nameof(Index));
             }
             return View(tablePersonnelAccessProtocol);
         }

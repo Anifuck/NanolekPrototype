@@ -37,7 +37,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var packagingProtocol = await _context.PackagingProtocols
-                .Include(m=>m.PersonnelAccessProtocols)
+                .Include(m => m.PersonnelAccessProtocols)
                 .Include(m => m.ProductionPersonnels)
                 .Include(m => m.ResponsibleUserOOK)
                 .Include(m => m.ResponsibleUserTLF)
@@ -83,7 +83,7 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var packagingProtocol = await _context.PackagingProtocols.FindAsync(id);
+            var packagingProtocol = await _context.PackagingProtocols.FindAsync((int)id);
             if (packagingProtocol == null)
             {
                 return NotFound();

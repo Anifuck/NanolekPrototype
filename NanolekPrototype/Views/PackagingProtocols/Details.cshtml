@@ -96,9 +96,6 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.ProductionPersonnels.First().IsActive)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Position)
                     </th>
                     <th>
@@ -116,9 +113,6 @@
                 @foreach (var item in Model.ProductionPersonnels)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsActive)
-                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Position)
                         </td>
@@ -143,9 +137,6 @@
             <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().IsActive)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolNumber)
                 </th>
                 <th>
@@ -159,9 +150,6 @@
             <tbody>
             @foreach (var item in Model.PersonnelAccessProtocols) {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ProtocolNumber)
                     </td>

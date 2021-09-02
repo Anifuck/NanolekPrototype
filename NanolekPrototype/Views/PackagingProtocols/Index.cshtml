@@ -13,13 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Guid)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.SerialNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StorageConditions)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShelfLife)
@@ -55,13 +49,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Guid)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.SerialNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StorageConditions)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShelfLife)

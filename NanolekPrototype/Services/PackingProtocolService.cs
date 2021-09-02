@@ -48,17 +48,18 @@ namespace NanolekPrototype.Services
             PackagingProtocol packagingProtocol = new PackagingProtocol()
             {
                 Guid = Guid.NewGuid(),
+                IsActive = true,
                 SerialNumber = new Random().Next().ToString(),
                 ResponsibleUserOOK = _userManager.Users.First(),
                 StorageConditions = "В сухом месте при температуре 20 градусов",
-                ManufacturingDate = DateTime.Today.AddDays(-100),
+                ManufacturingDate = DateTime.Now.AddDays(-100),
                 SellBy = DateTime.Today,
                 ShelfLife = DateTime.Today.ToOADate() - DateTime.Today.AddDays(-100).ToOADate(),
-                PackageNumber = "112214",
+                PackageNumber = new Random().Next().ToString(),
                 ResponsibleUserTLF = _userManager.Users.First(),
-                TradeName = "Доктор мом",
-                SpecificationGP = "290220",
-                InternalCodeGP = "114134",
+                TradeName = "Доктор мом" + new Random().Next(100).ToString(),
+                SpecificationGP = new Random().Next().ToString(),
+                InternalCodeGP = new Random().Next().ToString(),
                 PackagingProtocolStatus = PackagingProtocolStatus.Cancelled,
                 CancellationReason = "нет причин для отмены",
             };

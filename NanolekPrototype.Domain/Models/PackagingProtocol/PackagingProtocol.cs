@@ -74,14 +74,15 @@ namespace NanolekPrototype.EntityModels.Models
         public ICollection<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
 
 
-        public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }
-        public ICollection<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
-        public ICollection<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
-        public ICollection<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
-        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGpByLots { get; set; }
-        public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
-        public ICollection<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }
-        public ICollection<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
-        public ICollection<FormSettingUpTechnologicalEquipment> FormSettingUpTechnologicalEquipments { get; set; }
+        public ICollection<PackagingProtocolForm> PackagingProtocolForms { get; set; }
+        //public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }
+        //public ICollection<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
+        //public ICollection<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
+        //public ICollection<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
+        //public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGpByLots { get; set; }
+        //public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
+        //public ICollection<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }
+        //public ICollection<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
+        //public ICollection<FormSettingUpTechnologicalEquipment> FormSettingUpTechnologicalEquipments { get; set; }
     }
 }

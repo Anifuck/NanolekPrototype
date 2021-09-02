@@ -25,7 +25,7 @@ namespace NanolekPrototype.Controllers
         // GET: PackagingProtocols
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PackagingProtocols.ToListAsync());
+            return View(await _context.PackagingProtocols.OrderByDescending(pp=>pp.Id).ToListAsync());
         }
 
         // GET: PackagingProtocols/Details/5

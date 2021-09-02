@@ -149,7 +149,7 @@ namespace NanolekPrototype.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var packagingProtocol = await _context.PackagingProtocols.FindAsync(id);
+            var packagingProtocol = await _context.PackagingProtocols.FindAsync((int)id);
             packagingProtocol.IsActive = false;
             //_context.PackagingProtocols.Remove(packagingProtocol);
             await _context.SaveChangesAsync();

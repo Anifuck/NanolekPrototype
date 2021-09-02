@@ -9,6 +9,7 @@ namespace NanolekPrototype.EntityModels.Models
     public class PackagingProtocol
     {
         public long Id { get; set; }
+        public bool IsActive { get; set; }
 
         /// <summary>
         /// GUID

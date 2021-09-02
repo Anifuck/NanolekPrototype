@@ -37,6 +37,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var packagingProtocol = await _context.PackagingProtocols
+                .Include(m=>m.PackagingProtocolForms)
                 .Include(m => m.ResponsibleUserOOK)
                 .Include(m => m.ResponsibleUserTLF)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -49,11 +50,11 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: PackagingProtocols/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            //_packingProtocolService.GenerateNewProtocol();
-            /*return RedirectToAction(nameof(Index))*/;
-            return View();
+            await _packingProtocolService.GenerateNewProtocol();
+            return RedirectToAction(nameof(Index));
+            //return View();
         }
 
         // POST: PackagingProtocols/Create

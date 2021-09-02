@@ -55,7 +55,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IsActive,Position,Step,Role")] TableProductionPersonnel tableProductionPersonnel)
+        public async Task<IActionResult> Create(TableProductionPersonnel tableProductionPersonnel)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,12 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var tableProductionPersonnel = await _context.ProductionPersonnels.FindAsync(id);
+            var tableProductionPersonnel =
+                await _context.ProductionPersonnels
+                    .Include(m => m.PackagingProtocol)
+                    .Where(m => m.Id == id)
+                    .FirstAsync();
+
             if (tableProductionPersonnel == null)
             {
                 return NotFound();
@@ -126,6 +131,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var tableProductionPersonnel = await _context.ProductionPersonnels
+                .Include(m=>m.PackagingProtocol)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tableProductionPersonnel == null)
             {
@@ -143,7 +149,10 @@ namespace NanolekPrototype.Controllers
             var tableProductionPersonnel = await _context.ProductionPersonnels.FindAsync(id);
             _context.ProductionPersonnels.Remove(tableProductionPersonnel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "PackagingProtocols",
+                new {id = tableProductionPersonnel.PackagingProtocolId});
+
+            //return RedirectToAction(nameof(Index));
         }
 
         private bool TableProductionPersonnelExists(int id)

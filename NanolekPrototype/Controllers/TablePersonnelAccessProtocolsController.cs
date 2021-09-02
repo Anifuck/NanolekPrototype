@@ -75,7 +75,10 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var tablePersonnelAccessProtocol = await _context.PersonnelAccessProtocols.FindAsync(id);
+            var tablePersonnelAccessProtocol = await _context.PersonnelAccessProtocols
+                .Include(m => m.PackagingProtocol)
+                .Where(m => m.Id == id)
+                .FirstAsync();
             if (tablePersonnelAccessProtocol == null)
             {
                 return NotFound();
@@ -127,6 +130,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var tablePersonnelAccessProtocol = await _context.PersonnelAccessProtocols
+                .Include(m=>m.PackagingProtocol)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tablePersonnelAccessProtocol == null)
             {
@@ -144,7 +148,8 @@ namespace NanolekPrototype.Controllers
             var tablePersonnelAccessProtocol = await _context.PersonnelAccessProtocols.FindAsync(id);
             _context.PersonnelAccessProtocols.Remove(tablePersonnelAccessProtocol);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "PackagingProtocols",
+                new { id = tablePersonnelAccessProtocol.PackagingProtocolId });
         }
 
         private bool TablePersonnelAccessProtocolExists(int id)

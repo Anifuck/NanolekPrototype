@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public FormReceptionAndMovementOfBulkProduct FormReceptionAndMovementOfBulkProduct { get; set; }
+        public int FormReceptionAndMovementOfBulkProductId { get; set; }
         public bool IsActive { get; set; }
 
 

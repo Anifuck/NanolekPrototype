@@ -135,6 +135,39 @@
 
 Движение балк-продукта (таблеток нерасфасованных):
 
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MovementOfBulkProducts.First().IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovementOfBulkProducts.First().GarbageKg)
+        </th>
+        <th>
+            <a asp-controller="TableMovementOfBulkProducts" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.MovementOfBulkProducts) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GarbageKg)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

@@ -25,7 +25,7 @@ namespace NanolekPrototype.Controllers
         // GET: PackagingProtocols
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PackagingProtocols.OrderByDescending(pp=>pp.Id).ToListAsync());
+            return View(await _context.PackagingProtocols.Where(pp=>pp.IsActive).OrderByDescending(pp=>pp.Id).ToListAsync());
         }
 
         // GET: PackagingProtocols/Details/5
@@ -149,7 +149,8 @@ namespace NanolekPrototype.Controllers
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var packagingProtocol = await _context.PackagingProtocols.FindAsync(id);
-            _context.PackagingProtocols.Remove(packagingProtocol);
+            packagingProtocol.IsActive = false;
+            //_context.PackagingProtocols.Remove(packagingProtocol);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

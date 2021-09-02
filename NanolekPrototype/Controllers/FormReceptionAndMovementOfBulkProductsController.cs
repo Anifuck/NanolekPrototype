@@ -34,6 +34,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var formReceptionAndMovementOfBulkProduct = await _context.FormReceptionAndMovementOfBulkProducts
+                .Include(m=>m.MovementOfBulkProducts)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (formReceptionAndMovementOfBulkProduct == null)
             {

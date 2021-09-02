@@ -89,7 +89,6 @@ namespace NanolekPrototype.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, TableMovementOfBulkProduct tableMovementOfBulkProduct)
         {
-            tableMovementOfBulkProduct.FormReceptionAndMovementOfBulkProductId = 12;
             if (id != tableMovementOfBulkProduct.Id)
             {
                 return NotFound();

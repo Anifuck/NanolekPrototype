@@ -8,7 +8,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>PackagingProtocol</h4>
+    <h4>Протокол упаковки</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -83,94 +83,99 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CancellationReason)
         </dd>
-        <dd class="col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ResponsibleUserOOK.FullName)
-        </dd>
+        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ResponsibleUserOOK.FullName)
         </dd>
-
-
-        Персонал, задействованный в производстве:
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Position)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Step)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Role)
-                    </th>
-                    <th>
-                        <a asp-controller="TableProductionPersonnels" asp-action="Create" asp-route-id="@Model.Id">Создать</a>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.ProductionPersonnels)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Position)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Step)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Role)
-                        </td>
-                        <td>
-                            <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-controller="TableProductionPersonnels" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-        Таблица «Протоколы допуска персонала к работе»:
-        <table class="table">
-            <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolDate)
-                </th>
-                <th>
-                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Create" asp-route-protocolid="@Model.Id">Создать</a>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model.PersonnelAccessProtocols) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProtocolNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProtocolDate)
-                    </td>
-                    <td>
-                        <a asp-controller="TablePersonnelAccessProtocols" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-controller="TablePersonnelAccessProtocols" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-controller="TablePersonnelAccessProtocols" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-
-        Формы протокола упаковки:
-        <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="Details" asp-route-id="@Model.Id">@PackagingProtokolFormType.ReceptionAndMovementOfBulkProduct.ToString()</a>
     </dl>
 </div>
+
+</br>
+
+<label class="font-weight-bold">Персонал, задействованный в производстве</label>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionPersonnels.First().FullName.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Step)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Role)
+            </th>
+            <th>
+                <a asp-controller="TableProductionPersonnels" asp-action="Create" asp-route-id="@Model.Id">Добавить</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ProductionPersonnels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Step)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+
+                <td>
+                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<label class="font-weight-bold">Протоколы допуска персонала к работе</label>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolDate)
+            </th>
+            <th>
+                <a asp-controller="TablePersonnelAccessProtocols" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PersonnelAccessProtocols)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProtocolNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProtocolDate)
+                </td>
+                <td>
+                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <label class="font-weight-bold">Формы протокола упаковки:</label></br>
+    <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="Details" asp-route-id="@Model.Id">@PackagingProtokolFormType.ReceptionAndMovementOfBulkProduct.ToString()</a>
 </div>

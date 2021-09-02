@@ -68,13 +68,17 @@ namespace NanolekPrototype.Services
             TableProductionPersonnel tableProductionPersonnel = new TableProductionPersonnel()
             {
                 IsActive = true,
-                PackagingProtocol = packagingProtocol
+                PackagingProtocol = packagingProtocol,
+                FullName = _userManager.Users.First(),
+                Position = _userManager.Users.First().Position
             };
 
             TablePersonnelAccessProtocol tablePersonnelAccessProtocol = new TablePersonnelAccessProtocol()
             {
-                IsActive = true,
+                IsActive = false,
                 PackagingProtocol = packagingProtocol,
+                ProtocolDate = DateTime.Now,
+                ProtocolNumber = packagingProtocol.SerialNumber
             };
 
             await _context.PackagingProtocols.AddAsync(packagingProtocol);

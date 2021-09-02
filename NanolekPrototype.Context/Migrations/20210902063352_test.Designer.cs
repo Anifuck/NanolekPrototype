@@ -10,8 +10,8 @@ using NanolekPrototype.Context;
 namespace NanolekPrototype.Context.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210901132835_change models")]
-    partial class changemodels
+    [Migration("20210902063352_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,6 +230,9 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("PackagingProtocolId")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -237,6 +240,8 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PackagingProtocolId");
 
                     b.ToTable("PackagingProtocolForms");
 
@@ -691,10 +696,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<int>("InternalCode")
                         .HasColumnType("int");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox_PackagingProtocolId");
-
                     b.Property<int>("PacksInCorrugatedBox")
                         .HasColumnType("int");
 
@@ -713,8 +714,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("TaskGotId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("PackagingProtocolId");
-
                     b.HasIndex("TaskGivenId");
 
                     b.HasIndex("TaskGotId");
@@ -726,12 +725,6 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     b.HasBaseType("NanolekPrototype.EntityModels.Models.PackagingProtocolForm");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormCheckingCheckweighingSetting_PackagingProtocolId");
-
-                    b.HasIndex("PackagingProtocolId");
-
                     b.HasDiscriminator().HasValue("FormCheckingCheckweighingSetting");
                 });
 
@@ -742,24 +735,12 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("CheckingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormCheckingRejectionOfDefectiveTablet_PackagingProtocolId");
-
-                    b.HasIndex("PackagingProtocolId");
-
                     b.HasDiscriminator().HasValue("FormCheckingRejectionOfDefectiveTablet");
                 });
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormControlOfPrimaryPackaging", b =>
                 {
                     b.HasBaseType("NanolekPrototype.EntityModels.Models.PackagingProtocolForm");
-
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormControlOfPrimaryPackaging_PackagingProtocolId");
-
-                    b.HasIndex("PackagingProtocolId");
 
                     b.HasDiscriminator().HasValue("FormControlOfPrimaryPackaging");
                 });
@@ -810,10 +791,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<int>("PackagesCount")
                         .HasColumnType("int");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormMaterialBalanceOfGPByLot_PackagingProtocolId");
-
                     b.Property<DateTime>("ShiftMasterDate")
                         .HasColumnType("datetime2");
 
@@ -833,8 +810,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.HasIndex("CheckedByUserId");
 
                     b.HasIndex("CheckedPUByUserId");
-
-                    b.HasIndex("PackagingProtocolId");
 
                     b.HasIndex("ShiftMasterId");
 
@@ -895,10 +870,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<bool>("IsCorrespondToShelfLife")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormReceptionAndMovementOfBulkProduct_PackagingProtocolId");
-
                     b.Property<string>("PartSAP")
                         .HasColumnType("nvarchar(max)");
 
@@ -916,8 +887,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.HasIndex("CalcedByUserId");
 
                     b.HasIndex("CheckedByUserId");
-
-                    b.HasIndex("PackagingProtocolId");
 
                     b.HasIndex("ShiftMasterId");
 
@@ -969,10 +938,6 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FormReceptionAndMovementOfPackingMaterial_Observations");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormReceptionAndMovementOfPackingMaterial_PackagingProtocolId");
-
                     b.Property<int>("Reconciliation")
                         .HasColumnType("int");
 
@@ -992,8 +957,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.HasIndex("CalcedByUserId");
 
                     b.HasIndex("CheckedByUserId");
-
-                    b.HasIndex("PackagingProtocolId");
 
                     b.HasIndex("ShiftMasterId");
 
@@ -1016,10 +979,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("Observations")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("FormSamplingFinishedProduct_PackagingProtocolId");
-
                     b.Property<string>("ProtocolNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -1028,8 +987,6 @@ namespace NanolekPrototype.Context.Migrations
 
                     b.Property<string>("TaskMasterId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.HasIndex("PackagingProtocolId");
 
                     b.HasIndex("ShiftMasterId");
 
@@ -1041,11 +998,6 @@ namespace NanolekPrototype.Context.Migrations
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormSettingUpTechnologicalEquipment", b =>
                 {
                     b.HasBaseType("NanolekPrototype.EntityModels.Models.PackagingProtocolForm");
-
-                    b.Property<long?>("PackagingProtocolId")
-                        .HasColumnType("bigint");
-
-                    b.HasIndex("PackagingProtocolId");
 
                     b.HasDiscriminator().HasValue("FormSettingUpTechnologicalEquipment");
                 });
@@ -1114,6 +1066,15 @@ namespace NanolekPrototype.Context.Migrations
                     b.Navigation("ResponsibleUserOOK");
 
                     b.Navigation("ResponsibleUserTLF");
+                });
+
+            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.PackagingProtocolForm", b =>
+                {
+                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
+                        .WithMany("PackagingProtocolForms")
+                        .HasForeignKey("PackagingProtocolId");
+
+                    b.Navigation("PackagingProtocol");
                 });
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.TableCheckingProcedure", b =>
@@ -1284,10 +1245,6 @@ namespace NanolekPrototype.Context.Migrations
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox", b =>
                 {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("ForMarkingThermalTransferLabelOnCorrugatedBoxes")
-                        .HasForeignKey("PackagingProtocolId");
-
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "TaskGiven")
                         .WithMany()
                         .HasForeignKey("TaskGivenId");
@@ -1296,38 +1253,9 @@ namespace NanolekPrototype.Context.Migrations
                         .WithMany()
                         .HasForeignKey("TaskGotId");
 
-                    b.Navigation("PackagingProtocol");
-
                     b.Navigation("TaskGiven");
 
                     b.Navigation("TaskGot");
-                });
-
-            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormCheckingCheckweighingSetting", b =>
-                {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormCheckingCheckweighingSettings")
-                        .HasForeignKey("PackagingProtocolId");
-
-                    b.Navigation("PackagingProtocol");
-                });
-
-            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormCheckingRejectionOfDefectiveTablet", b =>
-                {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormCheckingRejectionOfDefectiveTablets")
-                        .HasForeignKey("PackagingProtocolId");
-
-                    b.Navigation("PackagingProtocol");
-                });
-
-            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormControlOfPrimaryPackaging", b =>
-                {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormControlOfPrimaryPackagings")
-                        .HasForeignKey("PackagingProtocolId");
-
-                    b.Navigation("PackagingProtocol");
                 });
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormMaterialBalanceOfGPByLot", b =>
@@ -1344,10 +1272,6 @@ namespace NanolekPrototype.Context.Migrations
                         .WithMany()
                         .HasForeignKey("CheckedPUByUserId");
 
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormMaterialBalanceOfGpByLots")
-                        .HasForeignKey("PackagingProtocolId");
-
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "ShiftMaster")
                         .WithMany()
                         .HasForeignKey("ShiftMasterId");
@@ -1361,8 +1285,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Navigation("CheckedByUser");
 
                     b.Navigation("CheckedPUByUser");
-
-                    b.Navigation("PackagingProtocol");
 
                     b.Navigation("ShiftMaster");
 
@@ -1379,10 +1301,6 @@ namespace NanolekPrototype.Context.Migrations
                         .WithMany()
                         .HasForeignKey("CheckedByUserId");
 
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormReceptionAndMovementOfBulkProducts")
-                        .HasForeignKey("PackagingProtocolId");
-
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "ShiftMaster")
                         .WithMany()
                         .HasForeignKey("ShiftMasterId");
@@ -1390,8 +1308,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.Navigation("CalcedByUser");
 
                     b.Navigation("CheckedByUser");
-
-                    b.Navigation("PackagingProtocol");
 
                     b.Navigation("ShiftMaster");
                 });
@@ -1406,10 +1322,6 @@ namespace NanolekPrototype.Context.Migrations
                         .WithMany()
                         .HasForeignKey("CheckedByUserId");
 
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormReceptionAndMovementOfPackingMaterials")
-                        .HasForeignKey("PackagingProtocolId");
-
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "ShiftMaster")
                         .WithMany()
                         .HasForeignKey("ShiftMasterId");
@@ -1418,17 +1330,11 @@ namespace NanolekPrototype.Context.Migrations
 
                     b.Navigation("CheckedByUser");
 
-                    b.Navigation("PackagingProtocol");
-
                     b.Navigation("ShiftMaster");
                 });
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormSamplingFinishedProduct", b =>
                 {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormSamplingFinishedProducts")
-                        .HasForeignKey("PackagingProtocolId");
-
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "ShiftMaster")
                         .WithMany()
                         .HasForeignKey("ShiftMasterId");
@@ -1437,41 +1343,14 @@ namespace NanolekPrototype.Context.Migrations
                         .WithMany()
                         .HasForeignKey("TaskMasterId");
 
-                    b.Navigation("PackagingProtocol");
-
                     b.Navigation("ShiftMaster");
 
                     b.Navigation("TaskMaster");
                 });
 
-            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormSettingUpTechnologicalEquipment", b =>
-                {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
-                        .WithMany("FormSettingUpTechnologicalEquipments")
-                        .HasForeignKey("PackagingProtocolId");
-
-                    b.Navigation("PackagingProtocol");
-                });
-
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.PackagingProtocol", b =>
                 {
-                    b.Navigation("ForMarkingThermalTransferLabelOnCorrugatedBoxes");
-
-                    b.Navigation("FormCheckingCheckweighingSettings");
-
-                    b.Navigation("FormCheckingRejectionOfDefectiveTablets");
-
-                    b.Navigation("FormControlOfPrimaryPackagings");
-
-                    b.Navigation("FormMaterialBalanceOfGpByLots");
-
-                    b.Navigation("FormReceptionAndMovementOfBulkProducts");
-
-                    b.Navigation("FormReceptionAndMovementOfPackingMaterials");
-
-                    b.Navigation("FormSamplingFinishedProducts");
-
-                    b.Navigation("FormSettingUpTechnologicalEquipments");
+                    b.Navigation("PackagingProtocolForms");
 
                     b.Navigation("PersonnelAccessProtocols");
 

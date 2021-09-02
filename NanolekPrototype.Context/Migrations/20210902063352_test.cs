@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NanolekPrototype.Context.Migrations
 {
-    public partial class addform : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,19 +46,6 @@ namespace NanolekPrototype.Context.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Procedures",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Procedures", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,311 +193,6 @@ namespace NanolekPrototype.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FormCheckingCheckweighingSettings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormCheckingCheckweighingSettings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormCheckingCheckweighingSettings_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormCheckingRejectionOfDefectiveTablets",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false),
-                    CheckingDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormCheckingRejectionOfDefectiveTablets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormCheckingRejectionOfDefectiveTablets_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormControlOfPrimaryPackagings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormControlOfPrimaryPackagings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormControlOfPrimaryPackagings_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormMaterialBalanceOfGpByLots",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false),
-                    StartDateOfPacking = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FinishDateOfPacking = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ShiftMasterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedPUByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CheckedPUByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PackagesCount = table.Column<int>(type: "int", nullable: false),
-                    ExitAccordingToTheRegulations = table.Column<int>(type: "int", nullable: false),
-                    IsCompliant = table.Column<bool>(type: "bit", nullable: false),
-                    Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormMaterialBalanceOfGpByLots", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormMaterialBalanceOfGpByLots_AspNetUsers_CalcedByUserId",
-                        column: x => x.CalcedByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormMaterialBalanceOfGpByLots_AspNetUsers_CheckedByUserId",
-                        column: x => x.CheckedByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormMaterialBalanceOfGpByLots_AspNetUsers_CheckedPUByUserId",
-                        column: x => x.CheckedPUByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormMaterialBalanceOfGpByLots_AspNetUsers_ShiftMasterId",
-                        column: x => x.ShiftMasterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormMaterialBalanceOfGpByLots_AspNetUsers_TaskMasterId",
-                        column: x => x.TaskMasterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormMaterialBalanceOfGpByLots_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormReceptionAndMovementOfBulkProducts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false),
-                    InternalCodeOfMaterial = table.Column<int>(type: "int", nullable: false),
-                    Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GetPRP = table.Column<int>(type: "int", nullable: false),
-                    PartSAP = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsCorrespondToControlIndicators = table.Column<bool>(type: "bit", nullable: false),
-                    IsCorrespondToShelfLife = table.Column<bool>(type: "bit", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    EntredIntoGPPackages = table.Column<int>(type: "int", nullable: false),
-                    EntredIntoGPUnits = table.Column<int>(type: "int", nullable: false),
-                    GarbageUnits = table.Column<int>(type: "int", nullable: false),
-                    DefectFirstPackageUnits = table.Column<int>(type: "int", nullable: false),
-                    SampleSelectionUnits = table.Column<int>(type: "int", nullable: false),
-                    GarbageSecondPackageUnits = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormReceptionAndMovementOfBulkProducts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfBulkProducts_AspNetUsers_CalcedByUserId",
-                        column: x => x.CalcedByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfBulkProducts_AspNetUsers_CheckedByUserId",
-                        column: x => x.CheckedByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfBulkProducts_AspNetUsers_ShiftMasterId",
-                        column: x => x.ShiftMasterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfBulkProducts_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormReceptionAndMovementOfPackingMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false),
-                    InternalCodeOfMaterial = table.Column<int>(type: "int", nullable: false),
-                    Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SpentOnBatch = table.Column<int>(type: "int", nullable: false),
-                    RemainingMaterial = table.Column<int>(type: "int", nullable: false),
-                    IsSentToStorage = table.Column<bool>(type: "bit", nullable: false),
-                    IsStoredInProduction = table.Column<bool>(type: "bit", nullable: false),
-                    ExpenseFor1000Packs = table.Column<int>(type: "int", nullable: false),
-                    IsCorrespondsToConsumptionRate = table.Column<bool>(type: "bit", nullable: false),
-                    Reconciliation = table.Column<int>(type: "int", nullable: false),
-                    IsCorrespondenceEligibilityCriteria = table.Column<bool>(type: "bit", nullable: false),
-                    Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormReceptionAndMovementOfPackingMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfPackingMaterials_AspNetUsers_CalcedByUserId",
-                        column: x => x.CalcedByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfPackingMaterials_AspNetUsers_CheckedByUserId",
-                        column: x => x.CheckedByUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfPackingMaterials_AspNetUsers_ShiftMasterId",
-                        column: x => x.ShiftMasterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormReceptionAndMovementOfPackingMaterials_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormSamplingFinishedProducts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false),
-                    NotificationNUmber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ProtocolNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormSamplingFinishedProducts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormSamplingFinishedProducts_AspNetUsers_ShiftMasterId",
-                        column: x => x.ShiftMasterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormSamplingFinishedProducts_AspNetUsers_TaskMasterId",
-                        column: x => x.TaskMasterId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormSamplingFinishedProducts_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FormSettingUpTechnologicalEquipments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FormStatus = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormSettingUpTechnologicalEquipments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormSettingUpTechnologicalEquipments_PackagingProtocols_PackagingProtocolId",
-                        column: x => x.PackagingProtocolId,
-                        principalTable: "PackagingProtocols",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PackagingProtocolForms",
                 columns: table => new
                 {
@@ -520,7 +202,7 @@ namespace NanolekPrototype.Context.Migrations
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    FormRequisitesJson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GTIN = table.Column<int>(type: "int", nullable: true),
@@ -532,11 +214,142 @@ namespace NanolekPrototype.Context.Migrations
                     TaskGivenDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TaskGotId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TaskGotDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PackagingProtocolId = table.Column<long>(type: "bigint", nullable: true)
+                    CheckingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    StartDateOfPacking = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FinishDateOfPacking = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FormMaterialBalanceOfGPByLot_ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShiftMasterDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FormMaterialBalanceOfGPByLot_CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FormMaterialBalanceOfGPByLot_CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FormMaterialBalanceOfGPByLot_CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FormMaterialBalanceOfGPByLot_CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CheckedPUByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CheckedPUByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PackagesCount = table.Column<int>(type: "int", nullable: true),
+                    ExitAccordingToTheRegulations = table.Column<int>(type: "int", nullable: true),
+                    IsCompliant = table.Column<bool>(type: "bit", nullable: true),
+                    FormMaterialBalanceOfGPByLot_Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FormMaterialBalanceOfGPByLot_TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FormMaterialBalanceOfGPByLot_Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_InternalCodeOfMaterial = table.Column<int>(type: "int", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    GetPRP = table.Column<int>(type: "int", nullable: true),
+                    PartSAP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsCorrespondToControlIndicators = table.Column<bool>(type: "bit", nullable: true),
+                    IsCorrespondToShelfLife = table.Column<bool>(type: "bit", nullable: true),
+                    FormReceptionAndMovementOfBulkProduct_ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EntredIntoGPPackages = table.Column<int>(type: "int", nullable: true),
+                    EntredIntoGPUnits = table.Column<int>(type: "int", nullable: true),
+                    GarbageUnits = table.Column<int>(type: "int", nullable: true),
+                    DefectFirstPackageUnits = table.Column<int>(type: "int", nullable: true),
+                    SampleSelectionUnits = table.Column<int>(type: "int", nullable: true),
+                    GarbageSecondPackageUnits = table.Column<int>(type: "int", nullable: true),
+                    FormStatus = table.Column<int>(type: "int", nullable: true),
+                    InternalCodeOfMaterial = table.Column<int>(type: "int", nullable: true),
+                    Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SpentOnBatch = table.Column<int>(type: "int", nullable: true),
+                    RemainingMaterial = table.Column<int>(type: "int", nullable: true),
+                    IsSentToStorage = table.Column<bool>(type: "bit", nullable: true),
+                    IsStoredInProduction = table.Column<bool>(type: "bit", nullable: true),
+                    ExpenseFor1000Packs = table.Column<int>(type: "int", nullable: true),
+                    IsCorrespondsToConsumptionRate = table.Column<bool>(type: "bit", nullable: true),
+                    Reconciliation = table.Column<int>(type: "int", nullable: true),
+                    IsCorrespondenceEligibilityCriteria = table.Column<bool>(type: "bit", nullable: true),
+                    FormReceptionAndMovementOfPackingMaterial_Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FormReceptionAndMovementOfPackingMaterial_ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FormReceptionAndMovementOfPackingMaterial_Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NotificationNUmber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ProtocolNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PackagingProtocolForms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_CalcedByUserId",
+                        column: x => x.CalcedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_CheckedByUserId",
+                        column: x => x.CheckedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_CheckedPUByUserId",
+                        column: x => x.CheckedPUByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormMaterialBalanceOfGPByLot_CalcedByUserId",
+                        column: x => x.FormMaterialBalanceOfGPByLot_CalcedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormMaterialBalanceOfGPByLot_CheckedByUserId",
+                        column: x => x.FormMaterialBalanceOfGPByLot_CheckedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormMaterialBalanceOfGPByLot_ShiftMasterId",
+                        column: x => x.FormMaterialBalanceOfGPByLot_ShiftMasterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormMaterialBalanceOfGPByLot_TaskMasterId",
+                        column: x => x.FormMaterialBalanceOfGPByLot_TaskMasterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormReceptionAndMovementOfBulkProduct_CalcedByUserId",
+                        column: x => x.FormReceptionAndMovementOfBulkProduct_CalcedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormReceptionAndMovementOfBulkProduct_CheckedByUserId",
+                        column: x => x.FormReceptionAndMovementOfBulkProduct_CheckedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormReceptionAndMovementOfBulkProduct_ShiftMasterId",
+                        column: x => x.FormReceptionAndMovementOfBulkProduct_ShiftMasterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_FormReceptionAndMovementOfPackingMaterial_ShiftMasterId",
+                        column: x => x.FormReceptionAndMovementOfPackingMaterial_ShiftMasterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_ShiftMasterId",
+                        column: x => x.ShiftMasterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PackagingProtocolForms_AspNetUsers_TaskGivenId",
                         column: x => x.TaskGivenId,
@@ -546,6 +359,12 @@ namespace NanolekPrototype.Context.Migrations
                     table.ForeignKey(
                         name: "FK_PackagingProtocolForms_AspNetUsers_TaskGotId",
                         column: x => x.TaskGotId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PackagingProtocolForms_AspNetUsers_TaskMasterId",
+                        column: x => x.TaskMasterId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -635,38 +454,37 @@ namespace NanolekPrototype.Context.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CheckingProcedures_FormCheckingCheckweighingSettings_FormCheckingCheckweighingSettingId",
+                        name: "FK_CheckingProcedures_PackagingProtocolForms_FormCheckingCheckweighingSettingId",
                         column: x => x.FormCheckingCheckweighingSettingId,
-                        principalTable: "FormCheckingCheckweighingSettings",
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "VerificationActions",
+                name: "MovementOfBulkProducts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FormCheckingRejectionOfDefectiveTabletId = table.Column<int>(type: "int", nullable: false),
+                    FormReceptionAndMovementOfBulkProductId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Action = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    GarbageKg = table.Column<int>(type: "int", nullable: false),
+                    ExecutorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VerificationActions", x => x.Id);
+                    table.PrimaryKey("PK_MovementOfBulkProducts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VerificationActions_AspNetUsers_TaskMasterId",
-                        column: x => x.TaskMasterId,
+                        name: "FK_MovementOfBulkProducts_AspNetUsers_ExecutorId",
+                        column: x => x.ExecutorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_VerificationActions_FormCheckingRejectionOfDefectiveTablets_FormCheckingRejectionOfDefectiveTabletId",
-                        column: x => x.FormCheckingRejectionOfDefectiveTabletId,
-                        principalTable: "FormCheckingRejectionOfDefectiveTablets",
+                        name: "FK_MovementOfBulkProducts_PackagingProtocolForms_FormReceptionAndMovementOfBulkProductId",
+                        column: x => x.FormReceptionAndMovementOfBulkProductId,
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -702,37 +520,9 @@ namespace NanolekPrototype.Context.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PackagingControls_FormControlOfPrimaryPackagings_FormControlOfPrimaryPackagingId",
+                        name: "FK_PackagingControls_PackagingProtocolForms_FormControlOfPrimaryPackagingId",
                         column: x => x.FormControlOfPrimaryPackagingId,
-                        principalTable: "FormControlOfPrimaryPackagings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MovementOfBulkProducts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FormReceptionAndMovementOfBulkProductId = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    GarbageKg = table.Column<int>(type: "int", nullable: false),
-                    ExecutorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MovementOfBulkProducts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MovementOfBulkProducts_AspNetUsers_ExecutorId",
-                        column: x => x.ExecutorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MovementOfBulkProducts_FormReceptionAndMovementOfBulkProducts_FormReceptionAndMovementOfBulkProductId",
-                        column: x => x.FormReceptionAndMovementOfBulkProductId,
-                        principalTable: "FormReceptionAndMovementOfBulkProducts",
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -764,9 +554,9 @@ namespace NanolekPrototype.Context.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ReceptionOfMaterials_FormReceptionAndMovementOfPackingMaterials_FormReceptionAndMovementOfPackingMaterialId",
+                        name: "FK_ReceptionOfMaterials_PackagingProtocolForms_FormReceptionAndMovementOfPackingMaterialId",
                         column: x => x.FormReceptionAndMovementOfPackingMaterialId,
-                        principalTable: "FormReceptionAndMovementOfPackingMaterials",
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -793,9 +583,38 @@ namespace NanolekPrototype.Context.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_SampleSelections_FormSamplingFinishedProducts_FormSamplingFinishedProductId",
+                        name: "FK_SampleSelections_PackagingProtocolForms_FormSamplingFinishedProductId",
                         column: x => x.FormSamplingFinishedProductId,
-                        principalTable: "FormSamplingFinishedProducts",
+                        principalTable: "PackagingProtocolForms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SettingUpTechnologicalEquipments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FormSettingUpTechnologicalEquipmentId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Action = table.Column<int>(type: "int", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    ServiceTechnicianId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SettingUpTechnologicalEquipments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SettingUpTechnologicalEquipments_AspNetUsers_ServiceTechnicianId",
+                        column: x => x.ServiceTechnicianId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SettingUpTechnologicalEquipments_PackagingProtocolForms_FormSettingUpTechnologicalEquipmentId",
+                        column: x => x.FormSettingUpTechnologicalEquipmentId,
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -808,7 +627,7 @@ namespace NanolekPrototype.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FormSamplingFinishedProductId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ProcedureId = table.Column<int>(type: "int", nullable: true),
+                    Procedure = table.Column<int>(type: "int", nullable: false),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false),
                     ExecutorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CheckerId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -829,44 +648,38 @@ namespace NanolekPrototype.Context.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TabeProcedures_FormSamplingFinishedProducts_FormSamplingFinishedProductId",
+                        name: "FK_TabeProcedures_PackagingProtocolForms_FormSamplingFinishedProductId",
                         column: x => x.FormSamplingFinishedProductId,
-                        principalTable: "FormSamplingFinishedProducts",
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TabeProcedures_Procedures_ProcedureId",
-                        column: x => x.ProcedureId,
-                        principalTable: "Procedures",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SettingUpTechnologicalEquipments",
+                name: "VerificationActions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FormSettingUpTechnologicalEquipmentId = table.Column<int>(type: "int", nullable: false),
+                    FormCheckingRejectionOfDefectiveTabletId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Action = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Action = table.Column<int>(type: "int", nullable: false),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    ServiceTechnicianId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SettingUpTechnologicalEquipments", x => x.Id);
+                    table.PrimaryKey("PK_VerificationActions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SettingUpTechnologicalEquipments_AspNetUsers_ServiceTechnicianId",
-                        column: x => x.ServiceTechnicianId,
+                        name: "FK_VerificationActions_AspNetUsers_TaskMasterId",
+                        column: x => x.TaskMasterId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_SettingUpTechnologicalEquipments_FormSettingUpTechnologicalEquipments_FormSettingUpTechnologicalEquipmentId",
-                        column: x => x.FormSettingUpTechnologicalEquipmentId,
-                        principalTable: "FormSettingUpTechnologicalEquipments",
+                        name: "FK_VerificationActions_PackagingProtocolForms_FormCheckingRejectionOfDefectiveTabletId",
+                        column: x => x.FormCheckingRejectionOfDefectiveTabletId,
+                        principalTable: "PackagingProtocolForms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -921,111 +734,6 @@ namespace NanolekPrototype.Context.Migrations
                 column: "FormCheckingCheckweighingSettingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FormCheckingCheckweighingSettings_PackagingProtocolId",
-                table: "FormCheckingCheckweighingSettings",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormCheckingRejectionOfDefectiveTablets_PackagingProtocolId",
-                table: "FormCheckingRejectionOfDefectiveTablets",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormControlOfPrimaryPackagings_PackagingProtocolId",
-                table: "FormControlOfPrimaryPackagings",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormMaterialBalanceOfGpByLots_CalcedByUserId",
-                table: "FormMaterialBalanceOfGpByLots",
-                column: "CalcedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormMaterialBalanceOfGpByLots_CheckedByUserId",
-                table: "FormMaterialBalanceOfGpByLots",
-                column: "CheckedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormMaterialBalanceOfGpByLots_CheckedPUByUserId",
-                table: "FormMaterialBalanceOfGpByLots",
-                column: "CheckedPUByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormMaterialBalanceOfGpByLots_PackagingProtocolId",
-                table: "FormMaterialBalanceOfGpByLots",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormMaterialBalanceOfGpByLots_ShiftMasterId",
-                table: "FormMaterialBalanceOfGpByLots",
-                column: "ShiftMasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormMaterialBalanceOfGpByLots_TaskMasterId",
-                table: "FormMaterialBalanceOfGpByLots",
-                column: "TaskMasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfBulkProducts_CalcedByUserId",
-                table: "FormReceptionAndMovementOfBulkProducts",
-                column: "CalcedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfBulkProducts_CheckedByUserId",
-                table: "FormReceptionAndMovementOfBulkProducts",
-                column: "CheckedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfBulkProducts_PackagingProtocolId",
-                table: "FormReceptionAndMovementOfBulkProducts",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfBulkProducts_ShiftMasterId",
-                table: "FormReceptionAndMovementOfBulkProducts",
-                column: "ShiftMasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfPackingMaterials_CalcedByUserId",
-                table: "FormReceptionAndMovementOfPackingMaterials",
-                column: "CalcedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfPackingMaterials_CheckedByUserId",
-                table: "FormReceptionAndMovementOfPackingMaterials",
-                column: "CheckedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfPackingMaterials_PackagingProtocolId",
-                table: "FormReceptionAndMovementOfPackingMaterials",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormReceptionAndMovementOfPackingMaterials_ShiftMasterId",
-                table: "FormReceptionAndMovementOfPackingMaterials",
-                column: "ShiftMasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormSamplingFinishedProducts_PackagingProtocolId",
-                table: "FormSamplingFinishedProducts",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormSamplingFinishedProducts_ShiftMasterId",
-                table: "FormSamplingFinishedProducts",
-                column: "ShiftMasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormSamplingFinishedProducts_TaskMasterId",
-                table: "FormSamplingFinishedProducts",
-                column: "TaskMasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormSettingUpTechnologicalEquipments_PackagingProtocolId",
-                table: "FormSettingUpTechnologicalEquipments",
-                column: "PackagingProtocolId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MovementOfBulkProducts_ExecutorId",
                 table: "MovementOfBulkProducts",
                 column: "ExecutorId");
@@ -1046,9 +754,69 @@ namespace NanolekPrototype.Context.Migrations
                 column: "TaskMasterId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_CalcedByUserId",
+                table: "PackagingProtocolForms",
+                column: "CalcedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_CheckedByUserId",
+                table: "PackagingProtocolForms",
+                column: "CheckedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_CheckedPUByUserId",
+                table: "PackagingProtocolForms",
+                column: "CheckedPUByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormMaterialBalanceOfGPByLot_CalcedByUserId",
+                table: "PackagingProtocolForms",
+                column: "FormMaterialBalanceOfGPByLot_CalcedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormMaterialBalanceOfGPByLot_CheckedByUserId",
+                table: "PackagingProtocolForms",
+                column: "FormMaterialBalanceOfGPByLot_CheckedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormMaterialBalanceOfGPByLot_ShiftMasterId",
+                table: "PackagingProtocolForms",
+                column: "FormMaterialBalanceOfGPByLot_ShiftMasterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormMaterialBalanceOfGPByLot_TaskMasterId",
+                table: "PackagingProtocolForms",
+                column: "FormMaterialBalanceOfGPByLot_TaskMasterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormReceptionAndMovementOfBulkProduct_CalcedByUserId",
+                table: "PackagingProtocolForms",
+                column: "FormReceptionAndMovementOfBulkProduct_CalcedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormReceptionAndMovementOfBulkProduct_CheckedByUserId",
+                table: "PackagingProtocolForms",
+                column: "FormReceptionAndMovementOfBulkProduct_CheckedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormReceptionAndMovementOfBulkProduct_ShiftMasterId",
+                table: "PackagingProtocolForms",
+                column: "FormReceptionAndMovementOfBulkProduct_ShiftMasterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_FormReceptionAndMovementOfPackingMaterial_ShiftMasterId",
+                table: "PackagingProtocolForms",
+                column: "FormReceptionAndMovementOfPackingMaterial_ShiftMasterId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PackagingProtocolForms_PackagingProtocolId",
                 table: "PackagingProtocolForms",
                 column: "PackagingProtocolId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_ShiftMasterId",
+                table: "PackagingProtocolForms",
+                column: "ShiftMasterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PackagingProtocolForms_TaskGivenId",
@@ -1059,6 +827,11 @@ namespace NanolekPrototype.Context.Migrations
                 name: "IX_PackagingProtocolForms_TaskGotId",
                 table: "PackagingProtocolForms",
                 column: "TaskGotId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackagingProtocolForms_TaskMasterId",
+                table: "PackagingProtocolForms",
+                column: "TaskMasterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PackagingProtocols_ResponsibleUserOOKId",
@@ -1131,11 +904,6 @@ namespace NanolekPrototype.Context.Migrations
                 column: "FormSamplingFinishedProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TabeProcedures_ProcedureId",
-                table: "TabeProcedures",
-                column: "ProcedureId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_VerificationActions_FormCheckingRejectionOfDefectiveTabletId",
                 table: "VerificationActions",
                 column: "FormCheckingRejectionOfDefectiveTabletId");
@@ -1167,16 +935,10 @@ namespace NanolekPrototype.Context.Migrations
                 name: "CheckingProcedures");
 
             migrationBuilder.DropTable(
-                name: "FormMaterialBalanceOfGpByLots");
-
-            migrationBuilder.DropTable(
                 name: "MovementOfBulkProducts");
 
             migrationBuilder.DropTable(
                 name: "PackagingControls");
-
-            migrationBuilder.DropTable(
-                name: "PackagingProtocolForms");
 
             migrationBuilder.DropTable(
                 name: "PersonnelAccessProtocols");
@@ -1203,28 +965,7 @@ namespace NanolekPrototype.Context.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "FormCheckingCheckweighingSettings");
-
-            migrationBuilder.DropTable(
-                name: "FormReceptionAndMovementOfBulkProducts");
-
-            migrationBuilder.DropTable(
-                name: "FormControlOfPrimaryPackagings");
-
-            migrationBuilder.DropTable(
-                name: "FormReceptionAndMovementOfPackingMaterials");
-
-            migrationBuilder.DropTable(
-                name: "FormSettingUpTechnologicalEquipments");
-
-            migrationBuilder.DropTable(
-                name: "FormSamplingFinishedProducts");
-
-            migrationBuilder.DropTable(
-                name: "Procedures");
-
-            migrationBuilder.DropTable(
-                name: "FormCheckingRejectionOfDefectiveTablets");
+                name: "PackagingProtocolForms");
 
             migrationBuilder.DropTable(
                 name: "PackagingProtocols");

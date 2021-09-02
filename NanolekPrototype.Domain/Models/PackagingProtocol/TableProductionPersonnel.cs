@@ -6,6 +6,7 @@ namespace NanolekPrototype.EntityModels.Models
     {
         public int Id { get; set; }
         public PackagingProtocol PackagingProtocol { get; set; }
+        public int PackagingProtocolId { get; set; }
         public bool IsActive { get; set; }
 
 

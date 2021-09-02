@@ -6,6 +6,15 @@ namespace NanolekPrototype.Context
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    //builder.Entity<TablePersonnelAccessProtocol>()
+        //    //    .HasOne(c => c.PackagingProtocol)
+        //    //    .WithMany(c => c.PersonnelAccessProtocols)
+        //    //    .HasForeignKey(x => x.PackagingProtocolId);
+        //    //base.OnModelCreating(builder);
+        //}
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             
@@ -13,7 +22,6 @@ namespace NanolekPrototype.Context
         public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
         public DbSet<TableProductionPersonnel> ProductionPersonnels { get; set; }
         public DbSet<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
-        public DbSet<PackagingProtocolForm> PackagingProtocolForms { get; set; }
         public DbSet<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
         public DbSet<TableMovementOfBulkProduct> MovementOfBulkProducts { get; set; }
         public DbSet<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }

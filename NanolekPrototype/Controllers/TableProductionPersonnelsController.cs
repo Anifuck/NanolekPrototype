@@ -44,8 +44,9 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: TableProductionPersonnels/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            ViewBag.PackagingProtocolId = id;
             return View();
         }
 

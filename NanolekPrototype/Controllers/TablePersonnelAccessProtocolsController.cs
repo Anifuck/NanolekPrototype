@@ -44,8 +44,9 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: TablePersonnelAccessProtocols/Create
-        public IActionResult Create()
+        public IActionResult Create(int protocolid)
         {
+            ViewData["PackagingProtocolId"] = protocolid;
             return View();
         }
 
@@ -54,7 +55,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IsActive,ProtocolNumber,ProtocolDate")] TablePersonnelAccessProtocol tablePersonnelAccessProtocol)
+        public async Task<IActionResult> Create(TablePersonnelAccessProtocol tablePersonnelAccessProtocol)
         {
             if (ModelState.IsValid)
             {

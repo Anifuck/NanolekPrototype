@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Services;
@@ -15,11 +17,13 @@ namespace NanolekPrototype.Controllers
     {
         private readonly ApplicationContext _context;
         private readonly IPackingProtocolService _packingProtocolService;
+        UserManager<User> _userManager;
 
-        public PackagingProtocolsController(ApplicationContext context, IPackingProtocolService packingProtocolService)
+        public PackagingProtocolsController(ApplicationContext context, IPackingProtocolService packingProtocolService, UserManager<User> userManager)
         {
             _context = context;
             _packingProtocolService = packingProtocolService;
+            _userManager = userManager;
         }
 
         // GET: PackagingProtocols
@@ -76,18 +80,42 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: PackagingProtocols/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var packagingProtocol = await _context.PackagingProtocols.FindAsync((int)id);
+            var packagingProtocol = await _context.PackagingProtocols
+                .Include(p => p.ResponsibleUserOOK)
+                .Include(p => p.ResponsibleUserTLF)
+                .FirstAsync(p => p.Id == id);
+
             if (packagingProtocol == null)
             {
                 return NotFound();
             }
+
+            List<SelectListItem> dropDownUsersOOK  = new List<SelectListItem>();
+            List<SelectListItem> dropDownUsersTLF = new List<SelectListItem>();
+
+            foreach (var user in _userManager.Users)
+            {
+                if (packagingProtocol.ResponsibleUserOOK.Id == user.Id)
+                    dropDownUsersOOK.Add(new SelectListItem(user.FullName, user.Id.ToString(), true));
+                else
+                    dropDownUsersOOK.Add(new SelectListItem(user.FullName, user.Id.ToString(), false));
+
+                if (packagingProtocol.ResponsibleUserTLF.Id == user.Id)
+                    dropDownUsersTLF.Add(new SelectListItem(user.FullName, user.Id.ToString(), true));
+                else
+                    dropDownUsersTLF.Add(new SelectListItem(user.FullName, user.Id.ToString(), false));
+            }
+
+            ViewBag.OOK = dropDownUsersOOK;
+            ViewBag.TLF = dropDownUsersTLF;
+
             return View(packagingProtocol);
         }
 
@@ -96,7 +124,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Guid,SerialNumber,StorageConditions,ShelfLife,ManufacturingDate,SellBy,PackageNumber,TradeName,SpecificationGP,InternalCodeGP,PackagingProtocolStatus,CancellationReason")] PackagingProtocol packagingProtocol)
+        public async Task<IActionResult> Edit(long id, PackagingProtocol packagingProtocol)
         {
             if (id != packagingProtocol.Id)
             {
@@ -107,6 +135,9 @@ namespace NanolekPrototype.Controllers
             {
                 try
                 {
+                    //packagingProtocol.ResponsibleUserOOK = await _userManager.Users.FirstAsync(u => u.Id == ResponsibleUserOOKId);
+                    //packagingProtocol.ResponsibleUserTLF = await _userManager.Users.FirstAsync(u => u.Id == ResponsibleUserTLFId);
+
                     _context.Update(packagingProtocol);
                     await _context.SaveChangesAsync();
                 }

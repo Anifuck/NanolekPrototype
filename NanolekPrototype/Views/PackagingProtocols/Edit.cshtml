@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="IsActive" />
             <div class="form-group">
                 <label asp-for="Guid" class="control-label"></label>
                 <input asp-for="Guid" class="form-control" />
@@ -63,15 +64,23 @@
                 <input asp-for="InternalCodeGP" class="form-control" />
                 <span asp-validation-for="InternalCodeGP" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PackagingProtocolStatus" class="control-label"></label>
-                <select asp-for="PackagingProtocolStatus" class="form-control"></select>
-                <span asp-validation-for="PackagingProtocolStatus" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="PackagingProtocolStatus" class="control-label"></label>
+            <select asp-for="PackagingProtocolStatus" class="form-control"></select>
+            <span asp-validation-for="PackagingProtocolStatus" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="CancellationReason" class="control-label"></label>
                 <input asp-for="CancellationReason" class="form-control" />
                 <span asp-validation-for="CancellationReason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResponsibleUserOOK" class="control-label"></label>
+                @Html.DropDownList("ResponsibleUserOOKId", ViewBag.OOK, null, new {@class="form-control"})
+            </div>
+            <div class="form-group">
+                <label asp-for="ResponsibleUserTLF" class="control-label"></label>
+                @Html.DropDownList("ResponsibleUserTLFId", ViewBag.TLF, null, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

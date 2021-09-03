@@ -26,6 +26,7 @@ namespace NanolekPrototype.EntityModels.Models
         /// </summary>
         [DisplayName("Ответственный работник ООК")]
         public User ResponsibleUserOOK { get; set; }
+        public int ResponsibleUserOOKId { get; set; }
         /// <summary>
         /// Условия хранения
         /// </summary>
@@ -56,6 +57,7 @@ namespace NanolekPrototype.EntityModels.Models
         /// </summary>
         [DisplayName("Ответственный работник производства ТЛФ")]
         public User ResponsibleUserTLF { get; set; }
+        public int ResponsibleUserTLFId { get; set; }
         /// <summary>
         /// Торговое наименование лекарственного препарата
         /// </summary>

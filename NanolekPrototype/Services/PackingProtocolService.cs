@@ -59,7 +59,7 @@ namespace NanolekPrototype.Services
                 SellBy = DateTime.Now.AddDays(-1).AddYears(3),
                 ShelfLife = DateTime.Now.AddDays(-1).AddYears(3).ToOADate() - DateTime.Now.AddDays(-1).ToOADate(),
                 PackageNumber = "2158" + new Random().Next().ToString(),
-                ResponsibleUserTLF = _userManager.Users.First(),
+                ResponsibleUserTLF = _userManager.Users.Skip(1).First(),
                 TradeName = "Доктор мом" + new Random().Next(100).ToString(),
                 SpecificationGP = new Random().Next().ToString(),
                 InternalCodeGP = new Random().Next().ToString(),

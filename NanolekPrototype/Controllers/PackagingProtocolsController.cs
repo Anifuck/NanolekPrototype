@@ -97,21 +97,15 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            List<SelectListItem> dropDownUsersOOK  = new List<SelectListItem>();
-            List<SelectListItem> dropDownUsersTLF = new List<SelectListItem>();
+            var dropDownUsersOOK = _userManager.Users
+                .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                    packagingProtocol.ResponsibleUserOOK.Id == user.Id))
+                .ToList();
 
-            foreach (var user in _userManager.Users)
-            {
-                if (packagingProtocol.ResponsibleUserOOK.Id == user.Id)
-                    dropDownUsersOOK.Add(new SelectListItem(user.FullName, user.Id.ToString(), true));
-                else
-                    dropDownUsersOOK.Add(new SelectListItem(user.FullName, user.Id.ToString(), false));
-
-                if (packagingProtocol.ResponsibleUserTLF.Id == user.Id)
-                    dropDownUsersTLF.Add(new SelectListItem(user.FullName, user.Id.ToString(), true));
-                else
-                    dropDownUsersTLF.Add(new SelectListItem(user.FullName, user.Id.ToString(), false));
-            }
+            var dropDownUsersTLF = _userManager.Users
+                .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                    packagingProtocol.ResponsibleUserTLF.Id == user.Id))
+                .ToList();
 
             ViewBag.OOK = dropDownUsersOOK;
             ViewBag.TLF = dropDownUsersTLF;

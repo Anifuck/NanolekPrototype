@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.EntityModels.Models.Employees;
 using NanolekPrototype.Initializers;
 using NanolekPrototype.Models;
 
@@ -27,7 +28,7 @@ namespace NanolekPrototype
                 {
                     var configuration = services.GetRequiredService<IConfiguration>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
-                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    var rolesManager = services.GetRequiredService<RoleManager<Role>>();
                     await RoleInitializer.InitializeAsync(configuration, userManager, rolesManager);
                 }
                 catch (Exception ex)

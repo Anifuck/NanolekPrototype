@@ -1,19 +1,28 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.EntityModels.Models.Employees;
 
 namespace NanolekPrototype.Context
 {
-    public class ApplicationContext : IdentityDbContext<User>
+    public class ApplicationContext : IdentityDbContext<User,Role,int>
     {
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    //builder.Entity<TablePersonnelAccessProtocol>()
-        //    //    .HasOne(c => c.PackagingProtocol)
-        //    //    .WithMany(c => c.PersonnelAccessProtocols)
-        //    //    .HasForeignKey(x => x.PackagingProtocolId);
-        //    //base.OnModelCreating(builder);
-        //}
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<PackagingProtocol>()
+                .HasOne(c => c.ResponsibleUserOOK)
+                .WithMany(u => u.OOK)
+                .HasForeignKey(x => x.ResponsibleUserOOKId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<PackagingProtocol>()
+                .HasOne(c => c.ResponsibleUserTLF)
+                .WithMany(u => u.TLF)
+                .HasForeignKey(x => x.ResponsibleUserTLFId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            base.OnModelCreating(builder);
+        }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {

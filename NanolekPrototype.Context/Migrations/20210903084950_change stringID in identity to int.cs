@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NanolekPrototype.Context.Migrations
 {
-    public partial class test2 : Migration
+    public partial class changestringIDinidentitytoint : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace NanolekPrototype.Context.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -25,7 +26,8 @@ namespace NanolekPrototype.Context.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -54,7 +56,7 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -75,7 +77,7 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -97,7 +99,7 @@ namespace NanolekPrototype.Context.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,8 +116,8 @@ namespace NanolekPrototype.Context.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -138,7 +140,7 @@ namespace NanolekPrototype.Context.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -163,13 +165,13 @@ namespace NanolekPrototype.Context.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResponsibleUserOOKId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ResponsibleUserOOKId = table.Column<int>(type: "int", nullable: false),
                     StorageConditions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShelfLife = table.Column<double>(type: "float", nullable: false),
                     ManufacturingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SellBy = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PackageNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResponsibleUserTLFId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ResponsibleUserTLFId = table.Column<int>(type: "int", nullable: false),
                     TradeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SpecificationGP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InternalCodeGP = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -183,14 +185,12 @@ namespace NanolekPrototype.Context.Migrations
                         name: "FK_PackagingProtocols_AspNetUsers_ResponsibleUserOOKId",
                         column: x => x.ResponsibleUserOOKId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_PackagingProtocols_AspNetUsers_ResponsibleUserTLFId",
                         column: x => x.ResponsibleUserTLFId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -204,9 +204,9 @@ namespace NanolekPrototype.Context.Migrations
                     DateOfManufacture = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PacksInCorrugatedBox = table.Column<int>(type: "int", nullable: false),
                     InternalCode = table.Column<int>(type: "int", nullable: false),
-                    TaskGivenId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TaskGivenId = table.Column<int>(type: "int", nullable: true),
                     TaskGivenDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TaskGotId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TaskGotId = table.Column<int>(type: "int", nullable: true),
                     TaskGotDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -315,19 +315,19 @@ namespace NanolekPrototype.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartDateOfPacking = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FinishDateOfPacking = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShiftMasterId = table.Column<int>(type: "int", nullable: true),
                     ShiftMasterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CalcedByUserId = table.Column<int>(type: "int", nullable: true),
                     CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CheckedByUserId = table.Column<int>(type: "int", nullable: true),
                     CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedPUByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CheckedPUByUserId = table.Column<int>(type: "int", nullable: true),
                     CheckedPUByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PackagesCount = table.Column<int>(type: "int", nullable: false),
                     ExitAccordingToTheRegulations = table.Column<int>(type: "int", nullable: false),
                     IsCompliant = table.Column<bool>(type: "bit", nullable: false),
                     Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TaskMasterId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -384,16 +384,16 @@ namespace NanolekPrototype.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     InternalCodeOfMaterial = table.Column<int>(type: "int", nullable: false),
                     Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CalcedByUserId = table.Column<int>(type: "int", nullable: true),
                     CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CheckedByUserId = table.Column<int>(type: "int", nullable: true),
                     CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GetPRP = table.Column<int>(type: "int", nullable: false),
                     PartSAP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsCorrespondToControlIndicators = table.Column<bool>(type: "bit", nullable: false),
                     IsCorrespondToShelfLife = table.Column<bool>(type: "bit", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShiftMasterId = table.Column<int>(type: "int", nullable: true),
                     EntredIntoGPPackages = table.Column<int>(type: "int", nullable: false),
                     EntredIntoGPUnits = table.Column<int>(type: "int", nullable: false),
                     GarbageUnits = table.Column<int>(type: "int", nullable: false),
@@ -446,9 +446,9 @@ namespace NanolekPrototype.Context.Migrations
                     FormStatus = table.Column<int>(type: "int", nullable: false),
                     InternalCodeOfMaterial = table.Column<int>(type: "int", nullable: false),
                     Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CalcedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CalcedByUserId = table.Column<int>(type: "int", nullable: true),
                     CalcedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CheckedByUserId = table.Column<int>(type: "int", nullable: true),
                     CheckedByUserDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SpentOnBatch = table.Column<int>(type: "int", nullable: false),
                     RemainingMaterial = table.Column<int>(type: "int", nullable: false),
@@ -459,7 +459,7 @@ namespace NanolekPrototype.Context.Migrations
                     Reconciliation = table.Column<int>(type: "int", nullable: false),
                     IsCorrespondenceEligibilityCriteria = table.Column<bool>(type: "bit", nullable: false),
                     Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShiftMasterId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -502,10 +502,10 @@ namespace NanolekPrototype.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NotificationNUmber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShiftMasterId = table.Column<int>(type: "int", nullable: true),
                     ProtocolNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TaskMasterId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -589,7 +589,7 @@ namespace NanolekPrototype.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PackagingProtocolId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FullNameId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FullNameId = table.Column<int>(type: "int", nullable: true),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Step = table.Column<int>(type: "int", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false)
@@ -625,7 +625,7 @@ namespace NanolekPrototype.Context.Migrations
                     ReferenceWeightOfGPPack = table.Column<double>(type: "float", nullable: false),
                     ActualWeightOfGPPack = table.Column<double>(type: "float", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExecutorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ExecutorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -654,7 +654,7 @@ namespace NanolekPrototype.Context.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Action = table.Column<int>(type: "int", nullable: false),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TaskMasterId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -692,7 +692,7 @@ namespace NanolekPrototype.Context.Migrations
                     ActualTemperatureOfCellFormingMax = table.Column<int>(type: "int", nullable: false),
                     ActualTemperatureOfBlisterAdhesion = table.Column<int>(type: "int", nullable: false),
                     BlisteringSpeed = table.Column<int>(type: "int", nullable: false),
-                    TaskMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TaskMasterId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -717,10 +717,10 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FormReceptionAndMovementOfBulkProductId = table.Column<int>(type: "int", nullable: true),
+                    FormReceptionAndMovementOfBulkProductId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     GarbageKg = table.Column<int>(type: "int", nullable: false),
-                    ExecutorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ExecutorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -736,7 +736,7 @@ namespace NanolekPrototype.Context.Migrations
                         column: x => x.FormReceptionAndMovementOfBulkProductId,
                         principalTable: "FormReceptionAndMovementOfBulkProducts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -754,7 +754,7 @@ namespace NanolekPrototype.Context.Migrations
                     ManufacturerSerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AnalyticalSheetNumberOKK = table.Column<int>(type: "int", nullable: false),
                     IsFoilMeetsControlParameters = table.Column<bool>(type: "bit", nullable: false),
-                    ShiftMasterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ShiftMasterId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -783,7 +783,7 @@ namespace NanolekPrototype.Context.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CountOfSampleSelection = table.Column<int>(type: "int", nullable: false),
-                    EmployeeOKKId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    EmployeeOKKId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -812,8 +812,8 @@ namespace NanolekPrototype.Context.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Procedure = table.Column<int>(type: "int", nullable: false),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false),
-                    ExecutorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CheckerId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ExecutorId = table.Column<int>(type: "int", nullable: true),
+                    CheckerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -848,7 +848,7 @@ namespace NanolekPrototype.Context.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Action = table.Column<int>(type: "int", nullable: false),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    ServiceTechnicianId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ServiceTechnicianId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

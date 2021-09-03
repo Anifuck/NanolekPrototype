@@ -5,27 +5,28 @@ using NanolekPrototype.Models;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.EntityModels.Models.Employees;
 
 namespace NanolekPrototype.Initializers
 {
     public class RoleInitializer
     {
-        public static async Task InitializeAsync(IConfiguration configuration, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task InitializeAsync(IConfiguration configuration, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             var adminEmail = configuration.GetSection("InitializationSettings").GetSection("AdminUserEmail").Value;
             var adminPassword = configuration.GetSection("InitializationSettings").GetSection("AdminUserPassword").Value;
 
             if (await roleManager.FindByNameAsync("admin") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("admin"));
+                await roleManager.CreateAsync(new Role("admin"));
             }
             if (await roleManager.FindByNameAsync("controller") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("controller"));
+                await roleManager.CreateAsync(new Role("controller"));
             }
             if (await roleManager.FindByNameAsync("executor") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("executor"));
+                await roleManager.CreateAsync(new Role("executor"));
             }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {

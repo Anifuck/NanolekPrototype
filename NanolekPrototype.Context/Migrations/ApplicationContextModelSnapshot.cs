@@ -19,34 +19,7 @@ namespace NanolekPrototype.Context.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,9 +32,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -70,7 +42,7 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,9 +55,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -94,7 +65,7 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -105,9 +76,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -116,13 +86,13 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -131,10 +101,10 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -190,14 +160,14 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("TaskGivenDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TaskGivenId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TaskGivenId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("TaskGotDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TaskGotId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TaskGotId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -310,20 +280,20 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("CalcedByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CalcedByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CalcedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CheckedByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CheckedByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CheckedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CheckedPUByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CheckedPUByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CheckedPUByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -358,8 +328,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("ShiftMasterDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ShiftMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ShiftMasterId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDateOfPacking")
                         .HasColumnType("datetime2");
@@ -367,8 +337,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("TaskMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TaskMasterId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -397,14 +367,14 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("CalcedByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CalcedByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CalcedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CheckedByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CheckedByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CheckedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -454,8 +424,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<int>("SampleSelectionUnits")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShiftMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ShiftMasterId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Specification")
                         .HasColumnType("nvarchar(max)");
@@ -486,14 +456,14 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("CalcedByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CalcedByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CalcedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CheckedByUserDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CheckedByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CheckedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -540,8 +510,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<int>("RemainingMaterial")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShiftMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ShiftMasterId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Specification")
                         .HasColumnType("nvarchar(max)");
@@ -599,14 +569,14 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("ProtocolNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShiftMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ShiftMasterId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("TaskMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TaskMasterId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -676,11 +646,11 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<int>("PackagingProtocolStatus")
                         .HasColumnType("int");
 
-                    b.Property<string>("ResponsibleUserOOKId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ResponsibleUserOOKId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ResponsibleUserTLFId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ResponsibleUserTLFId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("SellBy")
                         .HasColumnType("datetime2");
@@ -709,6 +679,35 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("PackagingProtocols");
                 });
 
+            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.TableCheckingProcedure", b =>
                 {
                     b.Property<int>("Id")
@@ -722,8 +721,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ExecutorId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ExecutorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FormCheckingCheckweighingSettingId")
                         .HasColumnType("int");
@@ -759,8 +758,8 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ExecutorId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ExecutorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FormReceptionAndMovementOfBulkProductId")
                         .HasColumnType("int");
@@ -826,8 +825,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<bool>("IsMatchingVariableData")
                         .HasColumnType("bit");
 
-                    b.Property<string>("TaskMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TaskMasterId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -871,11 +870,11 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CheckerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CheckerId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ExecutorId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ExecutorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FormSamplingFinishedProductId")
                         .HasColumnType("int");
@@ -907,8 +906,8 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FullNameId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("FullNameId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -968,8 +967,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<string>("SAPPart")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShiftMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ShiftMasterId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -993,8 +992,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeOKKId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("EmployeeOKKId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FormSamplingFinishedProductId")
                         .HasColumnType("int");
@@ -1030,8 +1029,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ServiceTechnicianId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ServiceTechnicianId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1061,8 +1060,8 @@ namespace NanolekPrototype.Context.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
-                    b.Property<string>("TaskMasterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("TaskMasterId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1075,8 +1074,10 @@ namespace NanolekPrototype.Context.Migrations
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -1144,16 +1145,16 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("NanolekPrototype.EntityModels.Models.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", null)
                         .WithMany()
@@ -1162,7 +1163,7 @@ namespace NanolekPrototype.Context.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", null)
                         .WithMany()
@@ -1171,9 +1172,9 @@ namespace NanolekPrototype.Context.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("NanolekPrototype.EntityModels.Models.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1186,7 +1187,7 @@ namespace NanolekPrototype.Context.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", null)
                         .WithMany()
@@ -1369,12 +1370,16 @@ namespace NanolekPrototype.Context.Migrations
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.PackagingProtocol", b =>
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "ResponsibleUserOOK")
-                        .WithMany()
-                        .HasForeignKey("ResponsibleUserOOKId");
+                        .WithMany("OOK")
+                        .HasForeignKey("ResponsibleUserOOKId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "ResponsibleUserTLF")
-                        .WithMany()
-                        .HasForeignKey("ResponsibleUserTLFId");
+                        .WithMany("TLF")
+                        .HasForeignKey("ResponsibleUserTLFId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("ResponsibleUserOOK");
 
@@ -1611,6 +1616,13 @@ namespace NanolekPrototype.Context.Migrations
                     b.Navigation("PersonnelAccessProtocols");
 
                     b.Navigation("ProductionPersonnels");
+                });
+
+            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.User", b =>
+                {
+                    b.Navigation("OOK");
+
+                    b.Navigation("TLF");
                 });
 #pragma warning restore 612, 618
         }

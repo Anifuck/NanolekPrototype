@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Models;
 using NanolekPrototype.ViewModels;
@@ -42,9 +43,9 @@ namespace NanolekPrototype.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            User user = await _userManager.Users.FirstOrDefaultAsync(u=>u.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -58,7 +59,7 @@ namespace NanolekPrototype.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                User user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == model.Id);
                 if (user != null)
                 {
                     user.Email = model.Email;
@@ -110,7 +111,7 @@ namespace NanolekPrototype.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                User user = await _userManager.Users.FirstOrDefaultAsync(u=>u.Id==model.Id);
                 if (user != null)
                 {
                     var _passwordValidator =

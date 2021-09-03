@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Models;
 using NanolekPrototype.ViewModels;
@@ -115,7 +117,7 @@ namespace NanolekPrototype.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                User user = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == model.Id);
                 if (user != null)
                 {
                     var _passwordValidator =

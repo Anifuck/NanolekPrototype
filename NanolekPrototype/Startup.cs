@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.EntityModels.Models.Employees;
 using NanolekPrototype.Models;
 using NanolekPrototype.Services;
 
@@ -34,7 +35,7 @@ namespace NanolekPrototype
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddControllersWithViews();

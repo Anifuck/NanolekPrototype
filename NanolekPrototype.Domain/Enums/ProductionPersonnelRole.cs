@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NanolekPrototype.EntityModels.Enums
 {
     public enum ProductionPersonnelRole
     {
-        [Description("Исполнитель технологического процесса")]
+        [Display(Name="Исполнитель технологического процесса")]
         Executors,
-        [Description("Контроль и проверка")]
+        [Display(Name="Контроль и проверка")]
         Checkers
     }
 }

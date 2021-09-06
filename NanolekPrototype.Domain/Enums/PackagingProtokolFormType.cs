@@ -1,26 +1,27 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NanolekPrototype.EntityModels.Enums
 {
     public enum PackagingProtokolFormType
     {
-        [Description("Прием и движение балк-продукта (таблеток нерасфасованных)")]
+        [Display(Name="Прием и движение балк-продукта (таблеток нерасфасованных)")]
         ReceptionAndMovementOfBulkProduct,
-        [Description("Прием и движение упаковочных материалов – Фольга")]
+        [Display(Name="Прием и движение упаковочных материалов – Фольга")]
         ReceptionAndMovementOfPackingMaterial,
-        [Description("Настройка технологического оборудования")]
+        [Display(Name="Настройка технологического оборудования")]
         SettingUpTechnologicalEquipment,
-        [Description("Проверка отбраковки дефектных таблеток камерой блистерной машины")]
+        [Display(Name="Проверка отбраковки дефектных таблеток камерой блистерной машины")]
         CheckingRejectionOfDefectiveTablet,
-        [Description("Контроль первичной упаковки")]
+        [Display(Name="Контроль первичной упаковки")]
         ControlOfPrimaryPackaging,
-        [Description("Задание на маркировку этикетки термотрансферной на гофрокороб")]
+        [Display(Name="Задание на маркировку этикетки термотрансферной на гофрокороб")]
         AssignmentForMarkingThermalTransferLabelOnCorrugatedBox,
-        [Description("Проверка настройки контрольных весов")]
+        [Display(Name="Проверка настройки контрольных весов")]
         CheckingCheckweighingSetting,
-        [Description("Отбор проб готового продукта")]
+        [Display(Name="Отбор проб готового продукта")]
         SamplingFinishedProduct,
-        [Description("Материальный баланс ГП по серии")]
+        [Display(Name="Материальный баланс ГП по серии")]
         MaterialBalanceOfGPByLot
 
     }

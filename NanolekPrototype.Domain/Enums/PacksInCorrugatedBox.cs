@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 
 namespace NanolekPrototype.EntityModels.Enums
 {
     public enum PacksInCorrugatedBox
     {
-        [Description("80")]
+        [Display(Name="80")]
         Eighty,
-        [Description("50")]
+        [Display(Name="50")]
         Fifty
     }
 }

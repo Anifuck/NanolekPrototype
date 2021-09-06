@@ -4,11 +4,11 @@ namespace NanolekPrototype.EntityModels.Enums
 {
     public enum FormStatus
     {
-        [Description("В работе")]
+        [Display(Name="В работе")]
         InWork,
-        [Description("На контроле")]
+        [Display(Name="На контроле")]
         OnControl,
-        [Description("Обработана")]
+        [Display(Name="Обработана")]
         Approved
     }
 }

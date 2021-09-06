@@ -1,14 +1,18 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NanolekPrototype.EntityModels.Enums
 {
     public enum PackagingProtocolStatus
     {
-        [Description("В работе")]
+       // [Display(Name="В работе")]
+        [Display(Name="В работе")]
         InWork,
-        [Description("Исполнитель технологического процесса")]
+        //[Display(Name="Исполнитель технологического процесса")]
+        [Display(Name = "Исполнен")]
         Completed,
-        [Description("Отменен")]
+        //[Display(Name="Отменен")]
+        [Display(Name = "Отменен")]
         Cancelled,
     }
 }

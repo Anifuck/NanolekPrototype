@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NanolekPrototype.EntityModels.Enums
 {
     public enum ProductionPersonnelStep
     {
-        [Description("Первичная упаковка")]
+        [Display(Name="Первичная упаковка")]
         PrimaryPack,
-        [Description("Вторичная упаковка")]
+        [Display(Name="Вторичная упаковка")]
         SecondaryPack
     }
 }

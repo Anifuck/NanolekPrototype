@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
+using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
 
 namespace NanolekPrototype.Controllers
@@ -14,10 +16,27 @@ namespace NanolekPrototype.Controllers
     public class FormReceptionAndMovementOfBulkProductsController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public FormReceptionAndMovementOfBulkProductsController(ApplicationContext context)
+        public FormReceptionAndMovementOfBulkProductsController(ApplicationContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
+        }
+
+        public async Task<IActionResult> ApproveForm(int? id)
+        {
+           var form =  await _context.FormReceptionAndMovementOfBulkProducts.FirstOrDefaultAsync(form => form.Id == id);
+           var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+           form.Status = FormStatus.Approved;
+           form.CheckedByUserDate = DateTime.Now;
+           form.CheckedByUser = user;
+           form.CalcedByUserDate = DateTime.Now;
+           form.CalcedByUser = user;
+
+            await _context.SaveChangesAsync();
+           return RedirectToAction("Details", "PackagingProtocols", new {id=id});
         }
 
         // GET: FormReceptionAndMovementOfBulkProducts

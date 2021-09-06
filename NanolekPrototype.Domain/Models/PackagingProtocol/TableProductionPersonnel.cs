@@ -13,6 +13,7 @@ namespace NanolekPrototype.EntityModels.Models
 
         [DisplayName("ФИО")]
         public User FullName { get; set; }
+        public int FullNameId { get; set; }
         [DisplayName("Должность")]
         public string Position { get; set; }
         [DisplayName("Этап")]

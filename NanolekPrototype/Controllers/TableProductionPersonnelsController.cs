@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,13 @@ namespace NanolekPrototype.Controllers
     public class TableProductionPersonnelsController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public TableProductionPersonnelsController(ApplicationContext context)
+        public TableProductionPersonnelsController(ApplicationContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: TableProductionPersonnels
@@ -44,9 +48,11 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: TableProductionPersonnels/Create
-        public IActionResult Create(int id)
+        public IActionResult Create(int protocolid)
         {
-            ViewBag.PackagingProtocolId = id;
+            ViewData["PackagingProtocolId"] = protocolid;
+            ViewBag.FullNames = _userManager.Users
+                .Select(user => new SelectListItem(user.FullName, user.Id.ToString()));
             return View();
         }
 
@@ -59,9 +65,12 @@ namespace NanolekPrototype.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByIdAsync(tableProductionPersonnel.FullNameId.ToString());
+                tableProductionPersonnel.FullName = user;
+                tableProductionPersonnel.Position = user.Position;
                 _context.Add(tableProductionPersonnel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "PackagingProtocols", new { id = tableProductionPersonnel.PackagingProtocolId });
             }
             return View(tableProductionPersonnel);
         }
@@ -92,7 +101,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IsActive,Position,Step,Role")] TableProductionPersonnel tableProductionPersonnel)
+        public async Task<IActionResult> Edit(int id, TableProductionPersonnel tableProductionPersonnel)
         {
             if (id != tableProductionPersonnel.Id)
             {

@@ -44,6 +44,7 @@ namespace NanolekPrototype.Controllers
                 .Include(m=>m.FormReceptionAndMovementOfBulkProducts)
                 .Include(m => m.PersonnelAccessProtocols)
                 .Include(m => m.ProductionPersonnels)
+                .ThenInclude(pp=>pp.FullName)
                 .Include(m => m.ResponsibleUserOOK)
                 .Include(m => m.ResponsibleUserTLF)
                 .FirstOrDefaultAsync(m => m.Id == id);

@@ -117,7 +117,7 @@
                 @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Role)
             </th>
             <th>
-                <a asp-controller="TableProductionPersonnels" asp-action="Create" asp-route-id="@Model.Id">Добавить</a>
+                <a asp-controller="TableProductionPersonnels" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
             </th>
         </tr>
     </thead>
@@ -139,8 +139,8 @@
                 </td>
 
                 <td>
-                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-protocolid="@Model.Id">Редактировать</a> |
+                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-protocolid="@Model.Id">Удалить</a>
                 </td>
             </tr>
         }

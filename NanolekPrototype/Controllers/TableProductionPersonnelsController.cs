@@ -82,13 +82,18 @@ namespace NanolekPrototype.Controllers
             {
                 return NotFound();
             }
-
+            
             var tableProductionPersonnel =
                 await _context.ProductionPersonnels
                     .Include(m => m.PackagingProtocol)
+                    .Include(m => m.FullName)
                     .Where(m => m.Id == id)
                     .FirstAsync();
 
+            ViewBag.FullNames = _userManager.Users
+                .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                    tableProductionPersonnel.FullName.Id == user.Id))
+                .ToList();
             if (tableProductionPersonnel == null)
             {
                 return NotFound();
@@ -112,6 +117,8 @@ namespace NanolekPrototype.Controllers
             {
                 try
                 {
+                    var user = await _userManager.FindByIdAsync(tableProductionPersonnel.FullNameId.ToString());
+                    tableProductionPersonnel.Position = user.Position;
                     _context.Update(tableProductionPersonnel);
                     await _context.SaveChangesAsync();
                 }
@@ -126,7 +133,9 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Details", "PackagingProtocols",
+                    new {id = tableProductionPersonnel.PackagingProtocolId});
             }
             return View(tableProductionPersonnel);
         }

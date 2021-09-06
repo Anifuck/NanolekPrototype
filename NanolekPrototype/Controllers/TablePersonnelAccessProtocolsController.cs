@@ -116,7 +116,8 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "PackagingProtocols",
+                    new { id = tablePersonnelAccessProtocol.PackagingProtocolId });
             }
             return View(tablePersonnelAccessProtocol);
         }

@@ -108,7 +108,7 @@
                 @Html.DisplayNameFor(model => model.ProductionPersonnels.First().FullName.FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Position)
+                @Html.DisplayNameFor(model => model.ProductionPersonnels.First().FullName.Position)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Step)
@@ -139,8 +139,8 @@
                 </td>
 
                 <td>
-                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-protocolid="@Model.Id">Редактировать</a> |
-                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-protocolid="@Model.Id">Удалить</a>
+                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> |
+                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Удалить</a>
                 </td>
             </tr>
         }

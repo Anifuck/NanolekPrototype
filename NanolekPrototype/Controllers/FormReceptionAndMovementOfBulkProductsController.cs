@@ -4,12 +4,14 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Internal.Account.Manage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
 {
@@ -17,11 +19,13 @@ namespace NanolekPrototype.Controllers
     {
         private readonly ApplicationContext _context;
         private readonly UserManager<User> _userManager;
+        private readonly IPackingProtocolService _packingProtocolService;
 
-        public FormReceptionAndMovementOfBulkProductsController(ApplicationContext context, UserManager<User> userManager)
+        public FormReceptionAndMovementOfBulkProductsController(ApplicationContext context, UserManager<User> userManager, IPackingProtocolService packingProtocolService)
         {
             _context = context;
             _userManager = userManager;
+            _packingProtocolService = packingProtocolService;
         }
 
         public async Task<IActionResult> ApproveForm(int? id)
@@ -34,8 +38,8 @@ namespace NanolekPrototype.Controllers
            form.CheckedByUser = user;
            form.CalcedByUserDate = DateTime.Now;
            form.CalcedByUser = user;
-
-            await _context.SaveChangesAsync();
+           await _context.SaveChangesAsync();
+           await _packingProtocolService.CheckProtocolStatus(form.Id);
            return RedirectToAction("Details", "PackagingProtocols", new {id=id});
         }
 

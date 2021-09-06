@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Enums;
@@ -90,6 +91,14 @@ namespace NanolekPrototype.Services
             await _context.SaveChangesAsync();
 
             await GenerateReceptionAndMovementOfBulkProduct(packagingProtocol);
+        }
+
+        public async Task CheckProtocolStatus(int packagingProtocolId)
+        {
+            var packagingProtocol = await _context.PackagingProtocols.FirstAsync(p => p.Id == packagingProtocolId);
+            if (packagingProtocol.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.Approved)
+                packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
+            await _context.SaveChangesAsync();
         }
     }
 }

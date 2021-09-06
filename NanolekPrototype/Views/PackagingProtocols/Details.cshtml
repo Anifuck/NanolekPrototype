@@ -206,7 +206,15 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="ApproveForm" asp-route-id="@Model.Id">Утвердить</a>
+                @if (User.IsInRole("controller") && Model.FormReceptionAndMovementOfBulkProducts.First().Status==FormStatus.OnControl)
+                {
+                    <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="ApproveForm" asp-route-id="@Model.Id">Утвердить</a>
+                    <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="SendOnRevisionForm" asp-route-id="@Model.Id">На доработку</a>
+                }
+                @if (User.IsInRole("executor") && Model.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.InWork)
+                {
+                    <a asp-controller = "FormReceptionAndMovementOfBulkProducts" asp-action="SendOnControlForm" asp-route-id="@Model.Id">На проверку</a>
+                }
             </td>
         </tr>
     }

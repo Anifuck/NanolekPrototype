@@ -39,6 +39,33 @@ namespace NanolekPrototype.Controllers
            return RedirectToAction("Details", "PackagingProtocols", new {id=id});
         }
 
+        public async Task<IActionResult> SendOnControlForm(int? id)
+        {
+            var form = await _context.FormReceptionAndMovementOfBulkProducts.FirstOrDefaultAsync(form => form.Id == id);
+            form.Status = FormStatus.OnControl;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "PackagingProtocols", new { id = id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SendOnRevisionForm(int? id)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendOnRevisionForm(int? id, FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
+        {
+            var form = await _context.FormReceptionAndMovementOfBulkProducts.FirstOrDefaultAsync(form => form.Id == id);
+            form.Status = FormStatus.InWork;
+            form.Note = formReceptionAndMovementOfBulkProduct.Note;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "PackagingProtocols", new { id = id });
+        }
+
         // GET: FormReceptionAndMovementOfBulkProducts
         public async Task<IActionResult> Index()
         {

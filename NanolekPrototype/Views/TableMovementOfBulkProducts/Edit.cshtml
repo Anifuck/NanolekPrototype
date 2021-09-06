@@ -15,6 +15,10 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="FormReceptionAndMovementOfBulkProductId" value="@Model.FormReceptionAndMovementOfBulkProductId" />
             <div class="form-group">
+                <label asp-for="Executor" class="control-label"></label>
+                @Html.DropDownList("ExecutorId", ViewBag.Executors, null, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
                 <label asp-for="GarbageKg" class="control-label"></label>
                 <input asp-for="GarbageKg" class="form-control" />
                 <span asp-validation-for="GarbageKg" class="text-danger"></span>

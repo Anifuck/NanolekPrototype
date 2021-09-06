@@ -13,5 +13,6 @@ namespace NanolekPrototype.EntityModels.Models
         public int GarbageKg { get; set; }
         [DisplayName("Исполнитель")]
         public User Executor { get; set; }
+        public int ExecutorId { get; set; }
     }
 }

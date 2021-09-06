@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,11 @@ namespace NanolekPrototype.Controllers
     public class TableMovementOfBulkProductsController : Controller
     {
         private readonly ApplicationContext _context;
-
-        public TableMovementOfBulkProductsController(ApplicationContext context)
+        private readonly UserManager<User> _userManager;
+        public TableMovementOfBulkProductsController(ApplicationContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: TableMovementOfBulkProducts
@@ -47,6 +49,7 @@ namespace NanolekPrototype.Controllers
         public IActionResult Create(int formId)
         {
             ViewData["FormId"] = formId;
+            ViewBag.Executors = _userManager.Users.Select(user => new SelectListItem(user.FullName, user.Id.ToString())).ToList();
             return View();
         }
 
@@ -74,7 +77,14 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var tableMovementOfBulkProduct = await _context.MovementOfBulkProducts.FindAsync(id);
+            var tableMovementOfBulkProduct = await _context.MovementOfBulkProducts
+                .Include(m=>m.Executor)
+                .FirstOrDefaultAsync(m=>m.Id==id);
+
+            ViewBag.Executors = _userManager.Users
+                .Select(user => new SelectListItem(user.FullName, user.Id.ToString(), tableMovementOfBulkProduct.Executor.Id == user.Id))
+                .ToList();
+
             if (tableMovementOfBulkProduct == null)
             {
                 return NotFound();

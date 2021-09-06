@@ -181,7 +181,34 @@
     </tbody>
 </table>
 
-<div>
-    <label class="font-weight-bold">Формы протокола упаковки:</label></br>
-    <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="Details" asp-route-id="@Model.Id">@PackagingProtokolFormType.ReceptionAndMovementOfBulkProduct.ToString()</a>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Формы протокола упаковки
+            </th>
+            <th>
+                Статус
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.FormReceptionAndMovementOfBulkProducts)
+    {
+        <tr>
+            <td>
+                <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="Details" asp-route-id="@Model.Id">@Html.DisplayFor(modelItem => item.Type)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="ApproveForm" asp-route-id="@Model.Id">Утвердить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

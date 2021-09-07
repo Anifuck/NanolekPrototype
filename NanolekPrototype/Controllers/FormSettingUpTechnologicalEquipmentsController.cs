@@ -2,21 +2,72 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
+using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
 {
     public class FormSettingUpTechnologicalEquipmentsController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly IPackingProtocolService _packingProtocolService;
 
-        public FormSettingUpTechnologicalEquipmentsController(ApplicationContext context)
+        public FormSettingUpTechnologicalEquipmentsController(ApplicationContext context, UserManager<User> userManager, IPackingProtocolService packingProtocolService)
         {
             _context = context;
+            _userManager = userManager;
+            _packingProtocolService = packingProtocolService;
+        }
+
+        public async Task<IActionResult> ApproveForm(int? id)
+        {
+            var form = await _context.FormSettingUpTechnologicalEquipments
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            form.Status = FormStatus.Approved;
+            await _context.SaveChangesAsync();
+            await _packingProtocolService.CheckProtocolStatus(form.PackagingProtocol.Id);
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+        }
+
+        public async Task<IActionResult> SendOnControlForm(int? id)
+        {
+            var form = await _context.FormSettingUpTechnologicalEquipments
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+            form.Status = FormStatus.OnControl;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SendOnRevisionForm(int? id)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendOnRevisionForm(int? id, FormSettingUpTechnologicalEquipment formSettingUpTechnologicalEquipment)
+        {
+            var form = await _context.FormSettingUpTechnologicalEquipments
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+            form.Status = FormStatus.InWork;
+            form.Note = formSettingUpTechnologicalEquipment.Note;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
         }
 
         // GET: FormSettingUpTechnologicalEquipments

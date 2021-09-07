@@ -1,0 +1,17 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfPackingMaterial
+
+@{
+    ViewData["Title"] = "Commentary";
+}
+
+<form asp-action="SendOnRevisionForm">
+    <div class="form-group">
+        <label asp-for="Note" class="control-label"></label>
+        <input asp-for="Note" class="form-control" />
+        <span asp-validation-for="Note" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отправить на доработку" class="btn btn-primary" />
+    </div>
+</form>

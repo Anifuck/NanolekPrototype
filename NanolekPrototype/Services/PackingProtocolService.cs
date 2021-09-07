@@ -146,8 +146,16 @@ namespace NanolekPrototype.Services
 
         public async Task CheckProtocolStatus(int packagingProtocolId)
         {
-            var packagingProtocol = await _context.PackagingProtocols.FirstAsync(p => p.Id == packagingProtocolId);
-            if (packagingProtocol.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.Approved)
+            var packagingProtocol = await _context.PackagingProtocols
+                .Include(p=>p.FormReceptionAndMovementOfPackingMaterials)
+                .Include(p => p.FormSettingUpTechnologicalEquipments)
+                .Include(p => p.FormReceptionAndMovementOfBulkProducts)
+                .FirstAsync(p => p.Id == packagingProtocolId);
+
+
+            if (packagingProtocol.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.Approved 
+                && packagingProtocol.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.Approved
+                && packagingProtocol.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

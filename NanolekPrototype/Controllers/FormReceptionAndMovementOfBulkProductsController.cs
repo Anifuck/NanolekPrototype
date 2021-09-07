@@ -30,7 +30,9 @@ namespace NanolekPrototype.Controllers
 
         public async Task<IActionResult> ApproveForm(int? id)
         {
-           var form =  await _context.FormReceptionAndMovementOfBulkProducts.FirstOrDefaultAsync(form => form.Id == id);
+           var form =  await _context.FormReceptionAndMovementOfBulkProducts
+               .Include(form => form.PackagingProtocol)
+               .FirstOrDefaultAsync(form => form.Id == id);
            var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
            form.Status = FormStatus.Approved;
@@ -39,17 +41,19 @@ namespace NanolekPrototype.Controllers
            form.CalcedByUserDate = DateTime.Now;
            form.CalcedByUser = user;
            await _context.SaveChangesAsync();
-           await _packingProtocolService.CheckProtocolStatus(form.Id);
-           return RedirectToAction("Details", "PackagingProtocols", new {id=id});
+           await _packingProtocolService.CheckProtocolStatus(form.PackagingProtocol.Id);
+           return RedirectToAction("Details", "PackagingProtocols", new {id=form.PackagingProtocol.Id});
         }
 
         public async Task<IActionResult> SendOnControlForm(int? id)
         {
-            var form = await _context.FormReceptionAndMovementOfBulkProducts.FirstOrDefaultAsync(form => form.Id == id);
+            var form = await _context.FormReceptionAndMovementOfBulkProducts
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
             form.Status = FormStatus.OnControl;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "PackagingProtocols", new { id = id });
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
         }
 
         [HttpGet]
@@ -62,12 +66,14 @@ namespace NanolekPrototype.Controllers
         [HttpPost]
         public async Task<IActionResult> SendOnRevisionForm(int? id, FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
         {
-            var form = await _context.FormReceptionAndMovementOfBulkProducts.FirstOrDefaultAsync(form => form.Id == id);
+            var form = await _context.FormReceptionAndMovementOfBulkProducts
+                .Include(form=>form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
             form.Status = FormStatus.InWork;
             form.Note = formReceptionAndMovementOfBulkProduct.Note;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "PackagingProtocols", new { id = id });
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
         }
 
         // GET: FormReceptionAndMovementOfBulkProducts

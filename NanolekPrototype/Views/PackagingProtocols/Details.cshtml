@@ -222,28 +222,53 @@
     </tbody>
     
     <tbody>
-        @foreach (var item in Model.FormReceptionAndMovementOfPackingMaterials)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @if (User.IsInRole("controller") && Model.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.OnControl)
-                    {
-                        <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="ApproveForm" asp-route-id="@item.Id">Утвердить</a>
-                        <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="SendOnRevisionForm" asp-route-id="@item.Id">На доработку</a>
-                    }
-                    @if (User.IsInRole("executor") && Model.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.InWork)
-                    {
-                        <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="SendOnControlForm" asp-route-id="@item.Id">На проверку</a>
-                    }
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model.FormReceptionAndMovementOfPackingMaterials)
+    {
+        <tr>
+            <td>
+                <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (User.IsInRole("controller") && Model.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.OnControl)
+                {
+                    <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="ApproveForm" asp-route-id="@item.Id">Утвердить</a>
+                    <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="SendOnRevisionForm" asp-route-id="@item.Id">На доработку</a>
+                }
+                @if (User.IsInRole("executor") && Model.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.InWork)
+                {
+                    <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="SendOnControlForm" asp-route-id="@item.Id">На проверку</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+    
+    <tbody>
+    @foreach (var item in Model.FormSettingUpTechnologicalEquipments)
+    {
+        <tr>
+            <td>
+                <a asp-controller="FormSettingUpTechnologicalEquipments" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (User.IsInRole("controller") && Model.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.OnControl)
+                {
+                    <a asp-controller="FormSettingUpTechnologicalEquipments" asp-action="ApproveForm" asp-route-id="@item.Id">Утвердить</a>
+                    <a asp-controller="FormSettingUpTechnologicalEquipments" asp-action="SendOnRevisionForm" asp-route-id="@item.Id">На доработку</a>
+                }
+                @if (User.IsInRole("executor") && Model.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.InWork)
+                {
+                    <a asp-controller="FormSettingUpTechnologicalEquipments" asp-action="SendOnControlForm" asp-route-id="@item.Id">На проверку</a>
+                }
+            </td>
+        </tr>
+    }
     </tbody>
 
 </table>

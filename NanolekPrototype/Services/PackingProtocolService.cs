@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
+using Action = NanolekPrototype.EntityModels.Enums.Action;
 
 namespace NanolekPrototype.Services
 {
@@ -19,6 +21,31 @@ namespace NanolekPrototype.Services
         {
             _context = context;
             _userManager = userManager;
+        }
+
+        public async Task GenerateSettingUpTechnologicalEquipment(PackagingProtocol packagingProtocol)
+        {
+            FormSettingUpTechnologicalEquipment  formSettingUpTechnologicalEquipment = new FormSettingUpTechnologicalEquipment()
+            {
+                Guid = Guid.NewGuid(),
+                IsActive = true,
+                Status = FormStatus.InWork,
+                PackagingProtocol = packagingProtocol
+            };
+            await _context.AddAsync(formSettingUpTechnologicalEquipment);
+
+            foreach (var act in Enum.GetNames<Action>())
+            {
+                TableSettingUpTechnologicalEquipment tableSettingUpTechnologicalEquipment =
+                    new TableSettingUpTechnologicalEquipment()
+                    {
+                        FormSettingUpTechnologicalEquipment = formSettingUpTechnologicalEquipment,
+                        IsActive = true,
+                        Action = Enum.Parse<Action>(act)
+                    };
+                await _context.AddAsync(tableSettingUpTechnologicalEquipment);
+            }
+            await _context.SaveChangesAsync();
         }
 
         public async Task GenerateReceptionAndMovementOfPackingMaterial(PackagingProtocol packagingProtocol)
@@ -114,6 +141,7 @@ namespace NanolekPrototype.Services
 
             await GenerateReceptionAndMovementOfBulkProduct(packagingProtocol);
             await GenerateReceptionAndMovementOfPackingMaterial(packagingProtocol);
+            await GenerateSettingUpTechnologicalEquipment(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)

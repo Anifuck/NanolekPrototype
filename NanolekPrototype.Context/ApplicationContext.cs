@@ -63,6 +63,12 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.ShiftMasterId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<TableSettingUpTechnologicalEquipment>()
+                .HasOne(c => c.ServiceTechnician)
+                .WithMany(u => u.TableSettingUpTechnologicalEquipmentServiceTechnicians)
+                .HasForeignKey(x => x.ServiceTechnicianId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 

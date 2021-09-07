@@ -34,5 +34,6 @@ namespace NanolekPrototype.EntityModels.Models
             set;
         }
         public ICollection<TableReceptionOfMaterial> TableReceptionOfMaterialShiftMasters { get; set; }
+        public ICollection<TableSettingUpTechnologicalEquipment> TableSettingUpTechnologicalEquipmentServiceTechnicians { get; set; }
     }
 }

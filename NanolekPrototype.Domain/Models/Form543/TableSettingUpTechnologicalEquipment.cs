@@ -1,4 +1,5 @@
-﻿using NanolekPrototype.EntityModels.Enums;
+﻿using System.ComponentModel;
+using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
@@ -10,9 +11,12 @@ namespace NanolekPrototype.EntityModels.Models
         public bool IsActive { get; set; }
 
 
-
+        [DisplayName("Действие")]
         public Action Action { get; set; }
+        [DisplayName("Подтверждение")]
         public bool IsApproved { get; set; }
+        [DisplayName("Наладчик")]
         public User ServiceTechnician { get; set; }
+        public int? ServiceTechnicianId { get; set; }
     }
 }

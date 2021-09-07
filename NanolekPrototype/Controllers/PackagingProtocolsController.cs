@@ -41,6 +41,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var packagingProtocol = await _context.PackagingProtocols
+                .Include(m=>m.FormSettingUpTechnologicalEquipments)
                 .Include(m=>m.FormReceptionAndMovementOfBulkProducts)
                 .Include(m=>m.FormReceptionAndMovementOfPackingMaterials)
                 .Include(m => m.PersonnelAccessProtocols)

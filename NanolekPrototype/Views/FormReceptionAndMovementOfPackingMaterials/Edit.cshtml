@@ -1,0 +1,124 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfPackingMaterial
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>FormReceptionAndMovementOfPackingMaterial</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormStatus" class="control-label"></label>
+                <select asp-for="FormStatus" class="form-control"></select>
+                <span asp-validation-for="FormStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InternalCodeOfMaterial" class="control-label"></label>
+                <input asp-for="InternalCodeOfMaterial" class="form-control" />
+                <span asp-validation-for="InternalCodeOfMaterial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specification" class="control-label"></label>
+                <input asp-for="Specification" class="form-control" />
+                <span asp-validation-for="Specification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CalcedByUserDate" class="control-label"></label>
+                <input asp-for="CalcedByUserDate" class="form-control" />
+                <span asp-validation-for="CalcedByUserDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckedByUserDate" class="control-label"></label>
+                <input asp-for="CheckedByUserDate" class="form-control" />
+                <span asp-validation-for="CheckedByUserDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpentOnBatch" class="control-label"></label>
+                <input asp-for="SpentOnBatch" class="form-control" />
+                <span asp-validation-for="SpentOnBatch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RemainingMaterial" class="control-label"></label>
+                <input asp-for="RemainingMaterial" class="form-control" />
+                <span asp-validation-for="RemainingMaterial" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSentToStorage" /> @Html.DisplayNameFor(model => model.IsSentToStorage)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsStoredInProduction" /> @Html.DisplayNameFor(model => model.IsStoredInProduction)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpenseFor1000Packs" class="control-label"></label>
+                <input asp-for="ExpenseFor1000Packs" class="form-control" />
+                <span asp-validation-for="ExpenseFor1000Packs" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCorrespondsToConsumptionRate" /> @Html.DisplayNameFor(model => model.IsCorrespondsToConsumptionRate)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reconciliation" class="control-label"></label>
+                <input asp-for="Reconciliation" class="form-control" />
+                <span asp-validation-for="Reconciliation" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCorrespondenceEligibilityCriteria" /> @Html.DisplayNameFor(model => model.IsCorrespondenceEligibilityCriteria)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observations" class="control-label"></label>
+                <input asp-for="Observations" class="form-control" />
+                <span asp-validation-for="Observations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guid" class="control-label"></label>
+                <input asp-for="Guid" class="form-control" />
+                <span asp-validation-for="Guid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,132 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfPackingMaterial
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FormReceptionAndMovementOfPackingMaterial</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FormStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FormStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InternalCodeOfMaterial)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InternalCodeOfMaterial)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Specification)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Specification)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CalcedByUserDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CalcedByUserDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckedByUserDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CheckedByUserDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SpentOnBatch)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpentOnBatch)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingMaterial)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RemainingMaterial)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsSentToStorage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsSentToStorage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsStoredInProduction)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsStoredInProduction)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ExpenseFor1000Packs)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ExpenseFor1000Packs)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCorrespondsToConsumptionRate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsCorrespondsToConsumptionRate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reconciliation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reconciliation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCorrespondenceEligibilityCriteria)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsCorrespondenceEligibilityCriteria)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Observations)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Observations)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Guid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Guid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

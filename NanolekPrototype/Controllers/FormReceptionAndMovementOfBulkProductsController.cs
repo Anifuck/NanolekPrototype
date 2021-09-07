@@ -108,7 +108,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Type,InternalCodeOfMaterial,Specification,CalcedByUserDate,CheckedByUserDate,Date,GetPRP,PartSAP,IsCorrespondToControlIndicators,IsCorrespondToShelfLife,EntredIntoGPPackages,EntredIntoGPUnits,GarbageUnits,DefectFirstPackageUnits,SampleSelectionUnits,GarbageSecondPackageUnits,Id,IsActive,Guid,Status,Note")] FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
+        public async Task<IActionResult> Create(FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +131,38 @@ namespace NanolekPrototype.Controllers
                 .Include(m => m.PackagingProtocol)
                 .Include(m => m.MovementOfBulkProducts)
                 .ThenInclude(p => p.Executor)
+                .Include(m=>m.CalcedByUser)
+                .Include(m=>m.CheckedByUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (formReceptionAndMovementOfBulkProduct.CalcedByUser != null)
+            {
+                ViewBag.CalcedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        formReceptionAndMovementOfBulkProduct.CalcedByUser.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.CalcedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString())).ToList();
+            }
+
+            if (formReceptionAndMovementOfBulkProduct.CheckedByUser != null)
+            {
+                ViewBag.CheckedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        formReceptionAndMovementOfBulkProduct.CheckedByUser.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.CheckedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString()))
+                    .ToList();
+            }
+
+
             if (formReceptionAndMovementOfBulkProduct == null)
             {
                 return NotFound();
@@ -169,7 +200,7 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = formReceptionAndMovementOfBulkProduct.Id});
             }
             return View(formReceptionAndMovementOfBulkProduct);
         }

@@ -14,5 +14,8 @@ namespace NanolekPrototype.EntityModels.Models
         public string Position { get; set; }
         public ICollection<PackagingProtocol> OOK { get; set; }
         public ICollection<PackagingProtocol> TLF { get; set; }
+
+        public ICollection<FormReceptionAndMovementOfBulkProduct> Calcers { get; set; }
+        public ICollection<FormReceptionAndMovementOfBulkProduct> Checkers { get; set; }
     }
 }

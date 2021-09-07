@@ -11,6 +11,7 @@ namespace NanolekPrototype.EntityModels.Models
     public class FormReceptionAndMovementOfBulkProduct : PackagingProtocolForm
     {
         [NotMapped]
+        [DisplayName("Тип")]
         public override PackagingProtokolFormType Type =>
             PackagingProtokolFormType.ReceptionAndMovementOfBulkProduct;
 
@@ -20,10 +21,12 @@ namespace NanolekPrototype.EntityModels.Models
         public string Specification { get; set; }
         [DisplayName("Расчет произвел (ФИО)")]
         public User CalcedByUser { get; set; }
+        public int? CalcedByUserId { get; set; }
         [DisplayName("Расчет произвел (Дата)")]
         public DateTime CalcedByUserDate { get; set; }
         [DisplayName("Расчет проверил (ФИО)")]
         public User CheckedByUser { get; set; }
+        public int? CheckedByUserId { get;set; }
         [DisplayName("Расчет проверил (Дата)")]
         public DateTime CheckedByUserDate { get; set; }
 

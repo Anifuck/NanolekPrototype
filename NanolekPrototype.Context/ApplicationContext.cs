@@ -23,19 +23,43 @@ namespace NanolekPrototype.Context
 
             builder.Entity<FormReceptionAndMovementOfBulkProduct>()
                 .HasOne(c => c.CalcedByUser)
-                .WithMany(u=>u.Calcers)
+                .WithMany(u=>u.FormReceptionAndMovementOfBulkProductCalcers)
                 .HasForeignKey(x => x.CalcedByUserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<FormReceptionAndMovementOfBulkProduct>()
                 .HasOne(c => c.CheckedByUser)
-                .WithMany(u => u.Checkers)
+                .WithMany(u => u.FormReceptionAndMovementOfBulkProductCheckers)
                 .HasForeignKey(x => x.CheckedByUserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<FormReceptionAndMovementOfBulkProduct>()
                 .HasOne(c => c.ShiftMaster)
-                .WithMany(u => u.ShiftMasters)
+                .WithMany(u => u.FormReceptionAndMovementOfBulkProductShiftMasters)
+                .HasForeignKey(x => x.ShiftMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormReceptionAndMovementOfPackingMaterial>()
+                .HasOne(c => c.CalcedByUser)
+                .WithMany(u => u.FormReceptionAndMovementOfPackingMaterialCalcers)
+                .HasForeignKey(x => x.CalcedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormReceptionAndMovementOfPackingMaterial>()
+                .HasOne(c => c.CheckedByUser)
+                .WithMany(u => u.FormReceptionAndMovementOfPackingMaterialCheckers)
+                .HasForeignKey(x => x.CheckedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormReceptionAndMovementOfPackingMaterial>()
+                .HasOne(c => c.ShiftMaster)
+                .WithMany(u => u.FormReceptionAndMovementOfPackingMaterialShiftMasters)
+                .HasForeignKey(x => x.ShiftMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<TableReceptionOfMaterial>()
+                .HasOne(c => c.ShiftMaster)
+                .WithMany(u => u.TableReceptionOfMaterialShiftMasters)
                 .HasForeignKey(x => x.ShiftMasterId)
                 .OnDelete(DeleteBehavior.NoAction);
 

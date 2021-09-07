@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,12 @@ namespace NanolekPrototype.Controllers
     {
         private readonly ApplicationContext _context;
 
-        public TableReceptionOfMaterialsController(ApplicationContext context)
+        private readonly UserManager<User> _userManager;
+
+        public TableReceptionOfMaterialsController(ApplicationContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: TableReceptionOfMaterials
@@ -46,9 +50,12 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: TableReceptionOfMaterials/Create
-        public IActionResult Create()
+        public IActionResult Create(int formid)
         {
-            ViewData["FormReceptionAndMovementOfPackingMaterialId"] = new SelectList(_context.FormReceptionAndMovementOfPackingMaterials, "Id", "Id");
+            ViewBag.ShiftMasters = _userManager.Users
+                .Select(user => new SelectListItem(user.FullName, user.Id.ToString()))
+                .ToList();
+            ViewData["FormReceptionAndMovementOfPackingMaterialId"] = formid;
             return View();
         }
 
@@ -57,13 +64,13 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FormReceptionAndMovementOfPackingMaterialId,IsActive,Date,ReceivedFoil,RemainingProduction,SAPPart,ManufacturerSerialNumber,AnalyticalSheetNumberOKK,IsFoilMeetsControlParameters")] TableReceptionOfMaterial tableReceptionOfMaterial)
+        public async Task<IActionResult> Create(TableReceptionOfMaterial tableReceptionOfMaterial)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(tableReceptionOfMaterial);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "FormReceptionAndMovementOfPackingMaterials", new { id = tableReceptionOfMaterial.FormReceptionAndMovementOfPackingMaterialId });
             }
             ViewData["FormReceptionAndMovementOfPackingMaterialId"] = new SelectList(_context.FormReceptionAndMovementOfPackingMaterials, "Id", "Id", tableReceptionOfMaterial.FormReceptionAndMovementOfPackingMaterialId);
             return View(tableReceptionOfMaterial);
@@ -77,11 +84,33 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var tableReceptionOfMaterial = await _context.ReceptionOfMaterials.FindAsync(id);
+            var tableReceptionOfMaterial =
+                await _context.ReceptionOfMaterials
+                    .Include(m => m.FormReceptionAndMovementOfPackingMaterial)
+                    .Include(m => m.ShiftMaster)
+                    .Where(m => m.Id == id)
+                    .FirstAsync();
+
+            if (tableReceptionOfMaterial.ShiftMaster != null)
+            {
+                ViewBag.ShiftMasters = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        tableReceptionOfMaterial.ShiftMaster.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.ShiftMasters = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString()))
+                    .ToList();
+            }
+
+
             if (tableReceptionOfMaterial == null)
             {
                 return NotFound();
             }
+
             ViewData["FormReceptionAndMovementOfPackingMaterialId"] = new SelectList(_context.FormReceptionAndMovementOfPackingMaterials, "Id", "Id", tableReceptionOfMaterial.FormReceptionAndMovementOfPackingMaterialId);
             return View(tableReceptionOfMaterial);
         }
@@ -91,7 +120,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FormReceptionAndMovementOfPackingMaterialId,IsActive,Date,ReceivedFoil,RemainingProduction,SAPPart,ManufacturerSerialNumber,AnalyticalSheetNumberOKK,IsFoilMeetsControlParameters")] TableReceptionOfMaterial tableReceptionOfMaterial)
+        public async Task<IActionResult> Edit(int id, TableReceptionOfMaterial tableReceptionOfMaterial)
         {
             if (id != tableReceptionOfMaterial.Id)
             {
@@ -116,7 +145,8 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Details", "FormReceptionAndMovementOfPackingMaterials", new {id=tableReceptionOfMaterial.FormReceptionAndMovementOfPackingMaterialId});
             }
             ViewData["FormReceptionAndMovementOfPackingMaterialId"] = new SelectList(_context.FormReceptionAndMovementOfPackingMaterials, "Id", "Id", tableReceptionOfMaterial.FormReceptionAndMovementOfPackingMaterialId);
             return View(tableReceptionOfMaterial);
@@ -141,15 +171,12 @@ namespace NanolekPrototype.Controllers
             return View(tableReceptionOfMaterial);
         }
 
-        // POST: TableReceptionOfMaterials/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tableReceptionOfMaterial = await _context.ReceptionOfMaterials.FindAsync(id);
             _context.ReceptionOfMaterials.Remove(tableReceptionOfMaterial);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "FormReceptionAndMovementOfPackingMaterials", new { id = tableReceptionOfMaterial.FormReceptionAndMovementOfPackingMaterialId });
         }
 
         private bool TableReceptionOfMaterialExists(int id)

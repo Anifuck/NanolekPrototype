@@ -94,6 +94,7 @@ namespace NanolekPrototype.Controllers
                 .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
                     tableProductionPersonnel.FullName.Id == user.Id))
                 .ToList();
+
             if (tableProductionPersonnel == null)
             {
                 return NotFound();

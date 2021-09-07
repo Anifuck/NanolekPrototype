@@ -15,8 +15,24 @@ namespace NanolekPrototype.EntityModels.Models
         public ICollection<PackagingProtocol> OOK { get; set; }
         public ICollection<PackagingProtocol> TLF { get; set; }
 
-        public ICollection<FormReceptionAndMovementOfBulkProduct> Calcers { get; set; }
-        public ICollection<FormReceptionAndMovementOfBulkProduct> Checkers { get; set; }
-        public ICollection<FormReceptionAndMovementOfBulkProduct> ShiftMasters { get; set; }
+        public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProductCalcers { get; set; }
+        public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProductCheckers { get; set; }
+        public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProductShiftMasters { get; set; }
+        public ICollection<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterialCalcers
+        {
+            get;
+            set;
+        }
+        public ICollection<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterialCheckers
+        {
+            get;
+            set;
+        }
+        public ICollection<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterialShiftMasters
+        {
+            get;
+            set;
+        }
+        public ICollection<TableReceptionOfMaterial> TableReceptionOfMaterialShiftMasters { get; set; }
     }
 }

@@ -4,18 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>FormReceptionAndMovementOfPackingMaterial</h4>
+    <h4>@Html.DisplayFor(model => model.Type)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FormStatus)
         </dt>
@@ -34,11 +26,23 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Specification)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CalcedByUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CalcedByUser.FullName)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CalcedByUserDate)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CalcedByUserDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckedByUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CheckedByUser.FullName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CheckedByUserDate)
@@ -46,6 +50,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CheckedByUserDate)
         </dd>
+    </dl>
+
+    <h5>Баланс по окончании серии</h5>
+    <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.SpentOnBatch)
         </dt>
@@ -94,39 +102,109 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IsCorrespondenceEligibilityCriteria)
         </dd>
-        <dt class = "col-sm-2">
+    </dl>
+
+    <h5>Наблюдения</h5>
+    <dl class="row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Observations)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Observations)
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShiftMaster)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShiftMaster.FullName)
+        </dd>
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Date)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Guid)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Guid)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Note)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Note)
         </dd>
     </dl>
+
+    <h5>Прием материала</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ReceivedFoil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().RemainingProduction)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().SAPPart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ManufacturerSerialNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().AnalyticalSheetNumberOKK)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().IsFoilMeetsControlParameters)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ShiftMaster)
+                </th>
+                <th>
+                    <a asp-controller="TableReceptionOfMaterials" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReceptionOfMaterials)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivedFoil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemainingProduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SAPPart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufacturerSerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnalyticalSheetNumberOKK)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsFoilMeetsControlParameters)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShiftMaster.FullName)
+                </td>
+                <td>
+                    <a asp-controller="TableReceptionOfMaterials" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="TableReceptionOfMaterials" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
 </div>

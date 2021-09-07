@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
 {
     public class FormReceptionAndMovementOfPackingMaterialsController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly IPackingProtocolService _packingProtocolService;
 
-        public FormReceptionAndMovementOfPackingMaterialsController(ApplicationContext context)
+        public FormReceptionAndMovementOfPackingMaterialsController(ApplicationContext context, UserManager<User> userManager, IPackingProtocolService packingProtocolService)
         {
             _context = context;
+            _userManager = userManager;
+            _packingProtocolService = packingProtocolService;
         }
 
         // GET: FormReceptionAndMovementOfPackingMaterials
@@ -34,6 +40,12 @@ namespace NanolekPrototype.Controllers
             }
 
             var formReceptionAndMovementOfPackingMaterial = await _context.FormReceptionAndMovementOfPackingMaterials
+                .Include(m=>m.ReceptionOfMaterials)
+                .ThenInclude(s=>s.ShiftMaster)
+                .Include(m=>m.PackagingProtocol)
+                .Include(m => m.CalcedByUser)
+                .Include(m => m.CheckedByUser)
+                .Include(m => m.ShiftMaster)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (formReceptionAndMovementOfPackingMaterial == null)
             {
@@ -73,7 +85,58 @@ namespace NanolekPrototype.Controllers
                 return NotFound();
             }
 
-            var formReceptionAndMovementOfPackingMaterial = await _context.FormReceptionAndMovementOfPackingMaterials.FindAsync(id);
+            var formReceptionAndMovementOfPackingMaterial = await _context.FormReceptionAndMovementOfPackingMaterials
+               .Include(m => m.PackagingProtocol)
+               .Include(m => m.ReceptionOfMaterials)
+               .ThenInclude(p => p.ShiftMaster)
+               .Include(m => m.CalcedByUser)
+               .Include(m => m.CheckedByUser)
+               .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (formReceptionAndMovementOfPackingMaterial.CalcedByUser != null)
+            {
+                ViewBag.CalcedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        formReceptionAndMovementOfPackingMaterial.CalcedByUser.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.CalcedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString())).ToList();
+            }
+
+            if (formReceptionAndMovementOfPackingMaterial.CheckedByUser != null)
+            {
+                ViewBag.CheckedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        formReceptionAndMovementOfPackingMaterial.CheckedByUser.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.CheckedByUsers = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString()))
+                    .ToList();
+            }
+
+
+            if (formReceptionAndMovementOfPackingMaterial.ShiftMaster != null)
+            {
+                ViewBag.ShiftMasters = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        formReceptionAndMovementOfPackingMaterial.ShiftMaster.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.ShiftMasters = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString()))
+                    .ToList();
+            }
+
+
+
             if (formReceptionAndMovementOfPackingMaterial == null)
             {
                 return NotFound();
@@ -86,7 +149,7 @@ namespace NanolekPrototype.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IsActive,FormStatus,InternalCodeOfMaterial,Specification,CalcedByUserDate,CheckedByUserDate,SpentOnBatch,RemainingMaterial,IsSentToStorage,IsStoredInProduction,ExpenseFor1000Packs,IsCorrespondsToConsumptionRate,Reconciliation,IsCorrespondenceEligibilityCriteria,Observations,Date,Guid,Status,Note")] FormReceptionAndMovementOfPackingMaterial formReceptionAndMovementOfPackingMaterial)
+        public async Task<IActionResult> Edit(int id, FormReceptionAndMovementOfPackingMaterial formReceptionAndMovementOfPackingMaterial)
         {
             if (id != formReceptionAndMovementOfPackingMaterial.Id)
             {
@@ -111,7 +174,7 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = formReceptionAndMovementOfPackingMaterial.Id });
             }
             return View(formReceptionAndMovementOfPackingMaterial);
         }

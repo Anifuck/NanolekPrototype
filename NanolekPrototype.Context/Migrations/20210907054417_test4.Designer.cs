@@ -10,8 +10,8 @@ using NanolekPrototype.Context;
 namespace NanolekPrototype.Context.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210903084950_change stringID in identity to int")]
-    partial class changestringIDinidentitytoint
+    [Migration("20210907054417_test4")]
+    partial class test4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,6 +120,35 @@ namespace NanolekPrototype.Context.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.Employees.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox", b =>
@@ -681,35 +710,6 @@ namespace NanolekPrototype.Context.Migrations
                     b.ToTable("PackagingProtocols");
                 });
 
-            modelBuilder.Entity("NanolekPrototype.EntityModels.Models.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.TableCheckingProcedure", b =>
                 {
                     b.Property<int>("Id")
@@ -760,7 +760,7 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ExecutorId")
+                    b.Property<int>("ExecutorId")
                         .HasColumnType("int");
 
                     b.Property<int>("FormReceptionAndMovementOfBulkProductId")
@@ -908,7 +908,7 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("FullNameId")
+                    b.Property<int>("FullNameId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
@@ -1149,7 +1149,7 @@ namespace NanolekPrototype.Context.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.Role", null)
+                    b.HasOne("NanolekPrototype.EntityModels.Models.Employees.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1176,7 +1176,7 @@ namespace NanolekPrototype.Context.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("NanolekPrototype.EntityModels.Models.Role", null)
+                    b.HasOne("NanolekPrototype.EntityModels.Models.Employees.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1288,12 +1288,14 @@ namespace NanolekPrototype.Context.Migrations
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfBulkProduct", b =>
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "CalcedByUser")
-                        .WithMany()
-                        .HasForeignKey("CalcedByUserId");
+                        .WithMany("Calcers")
+                        .HasForeignKey("CalcedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "CheckedByUser")
-                        .WithMany()
-                        .HasForeignKey("CheckedByUserId");
+                        .WithMany("Checkers")
+                        .HasForeignKey("CheckedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
                         .WithMany("FormReceptionAndMovementOfBulkProducts")
@@ -1409,7 +1411,9 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "Executor")
                         .WithMany()
-                        .HasForeignKey("ExecutorId");
+                        .HasForeignKey("ExecutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfBulkProduct", "FormReceptionAndMovementOfBulkProduct")
                         .WithMany("MovementOfBulkProducts")
@@ -1477,7 +1481,9 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "FullName")
                         .WithMany()
-                        .HasForeignKey("FullNameId");
+                        .HasForeignKey("FullNameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
                         .WithMany("ProductionPersonnels")
@@ -1622,6 +1628,10 @@ namespace NanolekPrototype.Context.Migrations
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.User", b =>
                 {
+                    b.Navigation("Calcers");
+
+                    b.Navigation("Checkers");
+
                     b.Navigation("OOK");
 
                     b.Navigation("TLF");

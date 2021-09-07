@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NanolekPrototype.Context.Migrations
 {
-    public partial class changestringIDinidentitytoint : Migration
+    public partial class test4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -413,14 +413,12 @@ namespace NanolekPrototype.Context.Migrations
                         name: "FK_FormReceptionAndMovementOfBulkProducts_AspNetUsers_CalcedByUserId",
                         column: x => x.CalcedByUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_FormReceptionAndMovementOfBulkProducts_AspNetUsers_CheckedByUserId",
                         column: x => x.CheckedByUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_FormReceptionAndMovementOfBulkProducts_AspNetUsers_ShiftMasterId",
                         column: x => x.ShiftMasterId,
@@ -589,7 +587,7 @@ namespace NanolekPrototype.Context.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PackagingProtocolId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FullNameId = table.Column<int>(type: "int", nullable: true),
+                    FullNameId = table.Column<int>(type: "int", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Step = table.Column<int>(type: "int", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false)
@@ -602,7 +600,7 @@ namespace NanolekPrototype.Context.Migrations
                         column: x => x.FullNameId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductionPersonnels_PackagingProtocols_PackagingProtocolId",
                         column: x => x.PackagingProtocolId,
@@ -720,7 +718,7 @@ namespace NanolekPrototype.Context.Migrations
                     FormReceptionAndMovementOfBulkProductId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     GarbageKg = table.Column<int>(type: "int", nullable: false),
-                    ExecutorId = table.Column<int>(type: "int", nullable: true)
+                    ExecutorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -730,7 +728,7 @@ namespace NanolekPrototype.Context.Migrations
                         column: x => x.ExecutorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MovementOfBulkProducts_FormReceptionAndMovementOfBulkProducts_FormReceptionAndMovementOfBulkProductId",
                         column: x => x.FormReceptionAndMovementOfBulkProductId,

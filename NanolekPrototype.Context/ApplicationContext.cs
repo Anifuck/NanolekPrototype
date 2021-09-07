@@ -21,6 +21,18 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.ResponsibleUserTLFId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<FormReceptionAndMovementOfBulkProduct>()
+                .HasOne(c => c.CalcedByUser)
+                .WithMany(u=>u.Calcers)
+                .HasForeignKey(x => x.CalcedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormReceptionAndMovementOfBulkProduct>()
+                .HasOne(c => c.CheckedByUser)
+                .WithMany(u => u.Checkers)
+                .HasForeignKey(x => x.CheckedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 

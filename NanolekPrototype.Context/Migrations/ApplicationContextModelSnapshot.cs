@@ -758,7 +758,7 @@ namespace NanolekPrototype.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ExecutorId")
+                    b.Property<int>("ExecutorId")
                         .HasColumnType("int");
 
                     b.Property<int>("FormReceptionAndMovementOfBulkProductId")
@@ -1286,12 +1286,14 @@ namespace NanolekPrototype.Context.Migrations
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfBulkProduct", b =>
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "CalcedByUser")
-                        .WithMany()
-                        .HasForeignKey("CalcedByUserId");
+                        .WithMany("Calcers")
+                        .HasForeignKey("CalcedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "CheckedByUser")
-                        .WithMany()
-                        .HasForeignKey("CheckedByUserId");
+                        .WithMany("Checkers")
+                        .HasForeignKey("CheckedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.PackagingProtocol", "PackagingProtocol")
                         .WithMany("FormReceptionAndMovementOfBulkProducts")
@@ -1407,7 +1409,9 @@ namespace NanolekPrototype.Context.Migrations
                 {
                     b.HasOne("NanolekPrototype.EntityModels.Models.User", "Executor")
                         .WithMany()
-                        .HasForeignKey("ExecutorId");
+                        .HasForeignKey("ExecutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfBulkProduct", "FormReceptionAndMovementOfBulkProduct")
                         .WithMany("MovementOfBulkProducts")
@@ -1622,6 +1626,10 @@ namespace NanolekPrototype.Context.Migrations
 
             modelBuilder.Entity("NanolekPrototype.EntityModels.Models.User", b =>
                 {
+                    b.Navigation("Calcers");
+
+                    b.Navigation("Checkers");
+
                     b.Navigation("OOK");
 
                     b.Navigation("TLF");

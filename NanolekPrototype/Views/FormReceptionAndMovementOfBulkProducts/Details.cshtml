@@ -44,6 +44,9 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CheckedByUserDate)
         </dd>
+    </dl>
+    <h5>Приём балк-продукта (таблеток нерасфасованных)</h5>
+    <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
         </dt>
@@ -74,6 +77,15 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IsCorrespondToShelfLife)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShiftMaster)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShiftMaster.FullName)
+        </dd>
+    </dl>
+    <h5>Баланс по окончании серии</h5>
+    <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EntredIntoGPPackages)
         </dt>

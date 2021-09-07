@@ -43,6 +43,7 @@ namespace NanolekPrototype.EntityModels.Models
         public bool IsCorrespondToShelfLife { get; set; }
         [DisplayName("Мастер смены")]
         public User ShiftMaster { get; set; }
+        public int? ShiftMasterId { get; set; }
 
         //Таблица «Движение балк-продукта(таблеток нерасфасованных)»:
         public ICollection<TableMovementOfBulkProduct> MovementOfBulkProducts { get; set; }

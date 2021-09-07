@@ -163,6 +163,21 @@ namespace NanolekPrototype.Controllers
             }
 
 
+            if (formReceptionAndMovementOfBulkProduct.ShiftMaster != null)
+            {
+                ViewBag.ShiftMasters = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString(),
+                        formReceptionAndMovementOfBulkProduct.ShiftMaster.Id == user.Id))
+                    .ToList();
+            }
+            else
+            {
+                ViewBag.ShiftMasters = _userManager.Users
+                    .Select(user => new SelectListItem(user.FullName, user.Id.ToString()))
+                    .ToList();
+            }
+
+
             if (formReceptionAndMovementOfBulkProduct == null)
             {
                 return NotFound();

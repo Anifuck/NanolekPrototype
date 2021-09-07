@@ -33,6 +33,12 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.CheckedByUserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<FormReceptionAndMovementOfBulkProduct>()
+                .HasOne(c => c.ShiftMaster)
+                .WithMany(u => u.ShiftMasters)
+                .HasForeignKey(x => x.ShiftMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 

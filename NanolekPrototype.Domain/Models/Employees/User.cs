@@ -17,5 +17,6 @@ namespace NanolekPrototype.EntityModels.Models
 
         public ICollection<FormReceptionAndMovementOfBulkProduct> Calcers { get; set; }
         public ICollection<FormReceptionAndMovementOfBulkProduct> Checkers { get; set; }
+        public ICollection<FormReceptionAndMovementOfBulkProduct> ShiftMasters { get; set; }
     }
 }

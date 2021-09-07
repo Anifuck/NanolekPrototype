@@ -4,18 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>FormReceptionAndMovementOfBulkProduct</h4>
+    <h4>@Html.DisplayFor(model => model.Type)</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class="col-sm-10 border-bottom">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.InternalCodeOfMaterial)
         </dt>
@@ -29,10 +21,22 @@
             @Html.DisplayFor(model => model.Specification)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CalcedByUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CalcedByUser.FullName)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CalcedByUserDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CalcedByUserDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckedByUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CheckedByUser.FullName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CheckedByUserDate)
@@ -105,12 +109,6 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GarbageSecondPackageUnits)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Guid)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Guid)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Status)

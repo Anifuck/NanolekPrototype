@@ -21,6 +21,28 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+        public async Task GenerateReceptionAndMovementOfPackingMaterial(PackagingProtocol packagingProtocol)
+        {
+            FormReceptionAndMovementOfPackingMaterial formReceptionAndMovementOfPackingMaterial =
+                new FormReceptionAndMovementOfPackingMaterial()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol,
+                };
+
+            TableReceptionOfMaterial tableReceptionOfMaterial = new TableReceptionOfMaterial()
+            {
+                FormReceptionAndMovementOfPackingMaterial = formReceptionAndMovementOfPackingMaterial,
+                IsActive = true,
+            };
+
+            await _context.AddAsync(formReceptionAndMovementOfPackingMaterial);
+            await _context.AddAsync(tableReceptionOfMaterial);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task GenerateReceptionAndMovementOfBulkProduct(PackagingProtocol packagingProtocol)
         {
             FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct = new FormReceptionAndMovementOfBulkProduct()
@@ -91,6 +113,7 @@ namespace NanolekPrototype.Services
             await _context.SaveChangesAsync();
 
             await GenerateReceptionAndMovementOfBulkProduct(packagingProtocol);
+            await GenerateReceptionAndMovementOfPackingMaterial(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)

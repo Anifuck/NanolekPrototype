@@ -1,0 +1,46 @@
+﻿@using NanolekPrototype.EntityModels.Enums
+@using Action = NanolekPrototype.EntityModels.Enums.Action
+@model NanolekPrototype.EntityModels.Models.TableVerificationAction
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TableVerificationAction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="FormCheckingRejectionOfDefectiveTabletId" />
+            <input type="hidden" asp-for="Action" />
+            <div class="form-group">
+                @Html.DisplayFor(model => model.Action)
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskMaster" class="control-label"></label>
+                <select asp-for="TaskMasterId" class="form-control" asp-items="ViewBag.TaskMasterId"></select>
+                <span asp-validation-for="TaskMasterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="FormCheckingRejectionOfDefectiveTablets" asp-action="Details" asp-route-id="@Model.FormCheckingRejectionOfDefectiveTabletId">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

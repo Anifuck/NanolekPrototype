@@ -23,6 +23,36 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+        public async Task GenerateFormCheckingRejectionOfDefectiveTablet(PackagingProtocol packagingProtocol)
+        {
+            FormCheckingRejectionOfDefectiveTablet formCheckingRejectionOfDefectiveTablet =
+                new FormCheckingRejectionOfDefectiveTablet()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol
+                };
+
+            await _context.AddAsync(formCheckingRejectionOfDefectiveTablet);
+
+            foreach (var verificationAction in Enum.GetNames<VerificationAction>())
+            {
+                TableVerificationAction tableVerificationAction = new TableVerificationAction()
+                {
+                    FormCheckingRejectionOfDefectiveTablet = formCheckingRejectionOfDefectiveTablet,
+                    IsActive = true,
+                    Action = Enum.Parse<VerificationAction>(verificationAction)
+                };
+
+                await _context.AddAsync(tableVerificationAction);
+
+            }
+
+            await _context.SaveChangesAsync();
+
+        }
+
         public async Task GenerateSettingUpTechnologicalEquipment(PackagingProtocol packagingProtocol)
         {
             FormSettingUpTechnologicalEquipment  formSettingUpTechnologicalEquipment = new FormSettingUpTechnologicalEquipment()
@@ -142,6 +172,7 @@ namespace NanolekPrototype.Services
             await GenerateReceptionAndMovementOfBulkProduct(packagingProtocol);
             await GenerateReceptionAndMovementOfPackingMaterial(packagingProtocol);
             await GenerateSettingUpTechnologicalEquipment(packagingProtocol);
+            await GenerateFormCheckingRejectionOfDefectiveTablet(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)

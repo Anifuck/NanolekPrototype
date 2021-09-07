@@ -1,0 +1,74 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormCheckingRejectionOfDefectiveTablet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Type)</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckingDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CheckingDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+
+
+<label class="font-weight-bold">Действия по проверке</label>
+<table class="table">
+<thead>
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.VerificationActions.First().Action)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.VerificationActions.First().IsApproved)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.VerificationActions.First().TaskMaster)
+    </th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+@foreach (var item in Model.VerificationActions) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskMaster.FullName)
+        </td>
+        <td>
+            <a asp-controller="TableVerificationActions" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+</div>

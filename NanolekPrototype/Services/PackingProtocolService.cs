@@ -23,6 +23,31 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+
+        public async Task GenerateFormControlOfPrimaryPackaging(PackagingProtocol packagingProtocol)
+        {
+            FormControlOfPrimaryPackaging formControlOfPrimaryPackaging =
+                new FormControlOfPrimaryPackaging()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol
+                };
+
+            
+
+            TablePackagingControl tablePackagingControl = new TablePackagingControl()
+                {
+                    FormControlOfPrimaryPackaging = formControlOfPrimaryPackaging,
+                    IsActive = true,
+                };
+
+            await _context.AddAsync(formControlOfPrimaryPackaging);
+            await _context.AddAsync(tablePackagingControl);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task GenerateFormCheckingRejectionOfDefectiveTablet(PackagingProtocol packagingProtocol)
         {
             FormCheckingRejectionOfDefectiveTablet formCheckingRejectionOfDefectiveTablet =
@@ -173,11 +198,13 @@ namespace NanolekPrototype.Services
             await GenerateReceptionAndMovementOfPackingMaterial(packagingProtocol);
             await GenerateSettingUpTechnologicalEquipment(packagingProtocol);
             await GenerateFormCheckingRejectionOfDefectiveTablet(packagingProtocol);
+            await GenerateFormControlOfPrimaryPackaging(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)
         {
             var packagingProtocol = await _context.PackagingProtocols
+                .Include(p=>p.FormControlOfPrimaryPackagings)
                 .Include(p=>p.FormReceptionAndMovementOfPackingMaterials)
                 .Include(p => p.FormSettingUpTechnologicalEquipments)
                 .Include(p => p.FormReceptionAndMovementOfBulkProducts)
@@ -188,7 +215,8 @@ namespace NanolekPrototype.Services
             if (packagingProtocol.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.Approved 
                 && packagingProtocol.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.Approved
                 && packagingProtocol.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.Approved
-                && packagingProtocol.FormCheckingRejectionOfDefectiveTablets.First().Status == FormStatus.Approved)
+                && packagingProtocol.FormCheckingRejectionOfDefectiveTablets.First().Status == FormStatus.Approved
+                && packagingProtocol.FormControlOfPrimaryPackagings.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

@@ -1,0 +1,113 @@
+﻿@model IEnumerable<NanolekPrototype.EntityModels.Models.TablePackagingControl>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FormControlOfPrimaryPackaging)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFoilCorrespondenceToSpecification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAppereanceWithoutDefects)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsClarityMarkAndCorrugationPattern)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsMatchingVariableData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsBulkProductWithoutVisibleDamage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCorrespondsCountOfTabletsInBlister)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualTemperatureOfCellFormingMin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualTemperatureOfCellFormingMax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualTemperatureOfBlisterAdhesion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlisteringSpeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskMaster)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormControlOfPrimaryPackaging.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFoilCorrespondenceToSpecification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAppereanceWithoutDefects)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsClarityMarkAndCorrugationPattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMatchingVariableData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBulkProductWithoutVisibleDamage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCorrespondsCountOfTabletsInBlister)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualTemperatureOfCellFormingMin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualTemperatureOfCellFormingMax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualTemperatureOfBlisterAdhesion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlisteringSpeed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskMaster.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

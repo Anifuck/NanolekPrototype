@@ -1,0 +1,121 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormControlOfPrimaryPackaging
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FormControlOfPrimaryPackaging</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().IsFoilCorrespondenceToSpecification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().IsAppereanceWithoutDefects)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().IsClarityMarkAndCorrugationPattern)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().IsMatchingVariableData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().IsBulkProductWithoutVisibleDamage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().IsCorrespondsCountOfTabletsInBlister)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().ActualTemperatureOfCellFormingMin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().ActualTemperatureOfCellFormingMax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().ActualTemperatureOfBlisterAdhesion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().BlisteringSpeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingControls.First().TaskMaster)
+            </th>
+            <th><a asp-controller="TablePackagingControls" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PackagingControls)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsFoilCorrespondenceToSpecification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAppereanceWithoutDefects)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsClarityMarkAndCorrugationPattern)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsMatchingVariableData)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsBulkProductWithoutVisibleDamage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCorrespondsCountOfTabletsInBlister)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualTemperatureOfCellFormingMin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualTemperatureOfCellFormingMax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualTemperatureOfBlisterAdhesion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlisteringSpeed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskMaster.FullName)
+                </td>
+                <td>
+                    <a asp-controller="TablePackagingControls" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="TablePackagingControls" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+</div>

@@ -75,6 +75,12 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.TaskMasterId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<TablePackagingControl>()
+                .HasOne(c => c.TaskMaster)
+                .WithMany(u => u.TablePackagingControlTaskMasters)
+                .HasForeignKey(x => x.TaskMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 

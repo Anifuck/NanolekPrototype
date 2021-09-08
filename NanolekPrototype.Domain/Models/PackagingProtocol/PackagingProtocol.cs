@@ -93,7 +93,7 @@ namespace NanolekPrototype.EntityModels.Models
 
 
         //public ICollection<PackagingProtocolForm> PackagingProtocolForms { get; set; }
-        public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }
+        public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }
         public ICollection<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
         public ICollection<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
         public ICollection<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }

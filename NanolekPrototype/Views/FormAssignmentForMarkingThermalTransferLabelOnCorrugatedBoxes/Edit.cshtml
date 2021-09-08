@@ -1,0 +1,83 @@
+﻿@using NanolekPrototype.EntityModels.Enums
+@model NanolekPrototype.EntityModels.Models.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GTIN" class="control-label"></label>
+                <select asp-for="GTIN" asp-items="Html.GetEnumSelectList<GTIN>()" class="form-control"></select>
+                <span asp-validation-for="GTIN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Series" class="control-label"></label>
+                <input asp-for="Series" class="form-control" />
+                <span asp-validation-for="Series" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfManufacture" class="control-label"></label>
+                <input asp-for="DateOfManufacture" class="form-control" />
+                <span asp-validation-for="DateOfManufacture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellBy" class="control-label"></label>
+                <input asp-for="SellBy" class="form-control" />
+                <span asp-validation-for="SellBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacksInCorrugatedBox" class="control-label"></label>
+                <select asp-for="PacksInCorrugatedBox" asp-items="Html.GetEnumSelectList<PacksInCorrugatedBox>()" class="form-control"></select>
+                <span asp-validation-for="PacksInCorrugatedBox" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InternalCode" class="control-label"></label>
+                <select asp-for="InternalCode" asp-items="Html.GetEnumSelectList<InternalCode>()" class="form-control"></select>
+                <span asp-validation-for="InternalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskGiven" class="control-label"></label>
+                <select asp-for="TaskGivenId" class="form-control" asp-items="ViewBag.TaskGivenId"></select>
+                <span asp-validation-for="TaskGivenId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskGivenDate" class="control-label"></label>
+                <input asp-for="TaskGivenDate" class="form-control" />
+                <span asp-validation-for="TaskGivenDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskGot" class="control-label"></label>
+                <select asp-for="TaskGotId" class="form-control" asp-items="ViewBag.TaskGotId"></select>
+                <span asp-validation-for="TaskGotId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskGotDate" class="control-label"></label>
+                <input asp-for="TaskGotDate" class="form-control" />
+                <span asp-validation-for="TaskGotDate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Status" />
+            <input type="hidden" asp-for="Guid" />
+            <input type="hidden" asp-for="IsActive" />
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes" asp-action="Details" asp-route-id="@Model.Id">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -23,6 +23,22 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+        public async Task GenerateFormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox(
+            PackagingProtocol packagingProtocol)
+        {
+            FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox forMarkingThermalTransferLabelOnCorrugatedBox =
+                new FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol
+                };
+
+            await _context.AddAsync(forMarkingThermalTransferLabelOnCorrugatedBox);
+            await _context.SaveChangesAsync();
+        }
+
 
         public async Task GenerateFormControlOfPrimaryPackaging(PackagingProtocol packagingProtocol)
         {
@@ -199,11 +215,13 @@ namespace NanolekPrototype.Services
             await GenerateSettingUpTechnologicalEquipment(packagingProtocol);
             await GenerateFormCheckingRejectionOfDefectiveTablet(packagingProtocol);
             await GenerateFormControlOfPrimaryPackaging(packagingProtocol);
+            await GenerateFormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)
         {
             var packagingProtocol = await _context.PackagingProtocols
+                .Include(p=>p.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes)
                 .Include(p=>p.FormControlOfPrimaryPackagings)
                 .Include(p=>p.FormReceptionAndMovementOfPackingMaterials)
                 .Include(p => p.FormSettingUpTechnologicalEquipments)
@@ -216,7 +234,8 @@ namespace NanolekPrototype.Services
                 && packagingProtocol.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.Approved
                 && packagingProtocol.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.Approved
                 && packagingProtocol.FormCheckingRejectionOfDefectiveTablets.First().Status == FormStatus.Approved
-                && packagingProtocol.FormControlOfPrimaryPackagings.First().Status == FormStatus.Approved)
+                && packagingProtocol.FormControlOfPrimaryPackagings.First().Status == FormStatus.Approved
+                && packagingProtocol.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

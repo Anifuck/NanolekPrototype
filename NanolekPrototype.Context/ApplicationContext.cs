@@ -81,6 +81,18 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.TaskMasterId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox>()
+                .HasOne(c => c.TaskGiven)
+                .WithMany(u => u.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxTaskGivens)
+                .HasForeignKey(x => x.TaskGivenId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox>()
+                .HasOne(c => c.TaskGot)
+                .WithMany(u => u.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxTaskGots)
+                .HasForeignKey(x => x.TaskGotId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 
@@ -101,7 +113,7 @@ namespace NanolekPrototype.Context
         public DbSet<TableVerificationAction> VerificationActions { get; set; }
         public DbSet<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
         public DbSet<TablePackagingControl> PackagingControls { get; set; }
-        public DbSet<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> ForMarkingThermalTransferLabelOnCorrugatedBoxes
+        public DbSet<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox
         {
             get;
             set;

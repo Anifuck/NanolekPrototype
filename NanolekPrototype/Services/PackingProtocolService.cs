@@ -23,6 +23,41 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+        public async Task GenerateFormSamplingFinishedProduct(PackagingProtocol packagingProtocol)
+        {
+            FormSamplingFinishedProduct formSamplingFinishedProduct =
+                new FormSamplingFinishedProduct()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol
+                };
+
+            TableSampleSelection tableSampleSelection = new TableSampleSelection()
+            {
+                FormSamplingFinishedProduct = formSamplingFinishedProduct,
+                IsActive = true,
+            };
+
+            await _context.AddAsync(formSamplingFinishedProduct);
+            await _context.AddAsync(tableSampleSelection);
+
+            foreach (var procedure in Enum.GetNames<Procedure>())
+            {
+                TableProcedure tableProcedure = new TableProcedure()
+                {
+                    FormSamplingFinishedProduct = formSamplingFinishedProduct,
+                    IsActive = true,
+                    Procedure = Enum.Parse<Procedure>(procedure)
+                };
+                await _context.AddAsync(tableProcedure);
+            }
+
+            await _context.SaveChangesAsync();
+
+        }
+
         public async Task GenerateFormCheckingCheckweighingSetting(PackagingProtocol packagingProtocol)
         {
             FormCheckingCheckweighingSetting formCheckingCheckweighingSetting =
@@ -239,6 +274,7 @@ namespace NanolekPrototype.Services
             await GenerateFormControlOfPrimaryPackaging(packagingProtocol);
             await GenerateFormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox(packagingProtocol);
             await GenerateFormCheckingCheckweighingSetting(packagingProtocol);
+            await GenerateFormSamplingFinishedProduct(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)
@@ -251,6 +287,7 @@ namespace NanolekPrototype.Services
                 .Include(p => p.FormSettingUpTechnologicalEquipments)
                 .Include(p => p.FormReceptionAndMovementOfBulkProducts)
                 .Include(p=>p.FormCheckingRejectionOfDefectiveTablets)
+                .Include(p=>p.FormSamplingFinishedProducts)
                 .FirstAsync(p => p.Id == packagingProtocolId);
 
 
@@ -260,7 +297,8 @@ namespace NanolekPrototype.Services
                 && packagingProtocol.FormCheckingRejectionOfDefectiveTablets.First().Status == FormStatus.Approved
                 && packagingProtocol.FormControlOfPrimaryPackagings.First().Status == FormStatus.Approved
                 && packagingProtocol.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes.First().Status == FormStatus.Approved
-                && packagingProtocol.FormCheckingCheckweighingSettings.First().Status == FormStatus.Approved)
+                && packagingProtocol.FormCheckingCheckweighingSettings.First().Status == FormStatus.Approved
+                && packagingProtocol.FormSamplingFinishedProducts.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

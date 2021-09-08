@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace NanolekPrototype.EntityModels.Models
 {
@@ -10,9 +11,12 @@ namespace NanolekPrototype.EntityModels.Models
         public bool IsActive { get; set; }
 
 
-
+        [DisplayName("Дата время")]
         public DateTime DateTime { get; set; }
+        [DisplayName("Количество отобранной пробы")]
         public int CountOfSampleSelection { get; set; }
+        [DisplayName("Работник ОКК")]
         public User EmployeeOKK { get; set; }
+        public int? EmployeeOKKId { get; set; }
     }
 }

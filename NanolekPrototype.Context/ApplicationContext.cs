@@ -99,6 +99,37 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.ExecutorId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+
+            builder.Entity<FormSamplingFinishedProduct>()
+                .HasOne(c => c.ShiftMaster)
+                .WithMany(u => u.FormSamplingFinishedProductShiftMasters)
+                .HasForeignKey(x => x.ShiftMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormSamplingFinishedProduct>()
+                .HasOne(c => c.TaskMaster)
+                .WithMany(u => u.FormSamplingFinishedProductTaskMasters)
+                .HasForeignKey(x => x.TaskMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<TableProcedure>()
+                .HasOne(c => c.Executor)
+                .WithMany(u => u.TableProcedureExecutors)
+                .HasForeignKey(x => x.ExecutorId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<TableProcedure>()
+                .HasOne(c => c.Checker)
+                .WithMany(u => u.TableProcedureCheckers)
+                .HasForeignKey(x => x.CheckerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<TableSampleSelection>()
+                .HasOne(c => c.EmployeeOKK)
+                .WithMany(u => u.TableSampleSelectionEmployeeOKKs)
+                .HasForeignKey(x => x.EmployeeOKKId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 

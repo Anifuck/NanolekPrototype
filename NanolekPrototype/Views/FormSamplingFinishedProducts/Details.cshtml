@@ -1,0 +1,159 @@
+﻿@using System.Linq
+@model NanolekPrototype.EntityModels.Models.FormSamplingFinishedProduct
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FormSamplingFinishedProduct</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NotificationNUmber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NotificationNUmber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NotificationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NotificationDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShiftMaster)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShiftMaster.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProtocolNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProtocolNumber)
+        </dd>
+    </dl>
+    
+    Группа наблюдения
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Observations)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Observations)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskMaster)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskMaster.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+
+Sample Selections
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleSelections.First().DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleSelections.First().CountOfSampleSelection)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleSelections.First().EmployeeOKK)
+        </th>
+        <th>
+            <a asp-controller="TableSampleSelections" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.SampleSelections) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountOfSampleSelection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeOKK.FullName)
+            </td>
+            <td>
+                <a asp-controller="TableSampleSelections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-controller="TableSampleSelections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+Procedures
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TableProcedures.First().Procedure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TableProcedures.First().IsCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TableProcedures.First().Executor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TableProcedures.First().Checker)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TableProcedures) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Procedure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Executor.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Checker.FullName)
+            </td>
+            <td>
+                <a asp-controller="TableProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+</div>

@@ -347,28 +347,53 @@
     </tbody>
 
     <tbody>
-        @foreach (var item in Model.FormCheckingCheckweighingSettings)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="FormCheckingCheckweighingSettings" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @if (User.IsInRole("controller") && Model.FormCheckingCheckweighingSettings.First().Status == FormStatus.OnControl)
-                    {
-                        <a asp-controller="FormCheckingCheckweighingSettings" asp-action="ApproveForm" asp-route-id="@item.Id">Утвердить</a>
-                        <a asp-controller="FormCheckingCheckweighingSettings" asp-action="SendOnRevisionForm" asp-route-id="@item.Id">На доработку</a>
-                    }
-                    @if (User.IsInRole("executor") && Model.FormCheckingCheckweighingSettings.First().Status == FormStatus.InWork)
-                    {
-                        <a asp-controller="FormCheckingCheckweighingSettings" asp-action="SendOnControlForm" asp-route-id="@item.Id">На проверку</a>
-                    }
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model.FormCheckingCheckweighingSettings)
+    {
+        <tr>
+            <td>
+                <a asp-controller="FormCheckingCheckweighingSettings" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (User.IsInRole("controller") && Model.FormCheckingCheckweighingSettings.First().Status == FormStatus.OnControl)
+                {
+                    <a asp-controller="FormCheckingCheckweighingSettings" asp-action="ApproveForm" asp-route-id="@item.Id">Утвердить</a>
+                    <a asp-controller="FormCheckingCheckweighingSettings" asp-action="SendOnRevisionForm" asp-route-id="@item.Id">На доработку</a>
+                }
+                @if (User.IsInRole("executor") && Model.FormCheckingCheckweighingSettings.First().Status == FormStatus.InWork)
+                {
+                    <a asp-controller="FormCheckingCheckweighingSettings" asp-action="SendOnControlForm" asp-route-id="@item.Id">На проверку</a>
+                }
+            </td>
+        </tr>
+    }
     </tbody>
+    
+<tbody>
+@foreach (var item in Model.FormSamplingFinishedProducts)
+{
+    <tr>
+        <td>
+            <a asp-controller="FormSamplingFinishedProducts" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @if (User.IsInRole("controller") && Model.FormSamplingFinishedProducts.First().Status == FormStatus.OnControl)
+            {
+                <a asp-controller="FormSamplingFinishedProducts" asp-action="ApproveForm" asp-route-id="@item.Id">Утвердить</a>
+                <a asp-controller="FormSamplingFinishedProducts" asp-action="SendOnRevisionForm" asp-route-id="@item.Id">На доработку</a>
+            }
+            @if (User.IsInRole("executor") && Model.FormSamplingFinishedProducts.First().Status == FormStatus.InWork)
+            {
+                <a asp-controller="FormSamplingFinishedProducts" asp-action="SendOnControlForm" asp-route-id="@item.Id">На проверку</a>
+            }
+        </td>
+    </tr>
+}
+</tbody>
 
 </table>

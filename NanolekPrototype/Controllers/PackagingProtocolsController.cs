@@ -41,6 +41,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var packagingProtocol = await _context.PackagingProtocols
+                .Include(m=>m.FormSamplingFinishedProducts)
                 .Include(m=>m.FormCheckingCheckweighingSettings)
                 .Include(m=>m.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes)
                 .Include(m=>m.FormControlOfPrimaryPackagings)

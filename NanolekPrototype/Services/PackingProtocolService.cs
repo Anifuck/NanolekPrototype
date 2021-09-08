@@ -181,12 +181,14 @@ namespace NanolekPrototype.Services
                 .Include(p=>p.FormReceptionAndMovementOfPackingMaterials)
                 .Include(p => p.FormSettingUpTechnologicalEquipments)
                 .Include(p => p.FormReceptionAndMovementOfBulkProducts)
+                .Include(p=>p.FormCheckingRejectionOfDefectiveTablets)
                 .FirstAsync(p => p.Id == packagingProtocolId);
 
 
             if (packagingProtocol.FormReceptionAndMovementOfBulkProducts.First().Status == FormStatus.Approved 
                 && packagingProtocol.FormReceptionAndMovementOfPackingMaterials.First().Status == FormStatus.Approved
-                && packagingProtocol.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.Approved)
+                && packagingProtocol.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.Approved
+                && packagingProtocol.FormCheckingRejectionOfDefectiveTablets.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

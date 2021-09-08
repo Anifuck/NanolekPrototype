@@ -2,21 +2,71 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NanolekPrototype.Context;
+using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
 {
     public class FormCheckingRejectionOfDefectiveTabletsController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly IPackingProtocolService _packingProtocolService;
 
-        public FormCheckingRejectionOfDefectiveTabletsController(ApplicationContext context)
+        public FormCheckingRejectionOfDefectiveTabletsController(ApplicationContext context, UserManager<User> userManager, IPackingProtocolService packingProtocolService)
         {
             _context = context;
+            _userManager = userManager;
+            _packingProtocolService = packingProtocolService;
+        }
+
+        public async Task<IActionResult> ApproveForm(int? id)
+        {
+            var form = await _context.FormCheckingRejectionOfDefectiveTablets
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+
+            form.Status = FormStatus.Approved;
+            await _context.SaveChangesAsync();
+            await _packingProtocolService.CheckProtocolStatus(form.PackagingProtocol.Id);
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+        }
+
+        public async Task<IActionResult> SendOnControlForm(int? id)
+        {
+            var form = await _context.FormCheckingRejectionOfDefectiveTablets
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+            form.Status = FormStatus.OnControl;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SendOnRevisionForm(int? id)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendOnRevisionForm(int? id, FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
+        {
+            var form = await _context.FormCheckingRejectionOfDefectiveTablets
+                .Include(form => form.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+            form.Status = FormStatus.InWork;
+            form.Note = formReceptionAndMovementOfBulkProduct.Note;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
         }
 
         // GET: FormCheckingRejectionOfDefectiveTablets

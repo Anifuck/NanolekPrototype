@@ -1,0 +1,92 @@
+﻿@using NanolekPrototype.EntityModels.Models
+@model NanolekPrototype.EntityModels.Models.FormCheckingCheckweighingSetting
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FormCheckingCheckweighingSetting</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().Procedure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().IsComplete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().ReferenceWeightOfGPPack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().ActualWeightOfGPPack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckingProcedures.First().Executor)
+            </th>
+            <th><a asp-controller="TableCheckingProcedures" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CheckingProcedures)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Procedure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsComplete)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReferenceWeightOfGPPack)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualWeightOfGPPack)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Executor.FullName)
+                </td>
+                <td>
+                    <a asp-controller="TableCheckingProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="TableCheckingProcedures" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+</div>

@@ -39,5 +39,6 @@ namespace NanolekPrototype.EntityModels.Models
         public ICollection<TablePackagingControl> TablePackagingControlTaskMasters { get; set; }
         public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxTaskGivens { get; set; }
         public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxTaskGots { get; set; }
+        public ICollection<TableCheckingProcedure> TableCheckingProcedureExecutors { get; set; }
     }
 }

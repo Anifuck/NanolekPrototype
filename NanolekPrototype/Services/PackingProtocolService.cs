@@ -23,6 +23,28 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+        public async Task GenerateFormCheckingCheckweighingSetting(PackagingProtocol packagingProtocol)
+        {
+            FormCheckingCheckweighingSetting formCheckingCheckweighingSetting =
+                new FormCheckingCheckweighingSetting()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol
+                };
+
+            TableCheckingProcedure tableCheckingProcedure = new TableCheckingProcedure()
+            {
+                FormCheckingCheckweighingSetting = formCheckingCheckweighingSetting,
+                IsActive = true,
+            };
+
+            await _context.AddAsync(formCheckingCheckweighingSetting);
+            await _context.AddAsync(tableCheckingProcedure);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task GenerateFormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox(
             PackagingProtocol packagingProtocol)
         {
@@ -216,11 +238,13 @@ namespace NanolekPrototype.Services
             await GenerateFormCheckingRejectionOfDefectiveTablet(packagingProtocol);
             await GenerateFormControlOfPrimaryPackaging(packagingProtocol);
             await GenerateFormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox(packagingProtocol);
+            await GenerateFormCheckingCheckweighingSetting(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)
         {
             var packagingProtocol = await _context.PackagingProtocols
+                .Include(p=>p.FormCheckingCheckweighingSettings)
                 .Include(p=>p.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes)
                 .Include(p=>p.FormControlOfPrimaryPackagings)
                 .Include(p=>p.FormReceptionAndMovementOfPackingMaterials)
@@ -235,7 +259,8 @@ namespace NanolekPrototype.Services
                 && packagingProtocol.FormSettingUpTechnologicalEquipments.First().Status == FormStatus.Approved
                 && packagingProtocol.FormCheckingRejectionOfDefectiveTablets.First().Status == FormStatus.Approved
                 && packagingProtocol.FormControlOfPrimaryPackagings.First().Status == FormStatus.Approved
-                && packagingProtocol.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes.First().Status == FormStatus.Approved)
+                && packagingProtocol.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes.First().Status == FormStatus.Approved
+                && packagingProtocol.FormCheckingCheckweighingSettings.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

@@ -1,0 +1,66 @@
+﻿@model NanolekPrototype.EntityModels.Models.TableCheckingProcedure
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TableCheckingProcedure</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="FormCheckingCheckweighingSettingId" class="form-control" value="@ViewData["FormCheckingCheckweighingSettingId"]" />
+            <input type="hidden" asp-for="IsActive" />
+            <div class="form-group">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Procedure" class="control-label"></label>
+                <input asp-for="Procedure" class="form-control" />
+                <span asp-validation-for="Procedure" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsComplete" /> @Html.DisplayNameFor(model => model.IsComplete)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferenceWeightOfGPPack" class="control-label"></label>
+                <input asp-for="ReferenceWeightOfGPPack" class="form-control" />
+                <span asp-validation-for="ReferenceWeightOfGPPack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActualWeightOfGPPack" class="control-label"></label>
+                <input asp-for="ActualWeightOfGPPack" class="form-control" />
+                <span asp-validation-for="ActualWeightOfGPPack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Executor" class="control-label"></label>
+                <select asp-for="ExecutorId" class="form-control" asp-items="ViewBag.ExecutorId"></select>
+                <span asp-validation-for="ExecutorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="FormCheckingCheckweighingSettings" asp-action="Details" asp-route-id="@ViewData["FormCheckingCheckweighingSettingId"]">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

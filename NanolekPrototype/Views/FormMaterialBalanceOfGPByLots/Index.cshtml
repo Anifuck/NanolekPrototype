@@ -1,0 +1,149 @@
+﻿@model IEnumerable<NanolekPrototype.EntityModels.Models.FormMaterialBalanceOfGPByLot>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateOfPacking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDateOfPacking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftMaster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftMasterDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalcedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalcedByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedPUByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedPUByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagesCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExitAccordingToTheRegulations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompliant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskMaster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Guid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateOfPacking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishDateOfPacking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftMaster.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShiftMasterDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalcedByUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalcedByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckedByUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckedByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckedPUByUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckedPUByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackagesCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExitAccordingToTheRegulations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompliant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskMaster.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

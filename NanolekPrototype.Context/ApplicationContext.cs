@@ -130,6 +130,37 @@ namespace NanolekPrototype.Context
                 .HasForeignKey(x => x.EmployeeOKKId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<FormMaterialBalanceOfGPByLot>()
+                .HasOne(c => c.ShiftMaster)
+                .WithMany(u => u.FormMaterialBalanceOfGPByLotShiftMasters)
+                .HasForeignKey(x => x.ShiftMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormMaterialBalanceOfGPByLot>()
+                .HasOne(c => c.CalcedByUser)
+                .WithMany(u => u.FormMaterialBalanceOfGPByLotCalcedByUsers)
+                .HasForeignKey(x => x.CalcedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormMaterialBalanceOfGPByLot>()
+                .HasOne(c => c.CheckedByUser)
+                .WithMany(u => u.FormMaterialBalanceOfGPByLotCheckedByUsers)
+                .HasForeignKey(x => x.CheckedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormMaterialBalanceOfGPByLot>()
+                .HasOne(c => c.CheckedPUByUser)
+                .WithMany(u => u.FormMaterialBalanceOfGPByLotCheckedPUByUsers)
+                .HasForeignKey(x => x.CheckedPUByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<FormMaterialBalanceOfGPByLot>()
+                .HasOne(c => c.TaskMaster)
+                .WithMany(u => u.FormMaterialBalanceOfGPByLotTaskMasters)
+                .HasForeignKey(x => x.TaskMasterId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
             base.OnModelCreating(builder);
         }
 

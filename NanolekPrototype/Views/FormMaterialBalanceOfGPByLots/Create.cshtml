@@ -1,0 +1,123 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormMaterialBalanceOfGPByLot
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>FormMaterialBalanceOfGPByLot</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDateOfPacking" class="control-label"></label>
+                <input asp-for="StartDateOfPacking" class="form-control" />
+                <span asp-validation-for="StartDateOfPacking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinishDateOfPacking" class="control-label"></label>
+                <input asp-for="FinishDateOfPacking" class="form-control" />
+                <span asp-validation-for="FinishDateOfPacking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShiftMasterId" class="control-label"></label>
+                <select asp-for="ShiftMasterId" class ="form-control" asp-items="ViewBag.ShiftMasterId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShiftMasterDate" class="control-label"></label>
+                <input asp-for="ShiftMasterDate" class="form-control" />
+                <span asp-validation-for="ShiftMasterDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CalcedByUserId" class="control-label"></label>
+                <select asp-for="CalcedByUserId" class ="form-control" asp-items="ViewBag.CalcedByUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CalcedByUserDate" class="control-label"></label>
+                <input asp-for="CalcedByUserDate" class="form-control" />
+                <span asp-validation-for="CalcedByUserDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckedByUserId" class="control-label"></label>
+                <select asp-for="CheckedByUserId" class ="form-control" asp-items="ViewBag.CheckedByUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckedByUserDate" class="control-label"></label>
+                <input asp-for="CheckedByUserDate" class="form-control" />
+                <span asp-validation-for="CheckedByUserDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckedPUByUserId" class="control-label"></label>
+                <select asp-for="CheckedPUByUserId" class ="form-control" asp-items="ViewBag.CheckedPUByUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckedPUByUserDate" class="control-label"></label>
+                <input asp-for="CheckedPUByUserDate" class="form-control" />
+                <span asp-validation-for="CheckedPUByUserDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PackagesCount" class="control-label"></label>
+                <input asp-for="PackagesCount" class="form-control" />
+                <span asp-validation-for="PackagesCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExitAccordingToTheRegulations" class="control-label"></label>
+                <select asp-for="ExitAccordingToTheRegulations" class="form-control"></select>
+                <span asp-validation-for="ExitAccordingToTheRegulations" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCompliant" /> @Html.DisplayNameFor(model => model.IsCompliant)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observations" class="control-label"></label>
+                <input asp-for="Observations" class="form-control" />
+                <span asp-validation-for="Observations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskMasterId" class="control-label"></label>
+                <select asp-for="TaskMasterId" class ="form-control" asp-items="ViewBag.TaskMasterId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guid" class="control-label"></label>
+                <input asp-for="Guid" class="form-control" />
+                <span asp-validation-for="Guid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

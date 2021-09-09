@@ -45,6 +45,11 @@ namespace NanolekPrototype.EntityModels.Models
         public ICollection<TableProcedure> TableProcedureExecutors { get; set; }
         public ICollection<TableProcedure> TableProcedureCheckers { get; set; }
         public ICollection<TableSampleSelection> TableSampleSelectionEmployeeOKKs { get; set; }
+        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGPByLotShiftMasters { get; set; }
+        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGPByLotCalcedByUsers { get; set; }
+        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGPByLotCheckedByUsers { get; set; }
+        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGPByLotCheckedPUByUsers { get; set; }
+        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGPByLotTaskMasters { get; set; }
 
     }
 }

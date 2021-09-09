@@ -23,6 +23,21 @@ namespace NanolekPrototype.Services
             _userManager = userManager;
         }
 
+        public async Task GenerateFormMaterialBalanceOfGPByLot(PackagingProtocol packagingProtocol)
+        {
+            FormMaterialBalanceOfGPByLot formMaterialBalanceOfGpByLot =
+                new FormMaterialBalanceOfGPByLot()
+                {
+                    Guid = Guid.NewGuid(),
+                    IsActive = true,
+                    Status = FormStatus.InWork,
+                    PackagingProtocol = packagingProtocol
+                };
+
+            await _context.AddAsync(formMaterialBalanceOfGpByLot);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task GenerateFormSamplingFinishedProduct(PackagingProtocol packagingProtocol)
         {
             FormSamplingFinishedProduct formSamplingFinishedProduct =
@@ -275,6 +290,7 @@ namespace NanolekPrototype.Services
             await GenerateFormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox(packagingProtocol);
             await GenerateFormCheckingCheckweighingSetting(packagingProtocol);
             await GenerateFormSamplingFinishedProduct(packagingProtocol);
+            await GenerateFormMaterialBalanceOfGPByLot(packagingProtocol);
         }
 
         public async Task CheckProtocolStatus(int packagingProtocolId)
@@ -288,6 +304,7 @@ namespace NanolekPrototype.Services
                 .Include(p => p.FormReceptionAndMovementOfBulkProducts)
                 .Include(p=>p.FormCheckingRejectionOfDefectiveTablets)
                 .Include(p=>p.FormSamplingFinishedProducts)
+                .Include(p=>p.FormMaterialBalanceOfGpByLots)
                 .FirstAsync(p => p.Id == packagingProtocolId);
 
 
@@ -298,7 +315,8 @@ namespace NanolekPrototype.Services
                 && packagingProtocol.FormControlOfPrimaryPackagings.First().Status == FormStatus.Approved
                 && packagingProtocol.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes.First().Status == FormStatus.Approved
                 && packagingProtocol.FormCheckingCheckweighingSettings.First().Status == FormStatus.Approved
-                && packagingProtocol.FormSamplingFinishedProducts.First().Status == FormStatus.Approved)
+                && packagingProtocol.FormSamplingFinishedProducts.First().Status == FormStatus.Approved
+                && packagingProtocol.FormMaterialBalanceOfGpByLots.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
         }

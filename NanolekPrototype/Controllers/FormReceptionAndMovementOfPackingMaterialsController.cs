@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +27,7 @@ namespace NanolekPrototype.Controllers
             _packingProtocolService = packingProtocolService;
         }
 
-        public async Task<IActionResult> ApproveForm(int? id)
+        public async Task<string> ApproveForm(int? id)
         {
             var form = await _context.FormReceptionAndMovementOfPackingMaterials
                 .Include(form=>form.PackagingProtocol)
@@ -40,18 +41,27 @@ namespace NanolekPrototype.Controllers
             form.CalcedByUser = user;
             await _context.SaveChangesAsync();
             await _packingProtocolService.CheckProtocolStatus(form.PackagingProtocol.Id);
-            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+
+            var type = typeof(FormStatus);
+            var memberInfo = type.GetMember(form.Status.ToString());
+            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
+            var description = ((DisplayAttribute)attributes.First()).Name;
+            return description;
         }
 
-        public async Task<IActionResult> SendOnControlForm(int? id)
+        public async Task<string> SendOnControlForm(int? id)
         {
             var form = await _context.FormReceptionAndMovementOfPackingMaterials
-                .Include(form=>form.PackagingProtocol)
+                .Include(form => form.PackagingProtocol)
                 .FirstOrDefaultAsync(form => form.Id == id);
             form.Status = FormStatus.OnControl;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+            var type = typeof(FormStatus);
+            var memberInfo = type.GetMember(form.Status.ToString());
+            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
+            var description = ((DisplayAttribute) attributes.First()).Name;
+            return description;
         }
 
         [HttpGet]

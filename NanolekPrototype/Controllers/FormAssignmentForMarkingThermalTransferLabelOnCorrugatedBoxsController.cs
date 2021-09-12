@@ -13,13 +13,13 @@ using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
 {
-    public class FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxesController : Controller
+    public class FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxsController : Controller
     {
         private readonly ApplicationContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IPackingProtocolService _packingProtocolService;
 
-        public FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxesController(ApplicationContext context, UserManager<User> userManager, IPackingProtocolService packingProtocolService)
+        public FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxsController(ApplicationContext context, UserManager<User> userManager, IPackingProtocolService packingProtocolService)
         {
             _context = context;
             _userManager = userManager;

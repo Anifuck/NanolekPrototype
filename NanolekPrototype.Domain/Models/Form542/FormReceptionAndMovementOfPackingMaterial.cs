@@ -13,12 +13,6 @@ namespace NanolekPrototype.EntityModels.Models
         public override PackagingProtokolFormType Type =>
             PackagingProtokolFormType.ReceptionAndMovementOfPackingMaterial;
 
-        public int Id { get; set; }
-        public PackagingProtocol PackagingProtocol { get; set; }
-        public bool IsActive { get; set; }
-        [DisplayName("Статус")]
-        public FormStatus FormStatus { get; set; }
-
         //Группа «Основное»
         [DisplayName("Внутренний код материала")]
         public int InternalCodeOfMaterial { get; set; }

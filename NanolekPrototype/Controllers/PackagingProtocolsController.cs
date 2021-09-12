@@ -56,11 +56,27 @@ namespace NanolekPrototype.Controllers
                 .Include(m => m.ResponsibleUserOOK)
                 .Include(m => m.ResponsibleUserTLF)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
             if (packagingProtocol == null)
             {
                 return NotFound();
             }
 
+            var packagingProtocolForms = new List<PackagingProtocolForm>
+            {
+                packagingProtocol.FormReceptionAndMovementOfBulkProducts.Single(),
+                packagingProtocol.FormReceptionAndMovementOfPackingMaterials.Single(),
+                packagingProtocol.FormSettingUpTechnologicalEquipments.Single(),
+                packagingProtocol.FormCheckingRejectionOfDefectiveTablets.Single(),
+                packagingProtocol.FormControlOfPrimaryPackagings.Single(),
+                packagingProtocol.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes.Single(),
+                packagingProtocol.FormCheckingCheckweighingSettings.Single(),
+                packagingProtocol.FormSamplingFinishedProducts.Single(),
+                packagingProtocol.FormMaterialBalanceOfGpByLots.Single()
+            };
+
+            ViewBag.PackagingProtocolForms = packagingProtocolForms;
             return View(packagingProtocol);
         }
 

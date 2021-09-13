@@ -175,7 +175,7 @@ namespace NanolekPrototype.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", "FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes", new {id=formAssignmentForMarkingThermalTransferLabelOnCorrugatedBox.Id});
+                return RedirectToAction("Details", "FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxs", new {id=formAssignmentForMarkingThermalTransferLabelOnCorrugatedBox.Id});
             }
             ViewData["TaskGivenId"] = new SelectList(_context.Users, "Id", "Id", formAssignmentForMarkingThermalTransferLabelOnCorrugatedBox.TaskGivenId);
             ViewData["TaskGotId"] = new SelectList(_context.Users, "Id", "Id", formAssignmentForMarkingThermalTransferLabelOnCorrugatedBox.TaskGotId);

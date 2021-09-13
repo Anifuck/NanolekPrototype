@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,7 +28,7 @@ namespace NanolekPrototype.Controllers
             _packingProtocolService = packingProtocolService;
         }
 
-        public async Task<IActionResult> ApproveForm(int? id)
+        public async Task<JsonResult> ApproveForm(int? id)
         {
             var form = await _context.FormCheckingRejectionOfDefectiveTablets
                 .Include(form => form.PackagingProtocol)
@@ -35,10 +37,22 @@ namespace NanolekPrototype.Controllers
             form.Status = FormStatus.Approved;
             await _context.SaveChangesAsync();
             await _packingProtocolService.CheckProtocolStatus(form.PackagingProtocol.Id);
-            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+
+            var type = typeof(FormStatus);
+            var memberInfo = type.GetMember(form.Status.ToString());
+            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
+            var description = ((DisplayAttribute)attributes.First()).Name;
+
+            var response = new Response()
+            {
+                Status = ResponseStatus.ok,
+                ProtocolState = description
+            };
+
+            return new JsonResult(response);
         }
 
-        public async Task<IActionResult> SendOnControlForm(int? id)
+        public async Task<JsonResult> SendOnControlForm(int? id)
         {
             var form = await _context.FormCheckingRejectionOfDefectiveTablets
                 .Include(form => form.PackagingProtocol)
@@ -46,7 +60,18 @@ namespace NanolekPrototype.Controllers
             form.Status = FormStatus.OnControl;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
+            var type = typeof(FormStatus);
+            var memberInfo = type.GetMember(form.Status.ToString());
+            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
+            var description = ((DisplayAttribute)attributes.First()).Name;
+
+            var response = new Response()
+            {
+                Status = ResponseStatus.ok,
+                ProtocolState = description
+            };
+
+            return new JsonResult(response);
         }
 
         [HttpGet]

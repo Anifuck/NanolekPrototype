@@ -27,7 +27,7 @@ namespace NanolekPrototype.Controllers
             _packingProtocolService = packingProtocolService;
         }
 
-        public async Task<string> ApproveForm(int? id)
+        public async Task<JsonResult> ApproveForm(int? id)
         {
             var form = await _context.FormReceptionAndMovementOfPackingMaterials
                 .Include(form=>form.PackagingProtocol)
@@ -46,10 +46,17 @@ namespace NanolekPrototype.Controllers
             var memberInfo = type.GetMember(form.Status.ToString());
             var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
             var description = ((DisplayAttribute)attributes.First()).Name;
-            return description;
+
+            var response = new Response()
+            {
+                Status = ResponseStatus.ok,
+                ProtocolState = description
+            };
+
+            return new JsonResult(response);
         }
 
-        public async Task<string> SendOnControlForm(int? id)
+        public async Task<JsonResult> SendOnControlForm(int? id)
         {
             var form = await _context.FormReceptionAndMovementOfPackingMaterials
                 .Include(form => form.PackagingProtocol)
@@ -60,8 +67,15 @@ namespace NanolekPrototype.Controllers
             var type = typeof(FormStatus);
             var memberInfo = type.GetMember(form.Status.ToString());
             var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
-            var description = ((DisplayAttribute) attributes.First()).Name;
-            return description;
+            var description = ((DisplayAttribute)attributes.First()).Name;
+
+            var response = new Response()
+            {
+                Status = ResponseStatus.ok,
+                ProtocolState = description
+            };
+
+            return new JsonResult(response);
         }
 
         [HttpGet]

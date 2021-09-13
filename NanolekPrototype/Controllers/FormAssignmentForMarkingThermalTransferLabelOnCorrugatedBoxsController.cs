@@ -38,18 +38,7 @@ namespace NanolekPrototype.Controllers
             await _context.SaveChangesAsync();
             await _packingProtocolService.CheckProtocolStatus(form.PackagingProtocol.Id);
 
-            var type = typeof(FormStatus);
-            var memberInfo = type.GetMember(form.Status.ToString());
-            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
-            var description = ((DisplayAttribute)attributes.First()).Name;
-
-            var response = new Response()
-            {
-                Status = ResponseStatus.ok,
-                ProtocolState = description
-            };
-
-            return new JsonResult(response);
+            return _packingProtocolService.AjaxResponse(form);
 
         }
 
@@ -61,18 +50,7 @@ namespace NanolekPrototype.Controllers
             form.Status = FormStatus.OnControl;
             await _context.SaveChangesAsync();
 
-            var type = typeof(FormStatus);
-            var memberInfo = type.GetMember(form.Status.ToString());
-            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
-            var description = ((DisplayAttribute)attributes.First()).Name;
-
-            var response = new Response()
-            {
-                Status = ResponseStatus.ok,
-                ProtocolState = description
-            };
-
-            return new JsonResult(response);
+            return _packingProtocolService.AjaxResponse(form);
         }
 
         [HttpGet]

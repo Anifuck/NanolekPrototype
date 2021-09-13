@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NanolekPrototype.Context;
+using NanolekPrototype.Controllers;
 using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
 using Action = NanolekPrototype.EntityModels.Enums.Action;
@@ -319,6 +322,22 @@ namespace NanolekPrototype.Services
                 && packagingProtocol.FormMaterialBalanceOfGpByLots.First().Status == FormStatus.Approved)
                 packagingProtocol.PackagingProtocolStatus = PackagingProtocolStatus.Completed;
             await _context.SaveChangesAsync();
+        }
+
+        public JsonResult AjaxResponse(PackagingProtocolForm form)
+        {
+            var type = typeof(FormStatus);
+            var memberInfo = type.GetMember(form.Status.ToString());
+            var attributes = memberInfo.First().GetCustomAttributes(typeof(DisplayAttribute), false);
+            var description = ((DisplayAttribute)attributes.First()).Name;
+
+            var response = new Response()
+            {
+                Status = ResponseStatus.ok,
+                ProtocolState = description
+            };
+
+            return new JsonResult(response);
         }
     }
 }

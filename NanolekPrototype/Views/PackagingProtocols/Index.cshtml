@@ -39,51 +39,49 @@
             <th>
                 @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CancellationReason)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">@item.SerialNumber</a><br>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShelfLife)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ManufacturingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SellBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PackageNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TradeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpecificationGP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InternalCodeGP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PackagingProtocolStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CancellationReason)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a><br>
-                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a><br>
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@item.SerialNumber</a><br>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShelfLife)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufacturingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TradeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecificationGP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InternalCodeGP)
+                </td>
+                <td>
+                    <div class="statusTooltip" data-toggle="tooltip" title="@item.CancellationReason">
+                        @Html.DisplayFor(modelItem => item.PackagingProtocolStatus)
+                        </div>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a><br>
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a><br>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+

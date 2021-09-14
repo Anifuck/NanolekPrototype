@@ -1,0 +1,17 @@
+﻿@model NanolekPrototype.EntityModels.Models.PackagingProtocol
+
+@{
+    ViewData["Title"] = "Commentary";
+}
+
+<form asp-action="CancelProtocol">
+    <div class="form-group">
+        <label asp-for="CancellationReason" class="control-label"></label>
+        <input asp-for="CancellationReason" class="form-control" />
+        <span asp-validation-for="CancellationReason" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отменить протокол" class="btn btn-primary" />
+    </div>
+</form>

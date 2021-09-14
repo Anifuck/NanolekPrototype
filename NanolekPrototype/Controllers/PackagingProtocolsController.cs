@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NanolekPrototype.Context;
+using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
 using NanolekPrototype.Services;
 
@@ -27,6 +28,24 @@ namespace NanolekPrototype.Controllers
         }
 
         // GET: PackagingProtocols
+        [HttpGet]
+        public async Task<IActionResult> CancelProtocol(int? id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CancelProtocol(int? id, PackagingProtocol packagingProtocol)
+        {
+            var protocol = await _context.PackagingProtocols
+                .FirstOrDefaultAsync(p => p.Id == id);
+            protocol.PackagingProtocolStatus = PackagingProtocolStatus.Cancelled;
+            protocol.CancellationReason = packagingProtocol.CancellationReason;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.PackagingProtocols.Where(pp=>pp.IsActive).OrderByDescending(pp=>pp.Id).ToListAsync());

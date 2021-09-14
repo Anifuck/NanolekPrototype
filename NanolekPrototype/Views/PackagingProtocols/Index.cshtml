@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NanolekPrototype.EntityModels.Models.PackagingProtocol>
+﻿@using NanolekPrototype.EntityModels.Enums
+@model IEnumerable<NanolekPrototype.EntityModels.Models.PackagingProtocol>
 
 @{
     ViewData["Title"] = "Index";
@@ -76,10 +77,14 @@
                         </div>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a><br>
                     <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a><br>
+                    @if (@item.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                        <br>
+                        <a asp-action="CancelProtocol" asp-route-id="@item.Id">Отменить</a>
+                    }
                     <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a><br>
-                    <a asp-action="CancelProtocol" asp-route-id="@item.Id">Отменить</a>
                 </td>
             </tr>
         }

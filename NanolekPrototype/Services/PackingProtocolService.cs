@@ -244,11 +244,17 @@ namespace NanolekPrototype.Services
 
         public async Task GenerateNewProtocol()
         {
+            var lastProtocol = await _context.PackagingProtocols.OrderBy(protocol=>protocol.Id).LastOrDefaultAsync();
+
+            string serialNumber = (lastProtocol == null)
+                ? "000001" + new Random().Next().ToString()
+                : "00000" + (Int64.Parse(lastProtocol.SerialNumber) + 1).ToString();
+
             PackagingProtocol packagingProtocol = new PackagingProtocol()
             {
                 Guid = Guid.NewGuid(),
                 IsActive = true,
-                SerialNumber = "000001" + new Random().Next().ToString(),
+                SerialNumber = serialNumber,
                 ResponsibleUserOOK = _userManager.Users.First(),
                 StorageConditions = "В сухом месте при температуре 20 градусов",
                 ManufacturingDate = DateTime.Now.AddDays(-1),
@@ -260,7 +266,7 @@ namespace NanolekPrototype.Services
                 SpecificationGP = new Random().Next().ToString(),
                 InternalCodeGP = new Random().Next().ToString(),
                 PackagingProtocolStatus = PackagingProtocolStatus.InWork,
-                CancellationReason = "нет причин для отмены",
+                CancellationReason = "",
             };
 
             TableProductionPersonnel tableProductionPersonnel = new TableProductionPersonnel()

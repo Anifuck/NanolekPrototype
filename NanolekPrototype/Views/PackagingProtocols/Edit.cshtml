@@ -16,14 +16,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="IsActive" />
-            <div class="form-group">
-                <label asp-for="Guid" class="control-label"></label>
-                <input asp-for="Guid" class="form-control" />
-                <span asp-validation-for="Guid" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="PackagingProtocolStatus"  />
             <div class="form-group">
                 <label asp-for="SerialNumber" class="control-label"></label>
-                <input asp-for="SerialNumber" class="form-control" />
+                <input asp-for="SerialNumber" class="form-control" readonly="readonly" />
                 <span asp-validation-for="SerialNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,22 +29,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="ShelfLife" class="control-label"></label>
-                <input asp-for="ShelfLife" class="form-control" />
+                <input asp-for="ShelfLife" class="form-control" readonly="readonly" />
                 <span asp-validation-for="ShelfLife" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ManufacturingDate" class="control-label"></label>
-                <input asp-for="ManufacturingDate" class="form-control" />
+                <input asp-for="ManufacturingDate" class="form-control" readonly="readonly" />
                 <span asp-validation-for="ManufacturingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SellBy" class="control-label"></label>
-                <input asp-for="SellBy" class="form-control" />
+                <input asp-for="SellBy" class="form-control" readonly="readonly" />
                 <span asp-validation-for="SellBy" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PackageNumber" class="control-label"></label>
-                <input asp-for="PackageNumber" class="form-control" />
+                <input asp-for="PackageNumber" class="form-control" readonly="readonly" />
                 <span asp-validation-for="PackageNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -68,11 +64,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="PackagingProtocolStatus" class="control-label"></label>
-                <select asp-for="@Model.PackagingProtocolStatus" asp-items="Html.GetEnumSelectList<PackagingProtocolStatus>()" class="form-control"></select>
+                <select asp-for="@Model.PackagingProtocolStatus" asp-items="Html.GetEnumSelectList<PackagingProtocolStatus>()" class="form-control" disabled="disabled"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CancellationReason" class="control-label"></label>
-                <input asp-for="CancellationReason" class="form-control" />
+                <input asp-for="CancellationReason" class="form-control" readonly="readonly" />
                 <span asp-validation-for="CancellationReason" class="text-danger"></span>
             </div>
             <div class="form-group">

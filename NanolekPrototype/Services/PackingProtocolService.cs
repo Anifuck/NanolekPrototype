@@ -67,7 +67,8 @@ namespace NanolekPrototype.Services
                 {
                     FormSamplingFinishedProduct = formSamplingFinishedProduct,
                     IsActive = true,
-                    Procedure = Enum.Parse<Procedure>(procedure)
+                    Procedure = Enum.Parse<Procedure>(procedure),
+                    ProcedureMarkDate = null
                 };
                 await _context.AddAsync(tableProcedure);
             }

@@ -127,6 +127,9 @@ Procedures
             <th>
                 @Html.DisplayNameFor(model => model.TableProcedures.First().Checker)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TableProcedures.First().ProcedureMarkDate)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -144,6 +147,9 @@ Procedures
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Checker.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProcedureMarkDate)
             </td>
             <td>
                 <a asp-controller="TableProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>

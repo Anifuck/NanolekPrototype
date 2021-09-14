@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
@@ -20,5 +21,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Проверяющий")]
         public User Checker { get; set; }
         public int? CheckerId { get; set; }
+        [DisplayName("Дата отметки")]
+        public DateTime? ProcedureMarkDate { get; set; }
     }
 }

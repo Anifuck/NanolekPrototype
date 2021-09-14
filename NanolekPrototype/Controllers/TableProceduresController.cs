@@ -110,6 +110,7 @@ namespace NanolekPrototype.Controllers
             {
                 try
                 {
+                    tableProcedure.ProcedureMarkDate = DateTime.Now;
                     _context.Update(tableProcedure);
                     await _context.SaveChangesAsync();
                 }

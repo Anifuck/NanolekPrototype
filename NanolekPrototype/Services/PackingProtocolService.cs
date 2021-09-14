@@ -250,6 +250,19 @@ namespace NanolekPrototype.Services
                 ? "000001" + new Random().Next().ToString()
                 : "00000" + (Int64.Parse(lastProtocol.SerialNumber) + 1).ToString();
 
+            string packageNumber = (lastProtocol == null)
+                ? "2158" + new Random().Next().ToString()
+                : (Int64.Parse(lastProtocol.PackageNumber) + 1).ToString();
+
+            var farmList = new List<string>()
+            {
+                "Аторвастатин",
+                "Амлодипин",
+                "Бисопролол"
+            };
+
+            var sellBy = DateTime.Now.AddDays(-1).AddYears(new Random().Next(1, 4));
+
             PackagingProtocol packagingProtocol = new PackagingProtocol()
             {
                 Guid = Guid.NewGuid(),
@@ -258,12 +271,12 @@ namespace NanolekPrototype.Services
                 ResponsibleUserOOK = _userManager.Users.First(),
                 StorageConditions = "В сухом месте при температуре 20 градусов",
                 ManufacturingDate = DateTime.Now.AddDays(-1),
-                SellBy = DateTime.Now.AddDays(-1).AddYears(3),
-                ShelfLife = DateTime.Now.AddDays(-1).AddYears(3).ToOADate() - DateTime.Now.AddDays(-1).ToOADate(),
-                PackageNumber = "2158" + new Random().Next().ToString(),
+                SellBy = sellBy,
+                ShelfLife = Math.Round(sellBy.ToOADate() - DateTime.Now.AddDays(-1).ToOADate()),
+                PackageNumber = packageNumber,
                 ResponsibleUserTLF = _userManager.Users.Skip(1).First(),
-                TradeName = "Доктор мом" + new Random().Next(100).ToString(),
-                SpecificationGP = new Random().Next().ToString(),
+                TradeName = farmList[new Random().Next(0,3)],
+                SpecificationGP = "СпГП-П03-03-008.3/ПЦ",
                 InternalCodeGP = new Random().Next().ToString(),
                 PackagingProtocolStatus = PackagingProtocolStatus.InWork,
                 CancellationReason = "",

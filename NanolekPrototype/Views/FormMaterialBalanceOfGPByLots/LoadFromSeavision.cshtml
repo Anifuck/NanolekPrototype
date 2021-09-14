@@ -1,0 +1,29 @@
+﻿@model NanolekPrototype.EntityModels.Models.FormMaterialBalanceOfGPByLot
+    @{
+    Model.StartDateOfPacking = DateTime.Now.AddDays(-3);
+    Model.FinishDateOfPacking = DateTime.Now;
+    Model.PackagesCount = 8700;
+    }
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Данные полученные из Sea Vision</h4>
+        </div>
+        <form asp-action="LoadFromSeavision" method="post">
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Дата начала упаковки:</dt>
+                    <dd>@Html.DisplayFor(model => model.StartDateOfPacking) </dd>
+
+                    <dt>Дата окончания упаковки </dt>
+                    <dd>@Html.DisplayFor(model => model.FinishDateOfPacking)</dd>
+
+                    <dt>Выход в упаковках</dt>
+                    <dd>@Html.DisplayFor(model => model.PackagesCount)</dd>
+                </dl>
+                <button class="btn btn-primary" type="submit" asp-controller="FormMaterialBalanceOfGPByLots" asp-action="LoadFromSeavision" asp-route-id="@Model.Id" area-hidden="true">Сохранить</button>
+
+                <button class="btn btn-warning" data-dismiss="modal" area-hidden="true">Отменить</button>
+            </div>
+        </form>
+    </div>

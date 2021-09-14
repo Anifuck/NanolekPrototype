@@ -64,20 +64,28 @@ namespace NanolekPrototype.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendOnRevisionForm(int? id, FormReceptionAndMovementOfBulkProduct formReceptionAndMovementOfBulkProduct)
+        public async Task<IActionResult> SendOnRevisionForm(int? id, FormMaterialBalanceOfGPByLot formMaterialBalanceOfGpByLot)
         {
             var form = await _context.FormMaterialBalanceOfGpByLots
                 .Include(form => form.PackagingProtocol)
                 .FirstOrDefaultAsync(form => form.Id == id);
             form.Status = FormStatus.InWork;
-            form.Note = formReceptionAndMovementOfBulkProduct.Note;
+            form.Note = formMaterialBalanceOfGpByLot.Note;
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Details", "PackagingProtocols", new { id = form.PackagingProtocol.Id });
         }
 
 
+        [HttpGet]
         public async Task<IActionResult> LoadFromSeavision(int id)
+        {
+            var form = await _context.FormMaterialBalanceOfGpByLots.FirstOrDefaultAsync(f => f.Id == id);
+            return PartialView(form);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LoadFromSeavision(int id, FormMaterialBalanceOfGPByLot formMaterialBalanceOfGpByLot)
         {
             var form = await _context.FormMaterialBalanceOfGpByLots.FirstOrDefaultAsync(f => f.Id == id);
             form.StartDateOfPacking = DateTime.Now.AddDays(-3);

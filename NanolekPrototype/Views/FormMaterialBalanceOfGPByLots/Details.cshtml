@@ -122,6 +122,10 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
-    <a asp-action="LoadFromSeaVision" asp-route-id="@Model.Id">Загрузить из Sea Vision</a> |
+    <a class="modalSeaVision" asp-action="LoadFromSeaVision" asp-route-id="@Model.Id">Загрузить из Sea Vision</a> |
     <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+</div>
+
+<div id="modDialog" class="modal fade" >
+    <div id="dialogContent" class="modal-dialog"></div>
 </div>

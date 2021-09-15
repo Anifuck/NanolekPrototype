@@ -1,4 +1,5 @@
-﻿@model NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfPackingMaterial
+﻿@using NanolekPrototype.EntityModels.Enums
+@model NanolekPrototype.EntityModels.Models.FormReceptionAndMovementOfPackingMaterial
 
 @{
     ViewData["Title"] = "Details";
@@ -163,7 +164,10 @@
                     @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ShiftMaster)
                 </th>
                 <th>
+                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
                     <a asp-controller="TableReceptionOfMaterials" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+                }
                 </th>
             </tr>
         </thead>
@@ -196,8 +200,11 @@
                     @Html.DisplayFor(modelItem => item.ShiftMaster.FullName)
                 </td>
                 <td>
-                    <a asp-controller="TableReceptionOfMaterials" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TableReceptionOfMaterials" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> 
                     <a asp-controller="TableReceptionOfMaterials" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                }
                 </td>
             </tr>
             }
@@ -205,6 +212,9 @@
     </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+}
     <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
 </div>

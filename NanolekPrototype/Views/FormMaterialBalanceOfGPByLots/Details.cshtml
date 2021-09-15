@@ -1,4 +1,5 @@
-﻿@model NanolekPrototype.EntityModels.Models.FormMaterialBalanceOfGPByLot
+﻿@using NanolekPrototype.EntityModels.Enums
+@model NanolekPrototype.EntityModels.Models.FormMaterialBalanceOfGPByLot
 
 @{
     ViewData["Title"] = "Details";
@@ -121,8 +122,11 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
-    <a class="modalSeaVision" asp-action="LoadFromSeaVision" asp-route-id="@Model.Id">Загрузить из Sea Vision</a> |
+@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+    {
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> 
+    <a class="modalSeaVision" asp-action="LoadFromSeaVision" asp-route-id="@Model.Id">Загрузить из Sea Vision</a> 
+    }
     <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
 </div>
 

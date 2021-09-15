@@ -220,6 +220,8 @@
                     </div>
                 </td>
                 <td>
+                @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
                     @if (User.IsInRole("controller") && @item.Status == FormStatus.OnControl)
                     {
                         <button class="btn btn-primary" id="onApproveButton" onclick="SendOnApprove(@item.Id, '@item.Type.ToString()', this.parentElement);">Утвердить</button>
@@ -229,6 +231,7 @@
                     {
                         <button class="btn btn-primary" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this);">На проверку</button>
                     }
+                }
                 </td>
             </tr>
         }

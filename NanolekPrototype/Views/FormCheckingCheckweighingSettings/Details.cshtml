@@ -1,4 +1,5 @@
-﻿@using NanolekPrototype.EntityModels.Models
+﻿@using NanolekPrototype.EntityModels.Enums
+@using NanolekPrototype.EntityModels.Models
 @model NanolekPrototype.EntityModels.Models.FormCheckingCheckweighingSetting
 
 @{
@@ -50,7 +51,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.CheckingProcedures.First().Executor)
             </th>
-            <th><a asp-controller="TableCheckingProcedures" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a></th>
+            <th>
+            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+            {
+                <a asp-controller="TableCheckingProcedures" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+            }
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -79,8 +85,11 @@
                     @Html.DisplayFor(modelItem => item.Executor.FullName)
                 </td>
                 <td>
-                    <a asp-controller="TableCheckingProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TableCheckingProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
                     <a asp-controller="TableCheckingProcedures" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                }
                 </td>
             </tr>
         }

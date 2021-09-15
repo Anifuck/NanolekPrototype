@@ -1,4 +1,5 @@
-﻿@model NanolekPrototype.EntityModels.Models.FormSettingUpTechnologicalEquipment
+﻿@using NanolekPrototype.EntityModels.Enums
+@model NanolekPrototype.EntityModels.Models.FormSettingUpTechnologicalEquipment
 
 @{
     ViewData["Title"] = "Details";
@@ -53,7 +54,10 @@
                 @Html.DisplayFor(modelItem => item.ServiceTechnician.FullName)
             </td>
             <td>
+            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+            {
                 <a asp-controller="TableSettingUpTechnologicalEquipments" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+            }
             </td>
         </tr>
     }

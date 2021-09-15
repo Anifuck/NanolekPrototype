@@ -1,4 +1,5 @@
 ﻿@using System.Linq
+@using NanolekPrototype.EntityModels.Enums
 @model NanolekPrototype.EntityModels.Models.FormSamplingFinishedProduct
 
 @{
@@ -86,7 +87,10 @@ Sample Selections
             @Html.DisplayNameFor(model => model.SampleSelections.First().EmployeeOKK)
         </th>
         <th>
+        @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+        {
             <a asp-controller="TableSampleSelections" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+        }
         </th>
     </tr>
     </thead>
@@ -103,8 +107,11 @@ Sample Selections
                 @Html.DisplayFor(modelItem => item.EmployeeOKK.FullName)
             </td>
             <td>
-                <a asp-controller="TableSampleSelections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+            {
+                <a asp-controller="TableSampleSelections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
                 <a asp-controller="TableSampleSelections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            }
             </td>
         </tr>
     }
@@ -152,7 +159,10 @@ Procedures
                 @Html.DisplayFor(modelItem => item.ProcedureMarkDate)
             </td>
             <td>
+            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+            {
                 <a asp-controller="TableProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+            }
             </td>
         </tr>
 }
@@ -160,6 +170,9 @@ Procedures
 </table>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+}
     <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
 </div>

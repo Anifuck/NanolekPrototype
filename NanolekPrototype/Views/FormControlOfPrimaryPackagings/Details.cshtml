@@ -1,4 +1,5 @@
-﻿@model NanolekPrototype.EntityModels.Models.FormControlOfPrimaryPackaging
+﻿@using NanolekPrototype.EntityModels.Enums
+@model NanolekPrototype.EntityModels.Models.FormControlOfPrimaryPackaging
 
 @{
     ViewData["Title"] = "Details";
@@ -64,7 +65,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.PackagingControls.First().TaskMaster)
             </th>
-            <th><a asp-controller="TablePackagingControls" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a></th>
+            <th>
+            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+            {
+                <a asp-controller="TablePackagingControls" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+            }
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -108,8 +114,11 @@
                     @Html.DisplayFor(modelItem => item.TaskMaster.FullName)
                 </td>
                 <td>
-                    <a asp-controller="TablePackagingControls" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TablePackagingControls" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
                     <a asp-controller="TablePackagingControls" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                }
                 </td>
             </tr>
         }

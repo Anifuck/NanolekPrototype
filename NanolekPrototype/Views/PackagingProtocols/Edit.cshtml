@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SpecificationGP" class="control-label"></label>
-                <input asp-for="SpecificationGP" class="form-control" />
+                <input asp-for="SpecificationGP" class="form-control" readonly="readonly" />
                 <span asp-validation-for="SpecificationGP" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -80,14 +80,14 @@
                 @Html.DropDownList("ResponsibleUserTLFId", ViewBag.TLF, null, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
 
 @section Scripts {

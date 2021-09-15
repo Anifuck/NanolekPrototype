@@ -114,7 +114,10 @@
                 @Html.DisplayNameFor(model => model.ProductionPersonnels.First().Role)
             </th>
             <th>
-                <a asp-controller="TableProductionPersonnels" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
+                @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TableProductionPersonnels" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
+                }
             </th>
         </tr>
     </thead>
@@ -136,8 +139,12 @@
                 </td>
 
                 <td>
-                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> |
-                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Удалить</a>
+                @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> 
+                    
+                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="Model.Id">Удалить</a>
+                }
                 </td>
             </tr>
         }
@@ -155,7 +162,10 @@
                 @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolDate)
             </th>
             <th>
+            @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+            {
                 <a asp-controller="TablePersonnelAccessProtocols" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
+            }
             </th>
         </tr>
     </thead>
@@ -170,8 +180,11 @@
                     @Html.DisplayFor(modelItem => item.ProtocolDate)
                 </td>
                 <td>
-                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> |
+                @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> 
                     <a asp-controller="TablePersonnelAccessProtocols" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Удалить</a>
+                }
                 </td>
             </tr>
         }

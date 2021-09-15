@@ -2,13 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class PackagingProtocol
     {
+        [XmlElement("Id")]
         public int Id { get; set; }
+        [XmlElement("IsActive")]
         public bool IsActive { get; set; }
 
         /// <summary>
@@ -25,6 +30,7 @@ namespace NanolekPrototype.EntityModels.Models
         /// Ответственный работник ООК
         /// </summary>
         [DisplayName("Ответственный работник ООК")]
+        [XmlIgnore]
         public User ResponsibleUserOOK { get; set; }
         public int ResponsibleUserOOKId { get; set; }
         /// <summary>
@@ -56,6 +62,7 @@ namespace NanolekPrototype.EntityModels.Models
         /// Ответственный работник производства ТЛФ
         /// </summary>
         [DisplayName("Ответственный работник производства ТЛФ")]
+        [XmlIgnore]
         public User ResponsibleUserTLF { get; set; }
         public int ResponsibleUserTLFId { get; set; }
         /// <summary>
@@ -86,21 +93,43 @@ namespace NanolekPrototype.EntityModels.Models
 
 
         // Таблица «Персонал, задействованный в производстве»:
-        public ICollection<TableProductionPersonnel> ProductionPersonnels { get; set; }
+        [XmlArray("ProductionPersonnels")]
+        [XmlArrayItem("ProductionPersonnel",typeof(TableProductionPersonnel))]
+        public List<TableProductionPersonnel> ProductionPersonnels { get; set; }
 
         // Таблица «Протоколы допуска персонала к работе»:
-        public ICollection<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
+        [XmlArray("PersonnelAccessProtocols")]
+        [XmlArrayItem("PersonnelAccessProtocol", typeof(TablePersonnelAccessProtocol))]
+        public List<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }
 
 
-        //public ICollection<PackagingProtocolForm> PackagingProtocolForms { get; set; }
-        public ICollection<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }
-        public ICollection<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
-        public ICollection<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
-        public ICollection<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
-        public ICollection<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGpByLots { get; set; }
-        public ICollection<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
-        public ICollection<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }
-        public ICollection<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
-        public ICollection<FormSettingUpTechnologicalEquipment> FormSettingUpTechnologicalEquipments { get; set; }
+        //public List<PackagingProtocolForm> PackagingProtocolForms { get; set; }
+        [XmlArray("FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes")]
+        [XmlArrayItem("FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox", typeof(FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox))]
+        public List<FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox> FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes { get; set; }
+        [XmlArray("FormCheckingCheckweighingSettings")]
+        [XmlArrayItem("FormCheckingCheckweighingSetting", typeof(FormCheckingCheckweighingSetting))]
+        public List<FormCheckingCheckweighingSetting> FormCheckingCheckweighingSettings { get; set; }
+        [XmlArray("FormCheckingRejectionOfDefectiveTablets")]
+        [XmlArrayItem("FormCheckingRejectionOfDefectiveTablet", typeof(FormCheckingRejectionOfDefectiveTablet))]
+        public List<FormCheckingRejectionOfDefectiveTablet> FormCheckingRejectionOfDefectiveTablets { get; set; }
+        [XmlArray("FormControlOfPrimaryPackagings")]
+        [XmlArrayItem("FormControlOfPrimaryPackaging", typeof(FormControlOfPrimaryPackaging))]
+        public List<FormControlOfPrimaryPackaging> FormControlOfPrimaryPackagings { get; set; }
+        [XmlArray("FormMaterialBalanceOfGpByLots")]
+        [XmlArrayItem("FormMaterialBalanceOfGpByLot", typeof(FormMaterialBalanceOfGPByLot))]
+        public List<FormMaterialBalanceOfGPByLot> FormMaterialBalanceOfGpByLots { get; set; }
+        [XmlArray("FormReceptionAndMovementOfBulkProducts")]
+        [XmlArrayItem("FormReceptionAndMovementOfBulkProduct", typeof(FormReceptionAndMovementOfBulkProduct))]
+        public List<FormReceptionAndMovementOfBulkProduct> FormReceptionAndMovementOfBulkProducts { get; set; }
+        [XmlArray("FormReceptionAndMovementOfPackingMaterials")]
+        [XmlArrayItem("FormReceptionAndMovementOfPackingMaterial", typeof(FormReceptionAndMovementOfPackingMaterial))]
+        public List<FormReceptionAndMovementOfPackingMaterial> FormReceptionAndMovementOfPackingMaterials { get; set; }
+        [XmlArray("FormSamplingFinishedProducts")]
+        [XmlArrayItem("FormSamplingFinishedProduct", typeof(FormSamplingFinishedProduct))]
+        public List<FormSamplingFinishedProduct> FormSamplingFinishedProducts { get; set; }
+        [XmlArray("FormSettingUpTechnologicalEquipments")]
+        [XmlArrayItem("FormSettingUpTechnologicalEquipment", typeof(FormSettingUpTechnologicalEquipment))]
+        public List<FormSettingUpTechnologicalEquipment> FormSettingUpTechnologicalEquipments { get; set; }
     }
 }

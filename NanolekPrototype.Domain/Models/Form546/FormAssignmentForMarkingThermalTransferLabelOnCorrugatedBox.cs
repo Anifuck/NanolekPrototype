@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox : PackagingProtocolForm
     {
         [NotMapped]
@@ -26,11 +28,13 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Внутренний код")]
         public InternalCode InternalCode { get; set; }
         [DisplayName("Задание дал (ФИО)")]
+        [XmlIgnore]
         public User TaskGiven { get; set; }
         public int? TaskGivenId { get; set; }
         [DisplayName("Задание дал (Дата)")]
         public DateTime TaskGivenDate { get; set; }
         [DisplayName("Задание получил (ФИО)")]
+        [XmlIgnore]
         public User TaskGot{ get; set; }
         public int? TaskGotId { get; set; }
         [DisplayName("Задание получил (Дата)")]

@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormSamplingFinishedProduct : PackagingProtocolForm
     {
         [NotMapped]
@@ -21,6 +23,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Дата составления извещения")]
         public DateTime NotificationDate { get; set; }
         [DisplayName("Мастер смены")]
+        [XmlIgnore]
         public User ShiftMaster { get; set; }
         public int? ShiftMasterId { get; set; }
         [DisplayName("Номер протокола")]
@@ -28,17 +31,22 @@ namespace NanolekPrototype.EntityModels.Models
 
 
         //Таблица «Отбор проб»:
-        public ICollection<TableSampleSelection> SampleSelections { get; set; }
+        [XmlArray("SampleSelections")]
+        [XmlArrayItem("SampleSelection", typeof(TableSampleSelection))]
+        public List<TableSampleSelection> SampleSelections { get; set; }
 
 
         //Таблица «Процедуры»:
-        public ICollection<TableProcedure> TableProcedures { get; set; }
+        [XmlArray("TableProcedures")]
+        [XmlArrayItem("TableProcedure", typeof(TableProcedure))]
+        public List<TableProcedure> TableProcedures { get; set; }
 
 
         //Группа «Наблюдения»:
         [DisplayName("Наблюдения")]
         public string Observations { get; set; }
         [DisplayName("Мастер смены/бригадир")]
+        [XmlIgnore]
         public User TaskMaster { get; set; }
         public int? TaskMasterId { get; set; }
         [DisplayName("Дата")]

@@ -1,11 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class TableProductionPersonnel
     {
         public int Id { get; set; }
+        [XmlIgnore]
+
         public PackagingProtocol PackagingProtocol { get; set; }
         public int PackagingProtocolId { get; set; }
         public bool IsActive { get; set; }

@@ -84,8 +84,13 @@
                         <br>
                         <a asp-action="CancelProtocol" asp-route-id="@item.Id">Отменить</a>
                     }
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a><br>
-                </td>
+                    @if (@item.PackagingProtocolStatus == PackagingProtocolStatus.Completed)
+                    {
+                        <a asp-action="ToXml" asp-route-id="@item.Id">Выгрузить XML</a>
+                        <br>
+                    }
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a><br>
+                    </td>
             </tr>
         }
     </tbody>

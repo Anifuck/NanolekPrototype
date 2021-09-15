@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormControlOfPrimaryPackaging: PackagingProtocolForm
     {
         [NotMapped]
@@ -14,6 +17,8 @@ namespace NanolekPrototype.EntityModels.Models
             PackagingProtokolFormType.ControlOfPrimaryPackaging;
 
         //Таблица «Контроль упаковки»:
-        public ICollection<TablePackagingControl> PackagingControls { get; set; }
+        [XmlArray("PackagingControls")]
+        [XmlArrayItem("PackagingControl", typeof(TablePackagingControl))]
+        public List<TablePackagingControl> PackagingControls { get; set; }
     }
 }

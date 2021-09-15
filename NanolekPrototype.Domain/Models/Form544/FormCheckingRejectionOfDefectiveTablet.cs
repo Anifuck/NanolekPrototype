@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormCheckingRejectionOfDefectiveTablet : PackagingProtocolForm
     {
         [NotMapped]
@@ -19,6 +21,8 @@ namespace NanolekPrototype.EntityModels.Models
         public DateTime CheckingDate { get; set; }
 
         // Таблица «Действия по проверке»:
-        public ICollection<TableVerificationAction> VerificationActions { get; set; }
+        [XmlArray("VerificationActions")]
+        [XmlArrayItem("VerificationAction", typeof(TableVerificationAction))]
+        public List<TableVerificationAction> VerificationActions { get; set; }
     }
 }

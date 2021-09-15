@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormReceptionAndMovementOfBulkProduct : PackagingProtocolForm
     {
         [NotMapped]
@@ -20,11 +22,13 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Спецификация")]
         public string Specification { get; set; }
         [DisplayName("Расчет произвел (ФИО)")]
+        [XmlIgnore]
         public User CalcedByUser { get; set; }
         public int? CalcedByUserId { get; set; }
         [DisplayName("Расчет произвел (Дата)")]
         public DateTime CalcedByUserDate { get; set; }
         [DisplayName("Расчет проверил (ФИО)")]
+        [XmlIgnore]
         public User CheckedByUser { get; set; }
         public int? CheckedByUserId { get;set; }
         [DisplayName("Расчет проверил (Дата)")]
@@ -42,11 +46,14 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Соответствие срока хранения ПрП")]
         public bool IsCorrespondToShelfLife { get; set; }
         [DisplayName("Мастер смены")]
+        [XmlIgnore]
         public User ShiftMaster { get; set; }
         public int? ShiftMasterId { get; set; }
 
         //Таблица «Движение балк-продукта(таблеток нерасфасованных)»:
-        public ICollection<TableMovementOfBulkProduct> MovementOfBulkProducts { get; set; }
+        [XmlArray("MovementOfBulkProducts")]
+        [XmlArrayItem("MovementOfBulkProduct", typeof(TableMovementOfBulkProduct))]
+        public List<TableMovementOfBulkProduct> MovementOfBulkProducts { get; set; }
 
 
         //Группа «Баланс по окончании серии»:

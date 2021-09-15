@@ -1,11 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class TablePackagingControl
     {
         public int Id { get; set; }
+        [XmlIgnore]
         public FormControlOfPrimaryPackaging FormControlOfPrimaryPackaging { get; set; }
         public int FormControlOfPrimaryPackagingId { get; set; }
         public bool IsActive { get; set; }
@@ -33,6 +36,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Скорость блистерования, бл./мин.")]
         public int BlisteringSpeed { get; set; }
         [DisplayName("ФИО укладчика упаковщика/оператора линии")]
+        [XmlIgnore]
         public User TaskMaster { get; set; }
         public int? TaskMasterId { get; set; }
 

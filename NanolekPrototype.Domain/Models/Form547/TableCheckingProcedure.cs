@@ -1,11 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class TableCheckingProcedure
     {
         public int Id { get; set; }
+        [XmlIgnore]
         public FormCheckingCheckweighingSetting FormCheckingCheckweighingSetting { get; set; }
         public int FormCheckingCheckweighingSettingId { get; set; }
         public bool IsActive { get; set; }
@@ -23,6 +26,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Примечание")]
         public string Note { get; set; }
         [DisplayName("Исполнитель")]
+        [XmlIgnore]
         public User Executor { get; set; }
         public int? ExecutorId { get; set; }
     }

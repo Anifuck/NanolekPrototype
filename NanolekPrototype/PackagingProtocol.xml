@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<PackagingProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>288</Id>
+  <IsActive>true</IsActive>
+  <Guid>b14ec1c1-996c-4cdf-80b6-35cc6b919554</Guid>
+  <SerialNumber>0000011257</SerialNumber>
+  <ResponsibleUserOOKId>1</ResponsibleUserOOKId>
+  <StorageConditions>В сухом месте при температуре 20 градусов</StorageConditions>
+  <ShelfLife>365</ShelfLife>
+  <ManufacturingDate>2021-09-13T13:10:44.3631629</ManufacturingDate>
+  <SellBy>2022-09-13T13:10:44.3517216</SellBy>
+  <PackageNumber>21581493166052</PackageNumber>
+  <ResponsibleUserTLFId>2</ResponsibleUserTLFId>
+  <TradeName>Аторвастатин</TradeName>
+  <SpecificationGP>СпГП-П03-03-008.3/ПЦ</SpecificationGP>
+  <InternalCodeGP>631177887</InternalCodeGP>
+  <PackagingProtocolStatus>Completed</PackagingProtocolStatus>
+  <CancellationReason />
+</PackagingProtocol>

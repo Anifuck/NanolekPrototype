@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Pipes;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Text.Unicode;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using NanolekPrototype.Context;
 using NanolekPrototype.EntityModels.Enums;
 using NanolekPrototype.EntityModels.Models;
+using NanolekPrototype.Ext;
 using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
@@ -25,6 +33,47 @@ namespace NanolekPrototype.Controllers
             _context = context;
             _packingProtocolService = packingProtocolService;
             _userManager = userManager;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ToXml(int? id)
+        {
+            var packagingProtocol = await _context.PackagingProtocols
+                    .Include(p => p.ProductionPersonnels)
+                    .Include(p => p.PersonnelAccessProtocols)
+                    .Include(p => p.FormCheckingCheckweighingSettings)
+                        .ThenInclude(f => f.CheckingProcedures)
+                    .Include(p => p.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes)
+                    .Include(p => p.FormControlOfPrimaryPackagings)
+                        .ThenInclude(f=>f.PackagingControls)
+                    .Include(p => p.FormReceptionAndMovementOfPackingMaterials)
+                        .ThenInclude(f=>f.ReceptionOfMaterials)
+                    .Include(p => p.FormSettingUpTechnologicalEquipments)
+                        .ThenInclude(f => f.SettingUpTechnologicalEquipments)
+                    .Include(p => p.FormReceptionAndMovementOfBulkProducts)
+                        .ThenInclude(f=>f.MovementOfBulkProducts)
+                    .Include(p => p.FormCheckingRejectionOfDefectiveTablets)
+                        .ThenInclude(f=>f.VerificationActions)
+                    .Include(p => p.FormSamplingFinishedProducts)
+                        .ThenInclude(f => f.TableProcedures)
+                        .Include(p => p.FormSamplingFinishedProducts)
+                        .ThenInclude(f => f.SampleSelections)
+                    .Include(p => p.FormMaterialBalanceOfGpByLots)
+                    .FirstOrDefaultAsync(p => p.Id == id);
+
+
+            string xml = "";
+
+            MemoryStream ms = new MemoryStream();
+
+            XmlSerializer formatter = new XmlSerializer(typeof(PackagingProtocol));
+
+            ms.Flush();
+            ms.Seek(0, SeekOrigin.Begin);
+            formatter.Serialize(ms, packagingProtocol);
+            string result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+
+            return File(ms.ToArray(), "text/xml", $"{packagingProtocol.SerialNumber}.xml");
         }
 
         // GET: PackagingProtocols
@@ -48,7 +97,7 @@ namespace NanolekPrototype.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PackagingProtocols.Where(pp=>pp.IsActive).OrderByDescending(pp=>pp.Id).ToListAsync());
+            return View(await _context.PackagingProtocols.Where(pp => pp.IsActive).OrderByDescending(pp => pp.Id).ToListAsync());
         }
 
         // GET: PackagingProtocols/Details/5
@@ -60,18 +109,18 @@ namespace NanolekPrototype.Controllers
             }
 
             var packagingProtocol = await _context.PackagingProtocols
-                .Include(m=>m.FormMaterialBalanceOfGpByLots)
-                .Include(m=>m.FormSamplingFinishedProducts)
-                .Include(m=>m.FormCheckingCheckweighingSettings)
-                .Include(m=>m.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes)
-                .Include(m=>m.FormControlOfPrimaryPackagings)
-                .Include(m=>m.FormCheckingRejectionOfDefectiveTablets)
-                .Include(m=>m.FormSettingUpTechnologicalEquipments)
-                .Include(m=>m.FormReceptionAndMovementOfBulkProducts)
-                .Include(m=>m.FormReceptionAndMovementOfPackingMaterials)
+                .Include(m => m.FormMaterialBalanceOfGpByLots)
+                .Include(m => m.FormSamplingFinishedProducts)
+                .Include(m => m.FormCheckingCheckweighingSettings)
+                .Include(m => m.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxes)
+                .Include(m => m.FormControlOfPrimaryPackagings)
+                .Include(m => m.FormCheckingRejectionOfDefectiveTablets)
+                .Include(m => m.FormSettingUpTechnologicalEquipments)
+                .Include(m => m.FormReceptionAndMovementOfBulkProducts)
+                .Include(m => m.FormReceptionAndMovementOfPackingMaterials)
                 .Include(m => m.PersonnelAccessProtocols)
                 .Include(m => m.ProductionPersonnels)
-                .ThenInclude(pp=>pp.FullName)
+                .ThenInclude(pp => pp.FullName)
                 .Include(m => m.ResponsibleUserOOK)
                 .Include(m => m.ResponsibleUserTLF)
                 .FirstOrDefaultAsync(m => m.Id == id);

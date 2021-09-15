@@ -1,11 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class TableReceptionOfMaterial
     {
         public int Id { get; set; }
+        [XmlIgnore]
         public FormReceptionAndMovementOfPackingMaterial FormReceptionAndMovementOfPackingMaterial { get; set; }
         public int FormReceptionAndMovementOfPackingMaterialId { get; set; }
         public bool IsActive { get; set; }
@@ -26,6 +29,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Фольга соответствует показателям контроля")]
         public bool IsFoilMeetsControlParameters { get; set; }
         [DisplayName("Мастер смены")]
+        [XmlIgnore]
         public User ShiftMaster { get; set; }
         public int? ShiftMasterId { get; set; }
     }

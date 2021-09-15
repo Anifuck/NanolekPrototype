@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormMaterialBalanceOfGPByLot : PackagingProtocolForm
     {
         [NotMapped]
@@ -23,16 +25,19 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Мастер смены (Дата)")]
         public DateTime ShiftMasterDate { get; set; }
         [DisplayName("Расчет произвел (ФИО)")]
+        [XmlIgnore]
         public User CalcedByUser { get; set; }
         public int? CalcedByUserId { get; set; }
         [DisplayName("Расчет произвел (Дата)")]
         public DateTime CalcedByUserDate { get; set; }
         [DisplayName("Расчет проверил (ФИО)")]
+        [XmlIgnore]
         public User CheckedByUser { get; set; }
         public int? CheckedByUserId { get; set; }
         [DisplayName("Расчет проверил (Дата)")]
         public DateTime CheckedByUserDate { get; set; }
         [DisplayName("Проверку ПУ осуществил (ФИО)")]
+        [XmlIgnore]
         public User CheckedPUByUser { get; set; }
         public int? CheckedPUByUserId { get; set; }
         [DisplayName("Проверку ПУ осуществил (Дата)")]
@@ -50,6 +55,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Наблюдения")]
         public string Observations { get; set; }
         [DisplayName("Мастер смены/бригадир")]
+        [XmlIgnore]
         public User TaskMaster { get; set; }
         public int? TaskMasterId { get; set; }
         [DisplayName("Дата")]

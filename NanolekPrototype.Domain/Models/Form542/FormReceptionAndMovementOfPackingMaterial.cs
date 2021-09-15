@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    [Serializable()]
     public class FormReceptionAndMovementOfPackingMaterial : PackagingProtocolForm
     {
         [NotMapped]
@@ -19,18 +21,22 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Спецификация")]
         public string Specification { get; set; }
         [DisplayName("Расчет произвел (ФИО)")]
+        [XmlIgnore]
         public User CalcedByUser { get; set; }
         public int? CalcedByUserId { get; set; }
         [DisplayName("Расчет произвел (Дата)")]
         public DateTime CalcedByUserDate { get; set; }
         [DisplayName("Расчет проверил (ФИО)")]
+        [XmlIgnore]
         public User CheckedByUser { get; set; }
         public int? CheckedByUserId { get; set; }
         [DisplayName("Расчет проверил (Дата)")]
         public DateTime CheckedByUserDate { get; set; }
 
         //Таблица «Приём материала»
-        public ICollection<TableReceptionOfMaterial> ReceptionOfMaterials { get; set; }
+        [XmlArray("ReceptionOfMaterials")]
+        [XmlArrayItem("ReceptionOfMaterial", typeof(TableReceptionOfMaterial))]
+        public List<TableReceptionOfMaterial> ReceptionOfMaterials { get; set; }
 
         //Группа «Баланс по окончании серии»:
         [DisplayName("Израсходовано на серию, кг")]
@@ -55,6 +61,7 @@ namespace NanolekPrototype.EntityModels.Models
         [DisplayName("Наблюдения")]
         public string Observations { get; set; }
         [DisplayName("Мастер смены/бригадир")]
+        [XmlIgnore]
         public User ShiftMaster { get; set; }
         public int? ShiftMasterId { get; set; }
         [DisplayName("Дата")]

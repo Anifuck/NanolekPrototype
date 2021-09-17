@@ -8,15 +8,24 @@ using NanolekPrototype.EntityModels.Enums;
 
 namespace NanolekPrototype.EntityModels.Models
 {
+    /// <summary>
+    /// Контроль первичной упаковки
+    /// </summary>
     [Serializable()]
     public class FormControlOfPrimaryPackaging: PackagingProtocolForm
     {
+        /// <summary>
+        /// Тип
+        /// </summary>
         [NotMapped]
         [DisplayName("Тип")]
         public override PackagingProtokolFormType Type =>
             PackagingProtokolFormType.ControlOfPrimaryPackaging;
 
         //Таблица «Контроль упаковки»:
+        /// <summary>
+        /// Таблица «Контроль упаковки»
+        /// </summary>
         [XmlArray("PackagingControls")]
         [XmlArrayItem("PackagingControl", typeof(TablePackagingControl))]
         public List<TablePackagingControl> PackagingControls { get; set; }

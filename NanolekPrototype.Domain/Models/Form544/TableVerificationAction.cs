@@ -14,11 +14,19 @@ namespace NanolekPrototype.EntityModels.Models
         public int FormCheckingRejectionOfDefectiveTabletId { get; set; }
         public bool IsActive { get; set; }
 
-
+        /// <summary>
+        /// Действие
+        /// </summary>
         [DisplayName("Действие")]
         public VerificationAction Action { get; set; }
+        /// <summary>
+        /// Подтверждение действия
+        /// </summary>
         [DisplayName("Подтверждение действия")]
         public bool IsApproved { get; set; }
+        /// <summary>
+        /// Бригадир
+        /// </summary>
         [DisplayName("Бригадир")]
         [XmlIgnore]
         public User TaskMaster { get; set; }

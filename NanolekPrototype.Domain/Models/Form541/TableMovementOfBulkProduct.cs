@@ -13,8 +13,14 @@ namespace NanolekPrototype.EntityModels.Models
         public int FormReceptionAndMovementOfBulkProductId { get; set; }
         public bool IsActive { get; set; }
 
+        /// <summary>
+        /// Отходы балк-продукта, кг
+        /// </summary>
         [DisplayName("Отходы балк-продукта, кг")]
         public int GarbageKg { get; set; }
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
         [DisplayName("Исполнитель")]
         [XmlIgnore]
         public User Executor { get; set; }

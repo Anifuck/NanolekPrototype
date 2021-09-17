@@ -15,10 +15,19 @@ namespace NanolekPrototype.EntityModels.Models
         public bool IsActive { get; set; }
 
 
+        /// <summary>
+        /// Действие
+        /// </summary>
         [DisplayName("Действие")]
         public Action Action { get; set; }
+        /// <summary>
+        /// Подтверждение
+        /// </summary>
         [DisplayName("Подтверждение")]
         public bool IsApproved { get; set; }
+        /// <summary>
+        /// Наладчик
+        /// </summary>
         [DisplayName("Наладчик")]
         [XmlIgnore]
         public User ServiceTechnician { get; set; }

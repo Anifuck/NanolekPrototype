@@ -47,56 +47,20 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Bootstrap Sidebar</h3>
+                    <partial name="_SidebarLoginPartial" />
                 </div>
 
-                <ul class="list-unstyled components">
-                    <p>Dummy Heading</p>
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
+                <ul class="components">
+                    <li>
+                        <a class="nav-link text-white" asp-area="" asp-controller="PackagingProtocols" asp-action="Index">Протоколы упаковки</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-
-                <ul class="list-unstyled CTAs">
-                    <li>
-                        <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                    </li>
-                    <li>
-                        <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                        <form  class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button  type="submit" class="nav-link btn btn-link text-white">Выход</button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -129,9 +93,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/AjaxController.js" type="text/javascript" asp-append-version="true"></script>
-    <script src="~/js/ToolTipOpen.js" type="text/javascript" asp-append-version="true"></script>
-    <script src="~/js/ModalWindow.js" type="text/javascript" asp-append-version="true"></script>
+<script src="~/js/AjaxController.js" type="text/javascript" asp-append-version="true"></script>
+<script src="~/js/ToolTipOpen.js" type="text/javascript" asp-append-version="true"></script>
+<script src="~/js/ModalWindow.js" type="text/javascript" asp-append-version="true"></script>
+<script src="~/js/SideBar.js" type="text/javascript" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

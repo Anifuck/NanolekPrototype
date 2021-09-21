@@ -9,6 +9,7 @@ using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,6 +23,7 @@ using NanolekPrototype.Services;
 
 namespace NanolekPrototype.Controllers
 {
+    [Authorize]
     public class PackagingProtocolsController : Controller
     {
         private readonly ApplicationContext _context;

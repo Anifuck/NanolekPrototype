@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using NanolekPrototype.EntityModels.Models
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Account" asp-action="Index" title="Manage">Вы вошли как: @User.Identity.Name</a>
+        </li>
+</ul>

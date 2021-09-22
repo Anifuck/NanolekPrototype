@@ -81,7 +81,7 @@ namespace NanolekPrototype.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "PackagingProtocols");
                     }
                 }
                 else
@@ -98,7 +98,7 @@ namespace NanolekPrototype.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         public async Task<IActionResult> ChangePassword(string id)

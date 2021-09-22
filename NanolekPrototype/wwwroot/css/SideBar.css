@@ -42,6 +42,11 @@
         background: #33965f;
     }
 
+#sidebar ul li form:hover {
+    color: #fff;
+    background: #33965f;
+}
+
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
     color: #fff;

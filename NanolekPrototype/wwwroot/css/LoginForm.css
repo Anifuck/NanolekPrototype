@@ -1,0 +1,13 @@
+﻿#loginForm {
+    padding-top: 10%;
+}
+
+#loginInputs {
+    padding: 7% 2.5% 0% 2.5%;
+    border: solid 1px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+#loginPicture {
+    border-radius: 0px 20px 20px 0px;
+}

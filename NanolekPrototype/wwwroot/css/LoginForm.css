@@ -6,6 +6,7 @@
     padding: 7% 2.5% 0% 2.5%;
     border: solid 1px;
     border-radius: 20px 0px 0px 20px;
+    width: 25%;
 }
 
 #loginPicture {
@@ -17,4 +18,15 @@
     width: 100%;
     border-radius: 20px;
     border: none;
+}
+
+#keyButton {
+    background: #05B7B8;
+    border: none;
+}
+
+#loginTitle {
+    font-size: x-large;
+    padding-left: 10px;
+    font-weight: bold;
 }

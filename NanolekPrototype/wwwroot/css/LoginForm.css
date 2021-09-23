@@ -11,3 +11,10 @@
 #loginPicture {
     border-radius: 0px 20px 20px 0px;
 }
+
+#loginButton {
+    background: #05B7B8;
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+}

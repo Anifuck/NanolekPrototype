@@ -166,8 +166,9 @@ namespace NanolekPrototype.Context
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            
+            Database.EnsureCreated();
         }
+
         public DbSet<PackagingProtocol> PackagingProtocols { get; set; }
         public DbSet<TableProductionPersonnel> ProductionPersonnels { get; set; }
         public DbSet<TablePersonnelAccessProtocol> PersonnelAccessProtocols { get; set; }

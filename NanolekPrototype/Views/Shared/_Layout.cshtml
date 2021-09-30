@@ -53,21 +53,24 @@
         <div class="wrapper">
             <!-- Sidebar  -->
             <nav id="sidebar">
-                <div class="sidebar-header">
-                    <partial name="_SidebarLoginPartial" />
-                </div>
-
                 <ul class="components">
                     <li class="nav-item">
+                    <partial name="_SidebarLoginPartial" />
+                    </li>
+                    <li class="nav-item">
+                        <img src="/LK.png" class="img-fluid" alt="Responsive image">
                         <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Index">Личный кабинет</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
+                        <img src="/PackagingProtocols.png" class="img-fluid" alt="Responsive image">
                         <a class="nav-link text-white" asp-area="" asp-controller="PackagingProtocols" asp-action="Index">Протоколы упаковки</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
+                        <img src="/Users.png" class="img-fluid" alt="Responsive image">
                         <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
+                        <img src="/Exit.png" class="img-fluid" alt="Responsive image">
                         <form class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
                             <button type="submit" class="nav-link btn btn-link text-white">Выход</button>
                         </form>

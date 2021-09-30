@@ -17,10 +17,6 @@
     margin-left: -250px;
 }
 
-    #sidebar .sidebar-header {
-        padding: 20px;
-        background: #1A1A1A;
-    }
 
 #sidebar ul.components {
     padding: 20px 0;
@@ -98,8 +94,19 @@ a.article:hover {
     padding-top: 5%;
 }
 
-.sidebar-item {
+#sidebar-item {
     list-style: none;
     display: flex;
     align-items: center;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+
+}
+
+.nav-item:hover {
+    background-color: #058284;
 }

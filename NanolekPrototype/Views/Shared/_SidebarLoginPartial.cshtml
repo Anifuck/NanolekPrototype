@@ -4,7 +4,7 @@
 @inject UserManager<User> UserManager
 
 
-    <li class="sidebar-item">
+<div id="sidebar-item">
         <img src="/EnterIcon.png" class="img-fluid" alt="Responsive image">
         <a class="nav-link text-white" asp-controller="Account" asp-action="Index" title="Manage">Вы вошли как: @User.Identity.Name</a>
-    </li>
+</div>

@@ -3,8 +3,8 @@
 }
 
 #loginInputs {
-    padding: 7% 2.5% 0% 2.5%;
-    border: solid 1px;
+    padding: 5% 2.5% 0% 2.5%;
+    background-color: white;
     border-radius: 20px 0px 0px 20px;
     width: 25%;
 }
@@ -14,19 +14,31 @@
 }
 
 #loginButton {
-    background: #05B7B8;
+    background: #06B7B7;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 30px;
     border: none;
 }
 
 #keyButton {
-    background: #05B7B8;
+    background: #06B7B7;
     border: none;
 }
 
 #loginTitle {
-    font-size: x-large;
-    padding-left: 10px;
+    font-size: 25px;
+    padding-left: 20px;
     font-weight: bold;
+}
+
+.bi-key-fill {
+    font-size: larger;
+}
+
+.form-group {
+    padding-top: 5%;
+}
+
+label {
+    color: #9FA2B4;
 }

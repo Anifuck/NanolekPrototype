@@ -4,6 +4,9 @@ for details on configuring this project to bundle and minify static web assets. 
 .navbar {
     padding: 0px;
     background-color: #21333F !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #navbarLogo {
@@ -82,5 +85,16 @@ body {
 
 .border-bottom {
     border-bottom: 0px !important;
+}
+
+#exitButton {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+.navbar-nav :hover {
+    background-color: #058284;
 }
 

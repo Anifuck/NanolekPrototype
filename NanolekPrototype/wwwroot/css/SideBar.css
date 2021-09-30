@@ -7,7 +7,7 @@
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #000604;
+    background: #1A1A1A;
     color: #fff;
     transition: all 0.3s;
     min-height: 100vh;
@@ -19,7 +19,7 @@
 
     #sidebar .sidebar-header {
         padding: 20px;
-        background: #000604;
+        background: #1A1A1A;
     }
 
 #sidebar ul.components {
@@ -39,13 +39,13 @@
 
     #sidebar ul li a:hover {
         color: #fff;
-        background: #33965f;
+        background: #058284;
     }
 
-#sidebar ul li form:hover {
-    color: #fff;
-    background: #33965f;
-}
+    #sidebar ul li form:hover {
+        color: #fff;
+        background: #058284;
+    }
 
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
@@ -92,4 +92,14 @@ a.article,
 a.article:hover {
     background: #6d7fcc !important;
     color: #fff !important;
+}
+
+#LogoSidebarNavbar {
+    padding-top: 5%;
+}
+
+.sidebar-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
 }

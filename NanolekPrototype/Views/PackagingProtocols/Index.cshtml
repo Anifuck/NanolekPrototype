@@ -5,11 +5,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Протоколы упаковки</h1>
+<div class="main-header">
+    <h1>Протоколы упаковки</h1>
+    <div>
+        <a asp-action="Create"><img src="/GetSAP.png" class="img-fluid" alt="Responsive image">Загрузить протокол из SAP</a>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Загрузить протокол из SAP</a>
-</p>
+<div class="main-table">
 <table class="table">
     <thead>
         <tr>
@@ -95,4 +98,4 @@
         }
     </tbody>
 </table>
-
+</div>

@@ -10,11 +10,18 @@
     background-color: white;
     display: flex;
     justify-content: center;
+    border-radius: 10px;
 }
 
-.table {
-    width: 95% !important;
+.scroll-table {
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    overflow: auto;
+    border-radius: 10px;
 }
+
+
 
     .table thead th {
         vertical-align: middle;
@@ -27,3 +34,21 @@
         border-bottom: 1px solid #DFE0EB;
         border-top: none;
     }
+
+.table {
+    width: 95% !important;
+}
+
+.table-box {
+    width: 95%;
+    overflow: auto;
+}
+
+.information {
+    background-color: white;
+    display: flex;
+}
+
+#content {
+    max-width: 86%;
+}

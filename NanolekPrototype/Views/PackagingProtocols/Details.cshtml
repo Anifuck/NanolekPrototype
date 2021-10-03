@@ -13,93 +13,265 @@
 <div>
     <h4>Протокол упаковки</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SerialNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SerialNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StorageConditions)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StorageConditions)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ShelfLife)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ShelfLife)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ManufacturingDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ManufacturingDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SellBy)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SellBy)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PackageNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PackageNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TradeName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TradeName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SpecificationGP)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SpecificationGP)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InternalCodeGP)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InternalCodeGP)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PackagingProtocolStatus)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CancellationReason)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CancellationReason)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ResponsibleUserOOK)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ResponsibleUserOOK.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ResponsibleUserTLF)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ResponsibleUserTLF.FullName)
-        </dd>
-    </dl>
+
+    <label class="font-weight-bold">Информация о протоколе</label>
+    <div class="scroll-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SerialNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StorageConditions)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShelfLife)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ManufacturingDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SellBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PackageNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TradeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SpecificationGP)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InternalCodeGP)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CancellationReason)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResponsibleUserOOK)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResponsibleUserTLF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SerialNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StorageConditions)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShelfLife)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ManufacturingDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SellBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PackageNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TradeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SpecificationGP)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InternalCodeGP)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CancellationReason)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResponsibleUserOOK)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResponsibleUserTLF)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.SerialNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.StorageConditions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ShelfLife)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ManufacturingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.SellBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PackageNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TradeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.SpecificationGP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.InternalCodeGP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PackagingProtocolStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CancellationReason)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ResponsibleUserOOK.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ResponsibleUserTLF.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.SerialNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.StorageConditions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ShelfLife)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ManufacturingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.SellBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PackageNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TradeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.SpecificationGP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.InternalCodeGP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PackagingProtocolStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CancellationReason)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ResponsibleUserOOK.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ResponsibleUserTLF.FullName)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+    @*<dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SerialNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StorageConditions)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StorageConditions)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ShelfLife)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShelfLife)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ManufacturingDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ManufacturingDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SellBy)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SellBy)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PackageNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PackageNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TradeName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TradeName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SpecificationGP)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SpecificationGP)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InternalCodeGP)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InternalCodeGP)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PackagingProtocolStatus)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CancellationReason)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CancellationReason)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ResponsibleUserOOK)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ResponsibleUserOOK.FullName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ResponsibleUserTLF)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ResponsibleUserTLF.FullName)
+            </dd>
+        </dl>*@
 </div>
 
     </br>
 
 <label class="font-weight-bold">Персонал, задействованный в производстве</label>
-<table class="table">
-    <thead>
+<div class="main-table">
+    <table class="table">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ProductionPersonnels.First().FullName.FullName)
@@ -120,8 +292,8 @@
                 }
             </th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var item in Model.ProductionPersonnels)
         {
             <tr>
@@ -139,87 +311,91 @@
                 </td>
 
                 <td>
-                @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-                {
-                    <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> 
-                    
-                    <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="Model.Id">Удалить</a>
-                }
+                    @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-controller="TableProductionPersonnels" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a>
+
+                        <a asp-controller="TableProductionPersonnels" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="Model.Id">Удалить</a>
+                    }
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 <label class="font-weight-bold">Протоколы допуска персонала к работе</label>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolDate)
-            </th>
-            <th>
-            @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-            {
-                <a asp-controller="TablePersonnelAccessProtocols" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
-            }
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PersonnelAccessProtocols)
-        {
+<div class="main-table">
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProtocolNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProtocolDate)
-                </td>
-                <td>
-                @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-                {
-                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a> 
-                    <a asp-controller="TablePersonnelAccessProtocols" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Удалить</a>
-                }
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonnelAccessProtocols.First().ProtocolDate)
+                </th>
+                <th>
+                    @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-controller="TablePersonnelAccessProtocols" asp-action="Create" asp-route-protocolid="@Model.Id">Добавить</a>
+                    }
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PersonnelAccessProtocols)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProtocolNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProtocolDate)
+                    </td>
+                    <td>
+                        @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                        {
+                            <a asp-controller="TablePersonnelAccessProtocols" asp-action="Edit" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Редактировать</a>
+                            <a asp-controller="TablePersonnelAccessProtocols" asp-action="Delete" asp-route-id="@item.Id" asp-route-protocolid="@Model.Id">Удалить</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
+<div class="main-table">
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                Формы протокола упаковки
-            </th>
-            <th>
-                Статус
-            </th>
-            <th>
-                Действия
-            </th>
-        </tr>
+    <tr>
+        <th>
+            Формы протокола упаковки
+        </th>
+        <th>
+            Статус
+        </th>
+        <th>
+            Действия
+        </th>
+    </tr>
     </thead>
     <tbody>
 
-        @foreach (var item in packagingProtocolForms)
-        {
-            var url = "Form" + @item.Type.ToString("G") + "s";
-            <tr>
-                <td>
-                    <a href="/@url/Details/@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
-                </td>
-                <td>
-                    <div id="@item.Type.ToString()">
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </div>
-                </td>
-                <td>
+    @foreach (var item in packagingProtocolForms)
+    {
+        var url = "Form" + @item.Type.ToString("G") + "s";
+        <tr>
+            <td>
+                <a href="/@url/Details/@item.Id">@Html.DisplayFor(modelItem => item.Type)</a>
+            </td>
+            <td>
+                <div id="@item.Type.ToString()">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </div>
+            </td>
+            <td>
                 @if (Model.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
                 {
                     @if (User.IsInRole("controller") && @item.Status == FormStatus.OnControl)
@@ -232,9 +408,10 @@
                         <button class="btn btn-primary" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this);">На проверку</button>
                     }
                 }
-                </td>
-            </tr>
-        }
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
-<a asp-action="Index">Назад</a>
+</div>
+    <a asp-action="Index">Назад</a>

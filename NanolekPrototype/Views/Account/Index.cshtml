@@ -1,13 +1,20 @@
 ﻿@model NanolekPrototype.EntityModels.Models.User
 
-<table class="table">
-    <tr><th>Email</th><th>ФИО</th><th>Должность</th><th></th></tr>
-    <tr>
-            <td>@Model.Email</td>
-            <td>@Model.FullName</td>
-            <td>@Model.Position</td>
-            <td>
+<div class="main-header">
+    <h1>Личный кабинет</h1>
+</div>
+<div class="main-table">
+    <table class="table">
+        <thead>
+            <tr><th>Email</th><th>ФИО</th><th>Должность</th><th></th></tr>
+        </thead>
+            <tr>
+                <td>@Model.Email</td>
+                <td>@Model.FullName</td>
+                <td>@Model.Position</td>
+                <td>
                     <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="ChangePassword" asp-route-id="@Model.Id">Сменить пароль</a>
-            </td>
-        </tr>
-</table>
+                </td>
+            </tr>
+    </table>
+</div>

@@ -21,6 +21,20 @@
     border-radius: 10px;
 }
 
+.scroll-table::-webkit-scrollbar {
+        height: 14px;
+    }
+
+    .scroll-table::-webkit-scrollbar-thumb {
+        background: #058284;
+        border-radius: 30px;
+    }
+
+    .scroll-table::-webkit-scrollbar-track {
+        background: #21333F;
+        border-radius: 30px;
+    }
+
 
 
 .table thead th {

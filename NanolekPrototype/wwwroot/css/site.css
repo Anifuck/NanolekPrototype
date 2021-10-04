@@ -129,7 +129,8 @@ body {
 .header-and-back-button {
     display: flex;
     justify-content: space-between;
-    align-items: baseline
+    align-items: baseline;
+    padding-bottom: 5%;
 }
 
 footer {

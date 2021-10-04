@@ -8,7 +8,7 @@
     <div id="loginInputs">
 
         <div class="d-flex">
-            <button type="button" class="btn btn-primary" id="keyButton">
+            <button type="button" class="btn btn-key" id="keyButton">
                 <i class="bi bi-key-fill"></i>
             </button>
             <div id="loginTitle">
@@ -20,18 +20,18 @@
             <form id="account" method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="@Model.Email"></label>
+                    <label asp-for="@Model.Email" class="login-label"></label>
                     <input asp-for="@Model.Email" class="form-control" placeholder="yourmail@gmail.com"/>
                     <span asp-validation-for="@Model.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.Password"></label>
+                    <label asp-for="@Model.Password" class="login-label"></label>
                     <input asp-for="@Model.Password" class="form-control"/>
                     <span asp-validation-for="@Model.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
-                        <label asp-for="@Model.RememberMe">
+                        <label asp-for="@Model.RememberMe" class="login-label">
                             <input asp-for="@Model.RememberMe"/>
                             @Html.DisplayNameFor(m => m.RememberMe)
                         </label>

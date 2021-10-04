@@ -28,21 +28,39 @@ a {
   color: #0366d6;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.btn-key {
+    color: white !important;
+    background-color: #058284;
+    border-color: #058284;
 }
 
+.btn-primary {
+    color: white !important;
+    background-color: #058284;
+    border-color: #058284;
+    /*min-width: 30%;*/
+}
+
+    .btn-primary:hover {
+        color: white !important;
+        background-color: #06B7B7 !important;
+        border-color: #06B7B7 !important;
+    }
+
+    .btn-primary a {
+        color: white;
+        font-size: 12px;
+    }
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+    html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
@@ -75,7 +93,6 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
     background-color: #FAFAFA;
 }
 
@@ -91,4 +108,40 @@ body {
     margin-right: 10px;
     display: flex;
     align-items: center;
+}
+
+
+.nav-back-button {
+    width: 15%;
+    border-radius: 20px;
+    color: white !important;
+    background-color: #058284;
+    border-color: #058284;
+}
+
+
+.nav-back-button:hover {
+        color: white !important;
+        background-color: #06B7B7 !important;
+        border-color: #06B7B7 !important;
+    }
+
+.header-and-back-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline
+}
+
+footer {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #1A1A1A;
+    color: #FCFCFC;
+    padding-left: 12px;
 }

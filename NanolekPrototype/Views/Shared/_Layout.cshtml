@@ -76,7 +76,7 @@
     }
     else
     { 
-        <div id="content" class="pl-2">
+        <div id="content" style="max-width: 100%">
           <main role="main" class="main">
               @RenderBody()
           </main>
@@ -84,7 +84,15 @@
 
     }
     <!--Container-->
-
+    
+@if (User.Identity.IsAuthenticated)
+{
+    <footer>
+        <div class="footer-sidebar">© Akelon GxP 2021.</div>
+        <div>
+        </div>
+    </footer>
+}
 
 
 

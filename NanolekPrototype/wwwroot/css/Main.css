@@ -23,17 +23,44 @@
 
 
 
-    .table thead th {
-        vertical-align: middle;
-        border-bottom: 2px solid #058284;
-    }
+.table thead th {
+    vertical-align: middle;
+    border-bottom: 2px solid #058284;
+}
 
-    .table td, .table th {
+.table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #DFE0EB;
+    border-top: none;
+
+    font-size: 14px;
+}
+
+    .table th a {
+        color: black;
         padding: .75rem;
         vertical-align: top;
-        border-bottom: 1px solid #DFE0EB;
-        border-top: none;
+
+        font-size: 14px;
     }
+
+.table td {
+    color: #9FA2B4;
+    padding: .75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #DFE0EB;
+    border-top: none;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+    .table td a {
+        color: #9FA2B4;
+        vertical-align: top;
+    }
+
 
 .table {
     width: 95% !important;
@@ -51,4 +78,8 @@
 
 #content {
     max-width: 86%;
+}
+
+.table-label {
+    color: black;
 }

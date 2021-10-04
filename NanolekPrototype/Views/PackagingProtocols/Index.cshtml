@@ -8,7 +8,7 @@
 <div class="main-header">
     <h1>Протоколы упаковки</h1>
     <div>
-        <a asp-action="Create"><img src="/GetSAP.png" class="img-fluid" alt="Responsive image">Загрузить протокол из SAP</a>
+        <a asp-action="Create" style="font-size: 24px; color: #9FA2B4; "><img src="/GetSAPx1.png" class="img-fluid" alt="Responsive image" style="padding-right: 10px">Загрузить протокол из SAP</a>
     </div>
 </div>
 
@@ -43,7 +43,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
             </th>
-            <th></th>
+            <th>
+                Действия
+            </th>
         </tr>
     </thead>
     <tbody>

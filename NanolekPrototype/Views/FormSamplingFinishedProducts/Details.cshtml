@@ -6,121 +6,145 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>FormSamplingFinishedProduct</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NotificationNUmber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NotificationNUmber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NotificationDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NotificationDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ShiftMaster)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ShiftMaster.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProtocolNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProtocolNumber)
-        </dd>
-    </dl>
-    
-    Группа наблюдения
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Observations)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Observations)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskMaster)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TaskMaster.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
+<div class="header-and-back-button">
+    <h1>@Html.DisplayFor(model => model.Type)</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
 </div>
 
-Sample Selections
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SampleSelections.First().DateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SampleSelections.First().CountOfSampleSelection)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SampleSelections.First().EmployeeOKK)
-        </th>
-        <th>
-        @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-        {
-            <a asp-controller="TableSampleSelections" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
-        }
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.SampleSelections) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountOfSampleSelection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeOKK.FullName)
-            </td>
-            <td>
-            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-            {
-                <a asp-controller="TableSampleSelections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-                <a asp-controller="TableSampleSelections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-            }
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<label class="font-weight-bold table-label">Информация о форме протокола</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotificationNUmber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotificationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShiftMaster)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProtocolNumber)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.NotificationNUmber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NotificationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ShiftMaster.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProtocolNumber)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-Procedures
-<table class="table">
-    <thead>
+<label class="font-weight-bold table-label">Группа наблюдения</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observations)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TaskMaster)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Observations)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TaskMaster.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Note)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<label class="font-weight-bold">Отбор проб</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SampleSelections.First().DateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SampleSelections.First().CountOfSampleSelection)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SampleSelections.First().EmployeeOKK)
+                </th>
+                <th>
+                    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-controller="TableSampleSelections" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+                    }
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SampleSelections)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CountOfSampleSelection)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeOKK.FullName)
+                    </td>
+                    <td>
+                        @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                        {
+                            <a asp-controller="TableSampleSelections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                            <a asp-controller="TableSampleSelections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<label class="font-weight-bold">Процедуры</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.TableProcedures.First().Procedure)
@@ -139,40 +163,41 @@ Procedures
             </th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.TableProcedures) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Procedure)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Executor.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Checker.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProcedureMarkDate)
-            </td>
-            <td>
-            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-            {
-                <a asp-controller="TableProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-            }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.TableProcedures)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Procedure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Executor.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Checker.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProcedureMarkDate)
+                </td>
+                <td>
+                    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-controller="TableProcedures" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 
-<div>
-@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-{
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
-}
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+<div class="edit-btn-div">
+    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+    {
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+    }
 </div>

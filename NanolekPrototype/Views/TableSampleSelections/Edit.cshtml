@@ -4,17 +4,18 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>TableSampleSelection</h4>
+<div class="header-and-back-button">
+    <h1>Редактировать запись</h1>
+    <a class="btn nav-back-button" asp-controller="FormSamplingFinishedProducts" asp-action="Details" asp-route-id="@Model.FormSamplingFinishedProductId">Вернуться назад</a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id"/>
+            <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="IsActive" />
-            <input type="hidden" asp-for="FormSamplingFinishedProductId" value="@Model.FormSamplingFinishedProductId"/>
+            <input type="hidden" asp-for="FormSamplingFinishedProductId" value="@Model.FormSamplingFinishedProductId" />
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
                 <input asp-for="DateTime" class="form-control" />
@@ -35,10 +36,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-controller="FormSamplingFinishedProducts" asp-action="Details" asp-route-id="@Model.FormSamplingFinishedProductId">Назад</a>
 </div>
 
 @section Scripts {

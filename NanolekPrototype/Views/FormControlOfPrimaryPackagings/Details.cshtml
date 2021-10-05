@@ -5,29 +5,45 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>FormControlOfPrimaryPackaging</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
+<div class="header-and-back-button">
+    <h1>@Html.DisplayFor(model => model.Type)</h1>
+    <a class="btn nav-back-button" a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
 </div>
 
-<table class="table">
-    <thead>
+<hr />
+
+<label class="font-weight-bold table-label">Информация о форме протокола</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Note)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<br>
+
+<label class="font-weight-bold">Контроль упаковки</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.PackagingControls.First().Date)
@@ -66,14 +82,14 @@
                 @Html.DisplayNameFor(model => model.PackagingControls.First().TaskMaster)
             </th>
             <th>
-            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-            {
-                <a asp-controller="TablePackagingControls" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
-            }
+                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                {
+                    <a asp-controller="TablePackagingControls" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+                }
             </th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var item in Model.PackagingControls)
         {
             <tr>
@@ -114,17 +130,14 @@
                     @Html.DisplayFor(modelItem => item.TaskMaster.FullName)
                 </td>
                 <td>
-                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-                {
-                    <a asp-controller="TablePackagingControls" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-                    <a asp-controller="TablePackagingControls" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                }
+                    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-controller="TablePackagingControls" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                        <a asp-controller="TablePackagingControls" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    }
                 </td>
             </tr>
         }
-    </tbody>
-</table>
-
-<div>
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+        </tbody>
+    </table>
 </div>

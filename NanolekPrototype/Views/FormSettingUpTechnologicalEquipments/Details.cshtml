@@ -5,65 +5,50 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>@Html.DisplayFor(model => model.Type)</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
+<div class="header-and-back-button">
+    <h1>@Html.DisplayFor(model => model.Type)</h1>
+    <a class="btn nav-back-button"  asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
 </div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SettingUpTechnologicalEquipments.First().Action)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SettingUpTechnologicalEquipments.First().IsApproved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SettingUpTechnologicalEquipments.First().ServiceTechnician)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.SettingUpTechnologicalEquipments) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Action)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsApproved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceTechnician.FullName)
-            </td>
-            <td>
-            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-            {
-                <a asp-controller="TableSettingUpTechnologicalEquipments" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-            }
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
-
 <div>
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+    <label class="font-weight-bold table-label">Настройка технологического оборудования</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SettingUpTechnologicalEquipments.First().Action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SettingUpTechnologicalEquipments.First().IsApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SettingUpTechnologicalEquipments.First().ServiceTechnician)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.SettingUpTechnologicalEquipments) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Action)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsApproved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceTechnician.FullName)
+                </td>
+                <td>
+                    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                    {
+                        <a asp-controller="TableSettingUpTechnologicalEquipments" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 </div>

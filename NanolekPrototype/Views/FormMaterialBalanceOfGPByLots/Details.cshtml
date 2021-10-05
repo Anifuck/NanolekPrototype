@@ -5,129 +5,140 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>FormMaterialBalanceOfGPByLot</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDateOfPacking)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDateOfPacking)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FinishDateOfPacking)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FinishDateOfPacking)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShiftMaster)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShiftMaster.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShiftMasterDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShiftMasterDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CalcedByUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CalcedByUser.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CalcedByUserDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CalcedByUserDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedByUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckedByUser.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedByUserDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckedByUserDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedPUByUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckedPUByUser.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedPUByUserDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckedPUByUserDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PackagesCount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PackagesCount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExitAccordingToTheRegulations)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExitAccordingToTheRegulations)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsCompliant)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsCompliant)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Observations)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Observations)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskMaster)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskMaster.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
+<div class="header-and-back-button">
+    <h1>@Html.DisplayFor(model => model.Type)</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
 </div>
-<div>
-@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+
+<label class="font-weight-bold table-label">Информация о форме протокола</label>
+<div class="scroll-table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateOfPacking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDateOfPacking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftMaster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftMasterDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalcedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalcedByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedPUByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedPUByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagesCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExitAccordingToTheRegulations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompliant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskMaster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.StartDateOfPacking)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.FinishDateOfPacking)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ShiftMaster.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ShiftMasterDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CalcedByUser.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CalcedByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckedByUser.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckedByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckedPUByUser.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckedPUByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.PackagesCount)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ExitAccordingToTheRegulations)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsCompliant)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Observations)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TaskMaster.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Note)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="edit-btn-div">
+    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
     {
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> 
-    <a class="modalSeaVision" asp-action="LoadFromSeaVision" asp-route-id="@Model.Id">Загрузить из Sea Vision</a> 
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+        <div style="padding-right: 10px;"></div>
+        <a class="modalSeaVision btn btn-primary" asp-action="LoadFromSeaVision" asp-route-id="@Model.Id">Загрузить из Sea Vision</a> 
     }
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
 </div>
 
 <div id="modDialog" class="modal fade" >

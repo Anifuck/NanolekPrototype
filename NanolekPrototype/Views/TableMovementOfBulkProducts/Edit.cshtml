@@ -4,9 +4,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>TableMovementOfBulkProduct</h4>
+<div class="header-and-back-button">
+    <h1>Редактировать запись</h1>
+    <a class="btn nav-back-button" asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="Details" asp-route-id="@Model.FormReceptionAndMovementOfBulkProductId">Вернуться назад</a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -28,10 +29,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-controller="FormReceptionAndMovementOfBulkProducts" asp-action="Details" asp-route-id="@Model.FormReceptionAndMovementOfBulkProductId">Назад</a>
 </div>
 
 @section Scripts {

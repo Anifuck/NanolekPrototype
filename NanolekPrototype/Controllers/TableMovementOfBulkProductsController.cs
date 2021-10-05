@@ -136,6 +136,7 @@ namespace NanolekPrototype.Controllers
             }
 
             var tableMovementOfBulkProduct = await _context.MovementOfBulkProducts
+                .Include(x=>x.Executor)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tableMovementOfBulkProduct == null)
             {

@@ -35,8 +35,10 @@
     font-size: larger;
 }
 
-.form-group {
+
+.login-form-group {
     padding-top: 5%;
+    margin-bottom: 1rem;
 }
 
 .login-label {

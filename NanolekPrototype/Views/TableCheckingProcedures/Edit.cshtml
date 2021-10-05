@@ -4,9 +4,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>TableCheckingProcedure</h4>
+<div class="header-and-back-button">
+    <h1>Редактировать запись</h1>
+    <a class="btn nav-back-button" asp-controller="FormCheckingCheckweighingSettings" asp-action="Details" asp-route-id="@ViewData["FormCheckingCheckweighingSettingId"]">Вернуться назад</a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -57,9 +58,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-controller="FormCheckingCheckweighingSettings" asp-action="Details" asp-route-id="@ViewData["FormCheckingCheckweighingSettingId"]">Назад</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

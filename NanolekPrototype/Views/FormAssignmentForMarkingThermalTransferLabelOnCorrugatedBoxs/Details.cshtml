@@ -5,90 +5,100 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GTIN)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GTIN)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Series)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Series)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfManufacture)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfManufacture)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellBy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SellBy)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PacksInCorrugatedBox)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PacksInCorrugatedBox)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InternalCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InternalCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskGiven)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskGiven.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskGivenDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskGivenDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskGot)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskGot.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskGotDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskGotDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
+<div class="header-and-back-button">
+    <h1>@Html.DisplayFor(model => model.Type)</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
 </div>
-<div>
-@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-{
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> 
-}
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+
+<label class="font-weight-bold table-label">Информация о форме протокола</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GTIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Series)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfManufacture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PacksInCorrugatedBox)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InternalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskGiven)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskGivenDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskGot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskGotDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.GTIN)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Series)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DateOfManufacture)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.SellBy)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.PacksInCorrugatedBox)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.InternalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TaskGiven.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TaskGivenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TaskGot.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TaskGotDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Note)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="edit-btn-div">
+    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+    {
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+    }
 </div>

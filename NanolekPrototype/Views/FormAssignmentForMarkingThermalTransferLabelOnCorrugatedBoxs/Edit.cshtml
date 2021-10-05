@@ -5,9 +5,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox</h4>
+<div class="header-and-back-button">
+    <h1>Редактировать форму</h1>
+    <a class="btn nav-back-button" asp-controller="FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxs" asp-action="Details" asp-route-id="@Model.Id">Вернуться назад</a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -67,15 +68,12 @@
             <input type="hidden" asp-for="Status" />
             <input type="hidden" asp-for="Guid" />
             <input type="hidden" asp-for="IsActive" />
+            <input type="hidden" asp-for="PackagingProtocolId" />
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-controller="FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBoxs" asp-action="Details" asp-route-id="@Model.Id">Назад</a>
 </div>
 
 @section Scripts {

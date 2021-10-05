@@ -6,9 +6,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>TableVerificationAction</h4>
+<div class="header-and-back-button">
+    <h1>Редактировать запись</h1>
+    <a class="btn nav-back-button"asp-controller="FormCheckingRejectionOfDefectiveTablets" asp-action="Details" asp-route-id="@Model.FormCheckingRejectionOfDefectiveTabletId">Вернуться назад</a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,7 +32,7 @@
                 <span asp-validation-for="TaskMasterId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>

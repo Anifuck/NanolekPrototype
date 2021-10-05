@@ -4,9 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="header-and-back-button">
+    <h1>Создать запись</h1>
+    <a class="btn nav-back-button" asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="Details" asp-route-id="@ViewData["FormReceptionAndMovementOfPackingMaterialId"]">Вернуться назад</a>
+</div>
 
-<h4>TableReceptionOfMaterial</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -59,9 +61,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="Details" asp-route-id="@ViewData["FormReceptionAndMovementOfPackingMaterialId"]">Назад</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

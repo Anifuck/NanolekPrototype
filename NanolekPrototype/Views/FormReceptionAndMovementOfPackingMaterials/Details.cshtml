@@ -5,216 +5,249 @@
     ViewData["Title"] = "Details";
 }
 
-<div>
-    <h4>@Html.DisplayFor(model => model.Type)</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InternalCodeOfMaterial)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InternalCodeOfMaterial)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Specification)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Specification)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CalcedByUser)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CalcedByUser.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CalcedByUserDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CalcedByUserDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedByUser)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CheckedByUser.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedByUserDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckedByUserDate)
-        </dd>
-    </dl>
+<div class="header-and-back-button">
+    <h1>@Html.DisplayFor(model => model.Type)</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
+</div>
 
-    <h5>Баланс по окончании серии</h5>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SpentOnBatch)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SpentOnBatch)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RemainingMaterial)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RemainingMaterial)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsSentToStorage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsSentToStorage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsStoredInProduction)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsStoredInProduction)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpenseFor1000Packs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExpenseFor1000Packs)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsCorrespondsToConsumptionRate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsCorrespondsToConsumptionRate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reconciliation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reconciliation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsCorrespondenceEligibilityCriteria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsCorrespondenceEligibilityCriteria)
-        </dd>
-    </dl>
 
-    <h5>Наблюдения</h5>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Observations)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Observations)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ShiftMaster)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ShiftMaster.FullName)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
-
-    <h5>Прием материала</h5>
+<label class="font-weight-bold table-label">Информация о форме протокола</label>
+<div class="main-table">
     <table class="table">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ReceivedFoil)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().RemainingProduction)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().SAPPart)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ManufacturerSerialNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().AnalyticalSheetNumberOKK)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().IsFoilMeetsControlParameters)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ShiftMaster)
-                </th>
-                <th>
-                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-                {
-                    <a asp-controller="TableReceptionOfMaterials" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
-                }
-                </th>
-            </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InternalCodeOfMaterial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalcedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalcedByUserDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedByUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedByUserDate)
+            </th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.ReceptionOfMaterials)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReceivedFoil)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RemainingProduction)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SAPPart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ManufacturerSerialNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnalyticalSheetNumberOKK)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsFoilMeetsControlParameters)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ShiftMaster.FullName)
-                </td>
-                <td>
-                @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-                {
-                    <a asp-controller="TableReceptionOfMaterials" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> 
-                    <a asp-controller="TableReceptionOfMaterials" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                }
-                </td>
-            </tr>
-            }
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.InternalCodeOfMaterial)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Specification)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CalcedByUser.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CalcedByUserDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckedByUser.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckedByUserDate)
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
-<div>
-@if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
-{
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
-}
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+
+<label class="font-weight-bold table-label">Баланс по окончании серии</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SpentOnBatch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemainingMaterial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSentToStorage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsStoredInProduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseFor1000Packs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCorrespondsToConsumptionRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reconciliation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCorrespondenceEligibilityCriteria)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.SpentOnBatch)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.RemainingMaterial)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsSentToStorage)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsStoredInProduction)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ExpenseFor1000Packs)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsCorrespondsToConsumptionRate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Reconciliation)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsCorrespondenceEligibilityCriteria)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<label class="font-weight-bold table-label">Наблюдения</label>
+<div class="main-table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Observations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftMaster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Observations)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ShiftMaster.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Note)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<label class="font-weight-bold">Приём материала</label>
+    <div class="main-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ReceivedFoil)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().RemainingProduction)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().SAPPart)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ManufacturerSerialNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().AnalyticalSheetNumberOKK)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().IsFoilMeetsControlParameters)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceptionOfMaterials.First().ShiftMaster)
+                    </th>
+                    <th>
+                        @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                        {
+                            <a asp-controller="TableReceptionOfMaterials" asp-action="Create" asp-route-formid="@Model.Id">Добавить</a>
+                        }
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ReceptionOfMaterials)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReceivedFoil)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RemainingProduction)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SAPPart)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManufacturerSerialNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AnalyticalSheetNumberOKK)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsFoilMeetsControlParameters)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShiftMaster.FullName)
+                        </td>
+                        <td>
+                            @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+                            {
+                                <a asp-controller="TableReceptionOfMaterials" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                <a asp-controller="TableReceptionOfMaterials" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+<div class="edit-btn-div">
+    @if (Model.PackagingProtocol.PackagingProtocolStatus == PackagingProtocolStatus.InWork)
+    {
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+    }
 </div>

@@ -4,12 +4,12 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
+<div class="header-and-back-button">
+    <h1>Вы уверены, что хотите удалить это?</h1>
+    <a class="btn nav-back-button" asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="Details" asp-route-id="@Model.FormReceptionAndMovementOfPackingMaterialId">Вернуться назад</a>
+</div>
+<hr />
 <div>
-    <h4>TableReceptionOfMaterial</h4>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
@@ -57,7 +57,6 @@
 
     <form asp-action="DeleteConfirmed">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <input type="submit" value="Удалить" class="btn btn-danger" />
     </form>
-    <a asp-controller="FormReceptionAndMovementOfPackingMaterials" asp-action="Details" asp-route-id="@Model.FormReceptionAndMovementOfPackingMaterialId">Назад</a>
 </div>

@@ -68,7 +68,7 @@ namespace NanolekPrototype.Controllers
             var form = await _context.FormAssignmentForMarkingThermalTransferLabelOnCorrugatedBox
                 .Include(form => form.PackagingProtocol)
                 .FirstOrDefaultAsync(form => form.Id == id);
-            form.Status = FormStatus.InWork;
+            form.Status = FormStatus.OnCompletion;
             form.Note = formReceptionAndMovementOfBulkProduct.Note;
             await _context.SaveChangesAsync();
 

@@ -409,7 +409,7 @@
                                 <button class="btn btn-primary" id="onApproveButton" onclick="SendOnApprove(@item.Id, '@item.Type.ToString()', this.parentElement);">Утвердить</button>
                                 <a class="btn btn-primary" href="/@url/SendOnRevisionForm/@item.Id">На доработку</a>
                             }
-                            @if (User.IsInRole("executor") && @item.Status == FormStatus.InWork)
+                            @if (User.IsInRole("executor") && (@item.Status == FormStatus.InWork || @item.Status == FormStatus.OnCompletion))
                             {
                                 <button class="btn btn-primary" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this.parentElement);">На проверку</button>
                             }

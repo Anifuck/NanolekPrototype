@@ -10,6 +10,8 @@ namespace NanolekPrototype.EntityModels.Enums
         [Display(Name="На контроле")]
         OnControl,
         [Display(Name="Обработана")]
-        Approved
+        Approved,
+        [Display(Name = "На доработке")]
+        OnCompletion
     }
 }

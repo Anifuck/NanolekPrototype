@@ -67,7 +67,7 @@ namespace NanolekPrototype.Controllers
             var form = await _context.FormSamplingFinishedProducts
                 .Include(form => form.PackagingProtocol)
                 .FirstOrDefaultAsync(form => form.Id == id);
-            form.Status = FormStatus.InWork;
+            form.Status = FormStatus.OnCompletion;
             form.Note = formSamplingFinishedProduct.Note;
             await _context.SaveChangesAsync();
 

@@ -69,7 +69,7 @@ namespace NanolekPrototype.Controllers
             var form = await _context.FormCheckingCheckweighingSettings
                 .Include(form => form.PackagingProtocol)
                 .FirstOrDefaultAsync(form => form.Id == id);
-            form.Status = FormStatus.InWork;
+            form.Status = FormStatus.OnCompletion;
             form.Note = formCheckingCheckweighingSetting.Note;
             await _context.SaveChangesAsync();
 

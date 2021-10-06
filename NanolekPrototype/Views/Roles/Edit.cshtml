@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NanolekPrototype.EntityModels.Models
 @using NanolekPrototype.EntityModels.Models.Employees
+@using NanolekPrototype.Services
 @model NanolekPrototype.ViewModels.ChangeRoleViewModel
+@using static NanolekPrototype.Services.RoleTranslator
 
 <h2>Изменение ролей для пользователя @Model.UserEmail</h2>
 
@@ -11,7 +13,7 @@
         @foreach (Role role in Model.AllRoles)
         {
             <input type="checkbox" name="roles" value="@role.Name"
-                   @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+                   @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@RoleTranslator.GetRuRoleName(role.Name) <br />
             }
     </div>
     <button type="submit" class="btn btn-primary">Сохранить</button>

@@ -5,9 +5,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="header-and-back-button">
+    <h1>Создать запись</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@ViewData["PackagingProtocolId"]">Вернуться назад</a>
+</div>
 
-<h4>TableProductionPersonnel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,10 +33,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@ViewData["PackagingProtocolId"]">Назад</a>
 </div>
 
 @section Scripts {

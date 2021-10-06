@@ -4,31 +4,31 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="header-and-back-button">
+    <h1>Вы уверены, что хотите удалить это?</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Вернуться назад</a>
+</div>
+<hr />
 
-<h3>Вы уверены, что хотите удалить это?</h3>
 <div>
-    <h4>TablePersonnelAccessProtocol</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProtocolNumber)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProtocolNumber)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProtocolDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProtocolDate)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="hidden" asp-for="PackagingProtocolId" value="@Model.PackagingProtocolId" />
-        <input type="submit" value="Удалить" class="btn btn-danger" /> |
-        <a asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocol.Id">Назад</a>
+        <input type="hidden" asp-for="Id"/>
+        <input type="hidden" asp-for="PackagingProtocolId" value="@Model.PackagingProtocolId"/>
+        <input type="submit" value="Удалить" class="btn btn-danger"/>
     </form>
 </div>

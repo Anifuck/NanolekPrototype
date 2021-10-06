@@ -411,7 +411,7 @@
                             }
                             @if (User.IsInRole("executor") && @item.Status == FormStatus.InWork)
                             {
-                                <button class="btn btn-primary" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this);">На проверку</button>
+                                <button class="btn btn-primary" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this.parentElement);">На проверку</button>
                             }
                         }
                     </td>

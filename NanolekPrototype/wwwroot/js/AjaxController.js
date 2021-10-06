@@ -4,8 +4,9 @@
                 console.log(data);
                 if (data["status"] == 1) {
                     $("#" + controllerName).text(data["protocolState"]);
-                    element.remove();
-                    $("#" + idButton + controllerName).remove();
+                    while (element.firstChild) {
+                        element.removeChild(element.firstChild);
+                    };
                 }
                 else
                     alert("ошибка");
@@ -21,3 +22,4 @@
     function SendOnApprove(id, controllerName, element) {
         PostApi("ApproveForm", "ApproveAndOnRevision", controllerName, element, id);
     }
+

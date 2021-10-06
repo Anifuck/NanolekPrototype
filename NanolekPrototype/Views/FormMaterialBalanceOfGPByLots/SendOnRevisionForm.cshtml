@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Commentary";
 }
+<div class="header-and-back-button">
+    <h1>Отправить на доработку</h1>
+    <a class="btn nav-back-button" asp-controller="PackagingProtocols" asp-action="Details" asp-route-id="@Model.PackagingProtocolId">Вернуться назад</a>
+</div>
+<hr />
 
 <form asp-action="SendOnRevisionForm">
     <div class="form-group">

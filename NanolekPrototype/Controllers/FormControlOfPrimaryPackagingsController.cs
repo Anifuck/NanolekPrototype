@@ -56,8 +56,10 @@ namespace NanolekPrototype.Controllers
         [HttpGet]
         public async Task<IActionResult> SendOnRevisionForm(int? id)
         {
-
-            return View();
+            var form = await _context.FormControlOfPrimaryPackagings
+                .Include(x => x.PackagingProtocol)
+                .FirstOrDefaultAsync(form => form.Id == id);
+            return View(form);
         }
 
         [HttpPost]

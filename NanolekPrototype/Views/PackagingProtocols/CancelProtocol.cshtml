@@ -20,3 +20,7 @@
         <input type="submit" value="Отменить протокол" class="btn btn-primary" />
     </div>
 </form>
+
+@{
+    await Html.RenderPartialAsync("~/Views/Shared/SendOnRevisionPartial.cshtml");
+}

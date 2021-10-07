@@ -6,29 +6,6 @@
     var packagingProtocolForms = ViewData["PackagingProtocolForms"] as List<PackagingProtocolForm>;
 }
 
-<div id="popup">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4>Введите пароль</h4>
-        </div>
-            <input type="hidden" id="controllerName" value="">
-            <input type="hidden" id="elementId" value="">
-            <input type="hidden" id="formId" value="">
-            <input type="hidden" id="url" value="">
-            <div class="modal-body">
-                <dl class="dl-horizontal">
-                    <dt>Пароль</dt>
-                    <dd><input type="text" id="passwordText" value="" /></dd>
-
-                    <dt>Причина</dt>
-                    <dd><input type="text" id="cause" value="" /></dd>
-                </dl>
-                <button class="btn btn-primary" type="submit" value="OK" onclick="CheckPassword()">ОК</button>
-                <button class="btn btn-warning" value="Cancel" onclick="PopUpHide()">Отменить</button>
-            </div>
-    </div>
-</div>
-
 <div class="header-and-back-button">
     <h1>Протокол упаковки</h1>
     <a class="btn nav-back-button" asp-action="Index">Вернуться назад</a>
@@ -283,17 +260,36 @@
     </table>
 </div>
 
+
+<div class="popup-fade">
+    <div id="popup">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Введите пароль</h4>
+            </div>
+            <input type="hidden" id="controllerName" value="">
+            <input type="hidden" id="elementId" value="">
+            <input type="hidden" id="formId" value="">
+            <input type="hidden" id="url" value="">
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Пароль</dt>
+                    <dd><input type="text" id="passwordText" value="" /></dd>
+
+                    <dt>Причина</dt>
+                    <dd><input type="text" id="cause" value="" /></dd>
+                </dl>
+                <button class="btn btn-primary" type="submit" value="OK" onclick="CheckPassword()">ОК</button>
+                <button class="btn btn-warning" value="Cancel" onclick="PopUpHide()">Отменить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
 <script>
     $(document).ready(function () {
         PopUpHide();
+        $(".popup-fade").css("display", "none");
     });
-    ////Функция отображения PopUp
-    //function PopUpShow() {
-    //    $("#popup1").show();
-    //}
-    ////Функция скрытия PopUp
-    //function PopUpHide() {
-    //    $("#popup1").hide();
-    //}
 </script>

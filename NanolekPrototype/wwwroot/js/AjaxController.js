@@ -59,10 +59,11 @@ function CheckPassword() {
     }
 }
 
-//$("#popup").hide();
+
 
 //Функция отображения PopUp
 function PopUpShow(url, formId, controllerName, elementId) {
+    $(".popup-fade").css("display", "block");
     $("#popup").show();
     $("#formId").val(formId);
     $("#controllerName").val(controllerName);
@@ -81,4 +82,5 @@ function PopUpShow(url, formId, controllerName, elementId) {
         $("#passwordText").val("");
         $("#cause").val("");
         $("#layoutBackground").css("pointer-events", "auto");
+        $(".popup-fade").css("display", "none");
     }

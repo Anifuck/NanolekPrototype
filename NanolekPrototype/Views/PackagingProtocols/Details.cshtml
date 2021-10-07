@@ -6,17 +6,6 @@
     var packagingProtocolForms = ViewData["PackagingProtocolForms"] as List<PackagingProtocolForm>;
 }
 
-@*<div id="popup">
-    <input type="hidden" id="controllerName" value="">
-    <input type="hidden" id="elementId" value="">
-    <input type="hidden" id="formId" value="">
-    <input type="hidden" id="url" value="">
-    <input type="text" id="passwordText" value="" />
-    <input type="button" value="OK" onclick="CheckPassword()">
-    <input type="button" value="Cancel" onclick="PopUpHide()">
-</div>*@
-
-
 <div id="popup">
     <div class="modal-content">
         <div class="modal-header">
@@ -91,88 +80,10 @@
                     <th>
                         @Html.DisplayNameFor(model => model.ResponsibleUserTLF)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SerialNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.StorageConditions)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ShelfLife)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ManufacturingDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SellBy)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PackageNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TradeName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SpecificationGP)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.InternalCodeGP)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PackagingProtocolStatus)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CancellationReason)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ResponsibleUserOOK)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ResponsibleUserTLF)
-                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(model => model.SerialNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.StorageConditions)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ShelfLife)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ManufacturingDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.SellBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PackageNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.TradeName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.SpecificationGP)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.InternalCodeGP)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.PackagingProtocolStatus)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.CancellationReason)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ResponsibleUserOOK.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.ResponsibleUserTLF.FullName)
-                    </td>
                     <td>
                         @Html.DisplayFor(model => model.SerialNumber)
                     </td>

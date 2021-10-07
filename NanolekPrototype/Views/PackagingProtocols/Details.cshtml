@@ -6,8 +6,39 @@
     var packagingProtocolForms = ViewData["PackagingProtocolForms"] as List<PackagingProtocolForm>;
 }
 
+@*<div id="popup">
+    <input type="hidden" id="controllerName" value="">
+    <input type="hidden" id="elementId" value="">
+    <input type="hidden" id="formId" value="">
+    <input type="hidden" id="url" value="">
+    <input type="text" id="passwordText" value="" />
+    <input type="button" value="OK" onclick="CheckPassword()">
+    <input type="button" value="Cancel" onclick="PopUpHide()">
+</div>*@
 
 
+<div id="popup">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Введите пароль</h4>
+        </div>
+            <input type="hidden" id="controllerName" value="">
+            <input type="hidden" id="elementId" value="">
+            <input type="hidden" id="formId" value="">
+            <input type="hidden" id="url" value="">
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Пароль</dt>
+                    <dd><input type="text" id="passwordText" value="" /></dd>
+
+                    <dt>Причина</dt>
+                    <dd><input type="text" id="cause" value="" /></dd>
+                </dl>
+                <button class="btn btn-primary" type="submit" value="OK" onclick="CheckPassword()">ОК</button>
+                <button class="btn btn-warning" value="Cancel" onclick="PopUpHide()">Отменить</button>
+            </div>
+    </div>
+</div>
 
 <div class="header-and-back-button">
     <h1>Протокол упаковки</h1>
@@ -388,9 +419,10 @@
             </tr>
         </thead>
         <tbody>
-
+            @{int c = 0;}
             @foreach (var item in packagingProtocolForms)
             {
+                c++;
                 var url = "Form" + @item.Type.ToString("G") + "s";
                 <tr>
                     <td>
@@ -406,12 +438,12 @@
                         {
                             @if (User.IsInRole("controller") && @item.Status == FormStatus.OnControl)
                             {
-                                <button class="btn btn-primary" id="onApproveButton" onclick="SendOnApprove(@item.Id, '@item.Type.ToString()', this.parentElement);">Утвердить</button>
-                                <a class="btn btn-primary" href="/@url/SendOnRevisionForm/@item.Id">На доработку</a>
+                                <button class="btn btn-primary" id="onApproveButton_@c.ToString()" onclick="SendOnApprove(@item.Id, '@item.Type.ToString()', this.id);">Утвердить</button>
+                                <a class="btn btn-primary" id="onRevisionButton_@c.ToString()" href="/@url/SendOnRevisionForm/@item.Id">На доработку</a>
                             }
                             @if (User.IsInRole("executor") && (@item.Status == FormStatus.InWork || @item.Status == FormStatus.OnCompletion))
                             {
-                                <button class="btn btn-primary" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this.parentElement);">На проверку</button>
+                                <button class="btn btn-primary" id="onControlButton_@c.ToString()" onclick="SendOnControl(@item.Id, '@item.Type.ToString()', this.id);">На проверку</button>
                             }
                         }
                     </td>
@@ -420,3 +452,18 @@
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        PopUpHide();
+    });
+    ////Функция отображения PopUp
+    //function PopUpShow() {
+    //    $("#popup1").show();
+    //}
+    ////Функция скрытия PopUp
+    //function PopUpHide() {
+    //    $("#popup1").hide();
+    //}
+</script>

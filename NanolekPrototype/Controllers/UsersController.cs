@@ -90,7 +90,14 @@ namespace NanolekPrototype.Controllers
             User user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                IdentityResult result = await _userManager.DeleteAsync(user);
+                try
+                {
+                    IdentityResult result = await _userManager.DeleteAsync(user);
+                }
+                catch (Exception e)
+                {
+                    return Content($"Невозможно удалить пользователя {user.FullName} так как он связан с каким-либо протоколом или формой");
+                }
             }
             return RedirectToAction("Index");
         }
